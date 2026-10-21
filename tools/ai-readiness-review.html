@@ -391,9 +391,9 @@ const SCREEN = [
 ];
 
 const TIERS = {
-  1:{name:"Tier 1 — Routine", desc:"Low-consequence assistive feature. Errors are visible, cheap, and reversible by the user. Gate criteria are recorded but not enforced.", composite:70, floor:40, gateLevel:99},
-  2:{name:"Tier 2 — Elevated", desc:"The output shapes a meaningful decision or the system acts with partial autonomy. Tier 2 gates are enforced and must score at least 1.", composite:80, floor:50, gateLevel:2},
-  3:{name:"Tier 3 — Consequential", desc:"The output materially affects a person's rights, livelihood, or wellbeing, or is hard to reverse. All gates are enforced and must score 2. Treat this review as a launch gate, not a critique.", composite:90, floor:67, gateLevel:2},
+  1:{name:"Tier 1 — Routine", desc:"Low-consequence assistive feature. Errors are visible, cheap, and reversible by the user. Gate criteria are recorded but not enforced.", composite:70, floor:40},
+  2:{name:"Tier 2 — Elevated", desc:"The output shapes a meaningful decision or the system acts with partial autonomy. Tier 2 gates are enforced and must score at least 1.", composite:80, floor:50},
+  3:{name:"Tier 3 — Consequential", desc:"The output materially affects a person's rights, livelihood, or wellbeing, or is hard to reverse. All gates are enforced and must score 2. Treat this review as a launch gate, not a critique.", composite:90, floor:67},
 };
 
 /* ======================= CRITERIA ======================= */
@@ -645,7 +645,6 @@ function buildRefs(){
 /* ======================= SCORING ======================= */
 function evaluate(){
   const tier = S.tier;
-  const gateLevel = tier ? TIERS[tier].gateLevel : 99;
   let earned = 0, possible = 0, scoredCount = 0;
   const dimResults = [];
   const gateFails = [], evidenceGaps = [];
@@ -654,7 +653,7 @@ function evaluate(){
     let de = 0, dp = 0;
     d.crit.forEach(c => {
       const v = S.score[c.id];
-      const gateActive = !!c.gate && tier && c.gate >= gateLevel;
+      const gateActive = !!c.gate && !!tier && tier >= c.gate;  // a T2+ gate applies at Tiers 2-3, a T3 gate at Tier 3 only
 
       if(c.gate){
         const tag = document.getElementById('gt-' + c.id);
@@ -777,7 +776,7 @@ function buildMarkdown(){
     d.crit.forEach(c => {
       const v = S.score[c.id];
       const lab = v === undefined ? '–' : (v === 'na' ? 'N/A' : v);
-      const gateActive = !!c.gate && r.tier && c.gate >= TIERS[r.tier].gateLevel;
+      const gateActive = !!c.gate && !!r.tier && r.tier >= c.gate;
       L.push(`- **[${lab}] ${c.id}**${gateActive ? ' *(gate)*' : ''} ${c.text}`);
       L.push(`  - Refs: ${c.refs.map(k=>REFS[k].key).join(', ')}`);
       const e = (S.evidence[c.id]||'').trim();
