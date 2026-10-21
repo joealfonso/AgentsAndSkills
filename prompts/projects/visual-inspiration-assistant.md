@@ -1,3 +1,10 @@
+---
+title: "Visual inspiration assistant"
+category: projects
+use_when: "setting up a Claude Project that captures, tags and searches design inspiration"
+inputs: "an inspiration-capture MCP server providing the commands below"
+---
+
 # Visual Inspiration Assistant
 
 System prompt for a Claude Project (or any assistant) that manages a visual design inspiration library. Pairs with an inspiration-capture MCP server that provides the commands below.

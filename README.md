@@ -10,7 +10,7 @@ My bank of AI skills, personas, agents and working rules. Everything here is pla
 | [`personas/`](personas) | 19 critique and rehearsal personas, one file each | Paste one into any chat, or use the `review-as` skill |
 | [`rules/`](rules) | Reusable CLAUDE.md snippets learned the hard way | Copy the block into a project's CLAUDE.md |
 | [`templates/`](templates) | CLAUDE.md starter and notes on writing specs | Copy into a new project |
-| [`prompts/`](prompts) | System prompts for Claude Projects | Paste into a Project's instructions |
+| [`prompts/`](prompts) | 71 career prompts across 12 areas, plus a context block about me | Fill in the brackets and paste, or use the `prompt-library` skill |
 | [`tools/`](tools) | Interactive HTML versions of the design review frameworks | Use them live at [josephalfonso.com/AgentsAndSkills/tools](https://josephalfonso.com/AgentsAndSkills/tools/) |
 
 ## Catalog
@@ -65,6 +65,27 @@ Every persona has stop conditions (when to say nothing) and a fixed verdict line
 | [Your Own Portfolio Reviewer, Six Months Later](personas/reality-checks/your-own-portfolio-reviewer-six-months-later.md) | review | Decisions made for speed, not quality |
 | [The Silent Skeptic](personas/reality-checks/the-silent-skeptic.md) | review | Where a presentation loses people |
 
+### Prompt library
+
+71 paste-ready prompts for recurring career work, indexed in [prompts/README.md](prompts/README.md):
+
+| Area | Prompts | Examples |
+|---|---|---|
+| Job search | 8 | Job posting decoder, resume bullet rewrite, referral ask |
+| Interviewing | 7 | Story bank builder, portfolio presentation script, mock interview |
+| Offers and negotiation | 4 | Offer comparison, counter-offer script, resignation plan |
+| Portfolio and case studies | 6 | Case study from raw notes, NDA-safe rewrite, impact metric finder |
+| Design and research work | 9 | Problem framing brief, research synthesis, edge case sweep |
+| AI product design | 6 | AI failure modes, eval plan, human-in-the-loop design |
+| Stakeholders and leadership | 8 | Exec summary, decision memo, difficult conversation prep |
+| Mentoring and teaching | 5 | Feedback on junior work, workshop outline, learning plan |
+| Writing and visibility | 6 | LinkedIn post, talk proposal, claim checker |
+| Career growth | 6 | Brag doc entry, promotion case, first 90 days |
+| Building with AI | 5 | Brief to SPEC.md, CLAUDE.md draft, subagent brief |
+| Claude Projects | 1 | Visual inspiration assistant |
+
+Paste [prompts/about-me.md](prompts/about-me.md) above any prompt so the assistant knows my background and how I want answers. The `prompt-library` skill does that and fills in the brackets for you.
+
 ### Rules
 
 | Rule | When to add it |
@@ -86,7 +107,7 @@ Two of these are also enforced by the `guardrails` plugin, since a rule in CLAUD
 /plugin install review-personas@joseph-alfonso
 ```
 
-Plugins: `writing`, `review-personas`, `design-review`, `job-search`, `daily-ops`, `guardrails`. Install only what a machine needs. `/plugin marketplace update joseph-alfonso` pulls new changes. When you change a plugin, bump the `version` in its `plugin.json`, or machines that already installed it may keep the cached copy.
+Plugins: `writing`, `review-personas`, `design-review`, `prompt-library`, `job-search`, `daily-ops`, `guardrails`. Install only what a machine needs. `/plugin marketplace update joseph-alfonso` pulls new changes. When you change a plugin, bump the `version` in its `plugin.json`, or machines that already installed it may keep the cached copy.
 
 ### Claude Code: link straight from this checkout
 
@@ -111,7 +132,7 @@ The zip lands in `dist/`. For a scheduled task in Cowork, point the task at the 
 
 ### Anywhere else
 
-Open a persona or prompt file, copy the "Instruction to paste" section, and paste it into a new conversation with your material.
+Open a persona or prompt file, copy the instruction or prompt block, and paste it into a new conversation with your material.
 
 ## Adding to the bank
 

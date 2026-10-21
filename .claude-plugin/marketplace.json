@@ -6,7 +6,7 @@
   },
   "metadata": {
     "description": "Joseph Alfonso's bank of AI skills, personas and agents.",
-    "version": "1.2.0"
+    "version": "1.3.0"
   },
   "plugins": [
     {
@@ -23,6 +23,11 @@
       "name": "design-review",
       "source": "./plugins/design-review",
       "description": "Design review frameworks: a fast Design Review Card, the AI Design Evaluation Rubric, and the evidence-based AI Readiness Review (AIRR-1.0)."
+    },
+    {
+      "name": "prompt-library",
+      "source": "./plugins/prompt-library",
+      "description": "71 career prompts (job search, interviews, offers, portfolio, design and research, AI product design, leadership, mentoring, writing, career growth, building with AI) with a skill that fills them in and runs them."
     },
     {
       "name": "job-search",

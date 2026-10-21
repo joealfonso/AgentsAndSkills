@@ -32,7 +32,7 @@ Each persona lives in `personas/<set>/<name>.md` next to this file. The persona 
 | stakeholder-leadership | the-new-manager-youre-coaching | rehearsal | practicing coaching rather than solving, fits an educator-for-junior-staff role |
 | interviewing | compensation-negotiator | rehearsal | offer conversations, practicing holding a number under pushback |
 | interviewing | competing-candidate | rehearsal | sharpening what's actually differentiated before a final round |
-| interviewing | skeptical-recruiter-screen-stage | rehearsal | practicing the initial phone screen, \"walk me through your background.\ |
+| interviewing | skeptical-recruiter-screen-stage | rehearsal | practicing the initial phone screen, "walk me through your background." |
 | reality-checks | the-burned-out-engineer | review | pressure-testing whether a spec actually holds up to implementation reality |
 | reality-checks | the-silent-skeptic | review | finding where a presentation or narrative loses people before they even ask a question |
 | reality-checks | the-user-who-hates-this | review | catching the emotional read a usability heuristic would miss |
