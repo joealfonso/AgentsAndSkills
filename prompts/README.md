@@ -57,13 +57,17 @@ Paste-ready prompts for the things I do over and over in my career: job searchin
 | Prompt | Use when |
 |---|---|
 | [Accessibility review of a design](design-work/accessibility-review.md) | before handoff or as a QA pass on a built screen |
+| [Anomaly review](design-work/anomaly-review.md) | after synthesis, before sharing findings, to catch what got left out |
 | [Preparing for a design critique](design-work/critique-prep.md) | before you bring work to crit, so you get useful feedback instead of opinions |
 | [Design rationale doc](design-work/design-rationale-doc.md) | you need to document why a design is the way it is, for engineers, stakeholders, or future you |
 | [Edge case and state sweep](design-work/edge-case-sweep.md) | before handoff, to find the states and cases nobody designed |
+| [Field notes template](design-work/field-notes-template.md) | before each research session, so every note-taker captures the same things, surprises included |
 | [User interview guide](design-work/interview-guide.md) | you're about to run user or stakeholder interviews |
 | [Problem framing brief](design-work/problem-framing-brief.md) | a new project lands, often as a solution request, and you need to frame the actual problem |
 | [Lean research plan](design-work/research-plan.md) | you need evidence before a decision and have limited time |
-| [Research synthesis](design-work/research-synthesis.md) | you have interview notes or transcripts and need findings |
+| [Research synthesis](design-work/research-synthesis.md) | you have interview notes, test results or transcripts and need findings |
+| [Survey design](design-work/survey-design.md) | you need answers from more people than you can interview |
+| [Usability test plan](design-work/usability-test-plan.md) | you need to see whether people can actually complete tasks in a design or product |
 | [UX copy pass](design-work/ux-copy-pass.md) | screens are designed but the words are placeholder, internal or vague |
 
 ### AI product design

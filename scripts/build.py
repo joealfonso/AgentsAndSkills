@@ -44,7 +44,7 @@ PROMPT_ABOUT = {
     "interviewing": "Preparing for and recovering from interviews: a story bank, tighter answers, portfolio presentations, design exercises, questions to ask, debriefs and mock rounds.",
     "offers-and-negotiation": "From offer to first day: comparing offers, negotiating, accepting or declining, and resigning well.",
     "portfolio-and-case-studies": "Turning real projects into evidence: case studies from raw notes, impact metrics, cutting length, NDA-safe rewrites, one-liners and a portfolio review.",
-    "design-work": "Day-to-day design and research: framing problems, planning and synthesizing research, documenting rationale, crit prep, edge cases, copy and accessibility.",
+    "design-work": "Day-to-day design and research: framing problems; planning, collecting and synthesizing research (interviews, field notes, usability tests, surveys) with an anomaly review so outliers aren't lost; documenting rationale, crit prep, edge cases, copy and accessibility.",
     "ai-product-design": "Designing AI features that hold up: failure modes, uncertainty and trust, evaluation plans, behavior specs, human oversight, and reality-checking AI pitches.",
     "stakeholders-and-leadership": "Working with people who decide things: exec summaries, decision memos, disagreeing well, status updates, meetings, 1:1s, hard conversations and stakeholder maps.",
     "mentoring-and-teaching": "Helping others grow: plain explanations, feedback on junior work, career conversations, workshops and learning plans.",

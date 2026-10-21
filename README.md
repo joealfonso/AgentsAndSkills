@@ -10,7 +10,7 @@ My bank of AI skills, personas, agents and working rules. Everything here is pla
 | [`personas/`](personas) | 19 critique and rehearsal personas, one file each | Paste one into any chat, or use the `review-as` skill |
 | [`rules/`](rules) | Reusable CLAUDE.md snippets learned the hard way | Copy the block into a project's CLAUDE.md |
 | [`templates/`](templates) | CLAUDE.md starter and notes on writing specs | Copy into a new project |
-| [`prompts/`](prompts) | 71 career prompts across 12 areas, plus a context block about me | Fill in the brackets and paste, or use the `prompt-library` skill |
+| [`prompts/`](prompts) | 75 career prompts across 12 areas, plus a context block about me | Fill in the brackets and paste, or use the `prompt-library` skill |
 | [`tools/`](tools) | Interactive HTML versions of the design review frameworks | Use them live at [josephalfonso.com/AgentsAndSkills/tools](https://josephalfonso.com/AgentsAndSkills/tools/) |
 
 ## Catalog
@@ -67,7 +67,7 @@ Every persona has stop conditions (when to say nothing) and a fixed verdict line
 
 ### Prompt library
 
-71 paste-ready prompts for recurring career work, indexed in [prompts/README.md](prompts/README.md):
+75 paste-ready prompts for recurring career work, indexed in [prompts/README.md](prompts/README.md):
 
 | Area | Prompts | Examples |
 |---|---|---|
@@ -75,7 +75,7 @@ Every persona has stop conditions (when to say nothing) and a fixed verdict line
 | Interviewing | 7 | Story bank builder, portfolio presentation script, mock interview |
 | Offers and negotiation | 4 | Offer comparison, counter-offer script, resignation plan |
 | Portfolio and case studies | 6 | Case study from raw notes, NDA-safe rewrite, impact metric finder |
-| Design and research work | 9 | Problem framing brief, research synthesis, edge case sweep |
+| Design and research work | 13 | Research plan, field notes, usability tests, surveys, synthesis, anomaly review |
 | AI product design | 6 | AI failure modes, eval plan, human-in-the-loop design |
 | Stakeholders and leadership | 8 | Exec summary, decision memo, difficult conversation prep |
 | Mentoring and teaching | 5 | Feedback on junior work, workshop outline, learning plan |
