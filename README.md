@@ -9,8 +9,8 @@ My bank of AI skills, personas, agents and working rules. Everything here is pla
 | [`plugins/`](plugins) | Skills and subagents, packaged as Claude Code plugins | Install a plugin, link a skill, or zip one for claude.ai |
 | [`personas/`](personas) | 19 critique and rehearsal personas, one file each | Paste one into any chat, or use the `review-as` skill |
 | [`rules/`](rules) | Reusable CLAUDE.md snippets learned the hard way | Copy the block into a project's CLAUDE.md |
-| [`templates/`](templates) | CLAUDE.md starter and notes on writing specs | Copy into a new project |
-| [`prompts/`](prompts) | 75 career prompts across 12 areas, plus a context block about me | Fill in the brackets and paste, or use the `prompt-library` skill |
+| [`templates/`](templates) | CLAUDE.md starter, notes on writing specs, and a service blueprint template | Copy into a new project or doc |
+| [`prompts/`](prompts) | 79 career prompts across 12 areas, plus a context block about me | Fill in the brackets and paste, or use the `prompt-library` skill |
 | [`tools/`](tools) | Interactive HTML versions of the design review frameworks | Use them live at [josephalfonso.com/AgentsAndSkills/tools](https://josephalfonso.com/AgentsAndSkills/tools/) |
 
 ## Catalog
@@ -67,7 +67,7 @@ Every persona has stop conditions (when to say nothing) and a fixed verdict line
 
 ### Prompt library
 
-75 paste-ready prompts for recurring career work, indexed in [prompts/README.md](prompts/README.md):
+79 paste-ready prompts for recurring career work, indexed in [prompts/README.md](prompts/README.md):
 
 | Area | Prompts | Examples |
 |---|---|---|
@@ -75,7 +75,7 @@ Every persona has stop conditions (when to say nothing) and a fixed verdict line
 | Interviewing | 7 | Story bank builder, portfolio presentation script, mock interview |
 | Offers and negotiation | 4 | Offer comparison, counter-offer script, resignation plan |
 | Portfolio and case studies | 6 | Case study from raw notes, NDA-safe rewrite, impact metric finder |
-| Design and research work | 13 | Research plan, field notes, usability tests, surveys, synthesis, anomaly review |
+| Design and research work | 17 | Research plan, usability tests, synthesis, anomaly review, service blueprints |
 | AI product design | 6 | AI failure modes, eval plan, human-in-the-loop design |
 | Stakeholders and leadership | 8 | Exec summary, decision memo, difficult conversation prep |
 | Mentoring and teaching | 5 | Feedback on junior work, workshop outline, learning plan |

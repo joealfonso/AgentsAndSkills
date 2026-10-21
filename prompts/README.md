@@ -58,14 +58,18 @@ Paste-ready prompts for the things I do over and over in my career: job searchin
 |---|---|
 | [Accessibility review of a design](design-work/accessibility-review.md) | before handoff or as a QA pass on a built screen |
 | [Anomaly review](design-work/anomaly-review.md) | after synthesis, before sharing findings, to catch what got left out |
+| [Service blueprinting workshop](design-work/blueprint-workshop.md) | you're bringing people together to map a service, and need the right people and a plan that gets the backstage truth |
 | [Preparing for a design critique](design-work/critique-prep.md) | before you bring work to crit, so you get useful feedback instead of opinions |
 | [Design rationale doc](design-work/design-rationale-doc.md) | you need to document why a design is the way it is, for engineers, stakeholders, or future you |
 | [Edge case and state sweep](design-work/edge-case-sweep.md) | before handoff, to find the states and cases nobody designed |
 | [Field notes template](design-work/field-notes-template.md) | before each research session, so every note-taker captures the same things, surprises included |
+| [Future-state blueprint](design-work/future-state-blueprint.md) | you have a current-state blueprint and need to design and justify the improved service |
 | [User interview guide](design-work/interview-guide.md) | you're about to run user or stakeholder interviews |
 | [Problem framing brief](design-work/problem-framing-brief.md) | a new project lands, often as a solution request, and you need to frame the actual problem |
 | [Lean research plan](design-work/research-plan.md) | you need evidence before a decision and have limited time |
 | [Research synthesis](design-work/research-synthesis.md) | you have interview notes, test results or transcripts and need findings |
+| [Service blueprint review](design-work/service-blueprint-review.md) | you have a blueprint (yours or someone else's) and want to find what it reveals or hides |
+| [Service blueprint](design-work/service-blueprint.md) | you need to see how a service actually works end to end, front of house and back, before redesigning any part of it |
 | [Survey design](design-work/survey-design.md) | you need answers from more people than you can interview |
 | [Usability test plan](design-work/usability-test-plan.md) | you need to see whether people can actually complete tasks in a design or product |
 | [UX copy pass](design-work/ux-copy-pass.md) | screens are designed but the words are placeholder, internal or vague |

@@ -3,3 +3,6 @@ dist/
 __pycache__/
 Job_Digest_Seen.txt
 *.local.*
+.claude/
+.preview-tmp/
+.drafts/

@@ -1,6 +1,6 @@
 # Design and research work
 
-Day-to-day design and research: framing problems; planning, collecting and synthesizing research (interviews, field notes, usability tests, surveys) with an anomaly review so outliers aren't lost; documenting rationale, crit prep, edge cases, copy and accessibility.
+Day-to-day design and research: framing problems; planning, collecting and synthesizing research (interviews, field notes, usability tests, surveys) with an anomaly review so outliers aren't lost; service blueprints (current state, review, future state, workshops); documenting rationale, crit prep, edge cases, copy and accessibility.
 
 Fill in the `[BRACKETS]` and paste a prompt into any assistant, with [about-me.md](../about-me.md) above it, or ask Claude to use it by name through the `prompt-library` skill.
 
@@ -8,14 +8,18 @@ Fill in the `[BRACKETS]` and paste a prompt into any assistant, with [about-me.m
 |---|---|
 | [Accessibility review of a design](accessibility-review.md) | before handoff or as a QA pass on a built screen |
 | [Anomaly review](anomaly-review.md) | after synthesis, before sharing findings, to catch what got left out |
+| [Service blueprinting workshop](blueprint-workshop.md) | you're bringing people together to map a service, and need the right people and a plan that gets the backstage truth |
 | [Preparing for a design critique](critique-prep.md) | before you bring work to crit, so you get useful feedback instead of opinions |
 | [Design rationale doc](design-rationale-doc.md) | you need to document why a design is the way it is, for engineers, stakeholders, or future you |
 | [Edge case and state sweep](edge-case-sweep.md) | before handoff, to find the states and cases nobody designed |
 | [Field notes template](field-notes-template.md) | before each research session, so every note-taker captures the same things, surprises included |
+| [Future-state blueprint](future-state-blueprint.md) | you have a current-state blueprint and need to design and justify the improved service |
 | [User interview guide](interview-guide.md) | you're about to run user or stakeholder interviews |
 | [Problem framing brief](problem-framing-brief.md) | a new project lands, often as a solution request, and you need to frame the actual problem |
 | [Lean research plan](research-plan.md) | you need evidence before a decision and have limited time |
 | [Research synthesis](research-synthesis.md) | you have interview notes, test results or transcripts and need findings |
+| [Service blueprint review](service-blueprint-review.md) | you have a blueprint (yours or someone else's) and want to find what it reveals or hides |
+| [Service blueprint](service-blueprint.md) | you need to see how a service actually works end to end, front of house and back, before redesigning any part of it |
 | [Survey design](survey-design.md) | you need answers from more people than you can interview |
 | [Usability test plan](usability-test-plan.md) | you need to see whether people can actually complete tasks in a design or product |
 | [UX copy pass](ux-copy-pass.md) | screens are designed but the words are placeholder, internal or vague |
