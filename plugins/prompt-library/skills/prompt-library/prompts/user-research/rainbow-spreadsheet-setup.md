@@ -1,6 +1,6 @@
 ---
 title: "Rainbow spreadsheet setup"
-category: design-work
+category: user-research
 use_when: "you're about to run a usability study and want the rainbow spreadsheet ready before the first session"
 inputs: "your study plan or goals, the tasks, participant list, the team's expectations"
 ---

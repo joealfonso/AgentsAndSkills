@@ -1,6 +1,6 @@
 ---
 title: "Anomaly review"
-category: design-work
+category: user-research
 use_when: "after synthesis, before sharing findings, to catch what got left out"
 inputs: "the synthesis or findings, the raw notes"
 ---

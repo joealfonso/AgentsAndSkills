@@ -1,6 +1,6 @@
 ---
 title: "User interview guide"
-category: design-work
+category: user-research
 use_when: "you're about to run user or stakeholder interviews"
 inputs: "research questions, participant type, session length"
 ---

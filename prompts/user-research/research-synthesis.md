@@ -1,6 +1,6 @@
 ---
 title: "Research synthesis"
-category: design-work
+category: user-research
 use_when: "you have interview notes, test results or transcripts and need findings"
 inputs: "notes or transcripts labeled by participant, the research questions"
 ---

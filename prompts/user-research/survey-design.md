@@ -1,6 +1,6 @@
 ---
 title: "Survey design"
-category: design-work
+category: user-research
 use_when: "you need answers from more people than you can interview"
 inputs: "what you need to learn, who you'll survey, how you'll reach them"
 ---

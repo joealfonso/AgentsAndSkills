@@ -38,6 +38,6 @@ Use participant IDs on every tab except Participants. Keep names, emails and rec
 
 ## Prompts that work with it
 
-- [Rainbow spreadsheet setup](../../prompts/design-work/rainbow-spreadsheet-setup.md): fills tabs 2, 3, 4 and the assumption rows on tab 5 from your study plan.
-- [Rainbow spreadsheet analysis](../../prompts/design-work/rainbow-spreadsheet-analysis.md): turns session notes into observation rows, then reads the filled sheet and drafts the Post Interview tab.
-- [Research synthesis](../../prompts/design-work/research-synthesis.md) and [Anomaly review](../../prompts/design-work/anomaly-review.md) take an exported sheet as input.
+- [Rainbow spreadsheet setup](../../prompts/user-research/rainbow-spreadsheet-setup.md): fills tabs 2, 3, 4 and the assumption rows on tab 5 from your study plan.
+- [Rainbow spreadsheet analysis](../../prompts/user-research/rainbow-spreadsheet-analysis.md): turns session notes into observation rows, then reads the filled sheet and drafts the Post Interview tab.
+- [Research synthesis](../../prompts/user-research/research-synthesis.md) and [Anomaly review](../../prompts/user-research/anomaly-review.md) take an exported sheet as input.

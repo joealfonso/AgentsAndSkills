@@ -44,7 +44,8 @@ PROMPT_ABOUT = {
     "interviewing": "Preparing for and recovering from interviews: a story bank, tighter answers, portfolio presentations, design exercises, questions to ask, debriefs and mock rounds.",
     "offers-and-negotiation": "From offer to first day: comparing offers, negotiating, accepting or declining, and resigning well.",
     "portfolio-and-case-studies": "Turning real projects into evidence: case studies from raw notes, impact metrics, cutting length, NDA-safe rewrites, one-liners and a portfolio review.",
-    "design-work": "Day-to-day design and research: framing problems; planning, collecting and synthesizing research (interviews, field notes, usability tests with a rainbow spreadsheet, surveys) with an anomaly review so outliers aren't lost; service blueprints for digital products (build, review, future state, workshops); documenting rationale, crit prep, edge cases, copy and accessibility.",
+    "user-research": "Planning, running and making sense of user research: research plans, interview guides, field notes, usability tests, surveys, the rainbow spreadsheet, synthesis, and an anomaly review so outliers aren't lost.",
+    "design-work": "Day-to-day design work: framing problems, service blueprints for digital products (build, review, future state, workshops), documenting rationale, crit prep, edge cases, copy and accessibility.",
     "ai-product-design": "Designing AI features that hold up: failure modes, uncertainty and trust, evaluation plans, behavior specs, human oversight, and reality-checking AI pitches.",
     "stakeholders-and-leadership": "Working with people who decide things: exec summaries, decision memos, disagreeing well, status updates, meetings, 1:1s, hard conversations and stakeholder maps.",
     "mentoring-and-teaching": "Helping others grow: plain explanations, feedback on junior work, career conversations, workshops and learning plans.",
@@ -54,12 +55,17 @@ PROMPT_ABOUT = {
     "projects": "Longer system prompts that set up a Claude Project or a custom assistant for an ongoing job.",
 }
 
+PROMPT_EXTRA = {
+    "user-research": "**Template:** the [rainbow spreadsheet](../../templates/rainbow-spreadsheet/), my usability study sheet as importable tabs. The setup and analysis prompts below work with it.",
+}
+
 PROMPT_ORDER = {
     "job-search": "Job search",
     "interviewing": "Interviewing",
     "offers-and-negotiation": "Offers and negotiation",
     "portfolio-and-case-studies": "Portfolio and case studies",
-    "design-work": "Design and research work",
+    "user-research": "User research",
+    "design-work": "Design work",
     "ai-product-design": "AI product design",
     "stakeholders-and-leadership": "Stakeholders and leadership",
     "mentoring-and-teaching": "Mentoring and teaching",
@@ -162,6 +168,7 @@ def prompts_wanted():
         rows = "\n".join(f"| [{e['title']}]({Path(e['path']).name}) | {e['use_when']} |" for e in items)
         wanted[PROMPTS / cat / "README.md"] = (
             f"# {title}\n\n{PROMPT_ABOUT.get(cat, '')}\n\n"
+            + (PROMPT_EXTRA[cat] + "\n\n" if cat in PROMPT_EXTRA else "") +
             "Fill in the `[BRACKETS]` and paste a prompt into any assistant, with [about-me.md](../about-me.md) above it, "
             "or ask Claude to use it by name through the `prompt-library` skill.\n\n"
             "| Prompt | Use when |\n|---|---|\n" + rows + "\n\n"

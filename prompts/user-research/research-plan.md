@@ -1,6 +1,6 @@
 ---
 title: "Lean research plan"
-category: design-work
+category: user-research
 use_when: "you need evidence before a decision and have limited time"
 inputs: "the decision to inform, timeline, access to users"
 ---

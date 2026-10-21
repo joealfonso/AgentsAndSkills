@@ -1,6 +1,6 @@
 # Prompt library
 
-Paste-ready prompts for the things I do over and over in my career: job searching, interviewing, negotiating, portfolio work, design and research, AI product design, working with stakeholders, mentoring, writing, career growth, and building with AI.
+Paste-ready prompts for the things I do over and over in my career: job searching, interviewing, negotiating, portfolio work, user research, design work, AI product design, working with stakeholders, mentoring, writing, career growth, and building with AI.
 
 **How to use one:** open it, fill in the `[BRACKETS]`, and paste it into any assistant. For better results, paste [about-me.md](about-me.md) above it first. In Claude, the `prompt-library` skill does both for you: say "use the job posting decoder on this" or "which prompt fits this?".
 
@@ -52,28 +52,33 @@ Paste-ready prompts for the things I do over and over in my career: job searchin
 | [Portfolio site review](portfolio-and-case-studies/portfolio-site-review.md) | before sending your portfolio to anyone important |
 | [Project one-liners](portfolio-and-case-studies/project-one-liner.md) | you need a crisp line for a portfolio grid, resume, intro or bio |
 
-### Design and research work
+### User research
+
+| Prompt | Use when |
+|---|---|
+| [Anomaly review](user-research/anomaly-review.md) | after synthesis, before sharing findings, to catch what got left out |
+| [Field notes template](user-research/field-notes-template.md) | before each research session, so every note-taker captures the same things, surprises included |
+| [User interview guide](user-research/interview-guide.md) | you're about to run user or stakeholder interviews |
+| [Rainbow spreadsheet analysis](user-research/rainbow-spreadsheet-analysis.md) | during a study to log sessions, or after it to turn a filled rainbow spreadsheet into findings |
+| [Rainbow spreadsheet setup](user-research/rainbow-spreadsheet-setup.md) | you're about to run a usability study and want the rainbow spreadsheet ready before the first session |
+| [Lean research plan](user-research/research-plan.md) | you need evidence before a decision and have limited time |
+| [Research synthesis](user-research/research-synthesis.md) | you have interview notes, test results or transcripts and need findings |
+| [Survey design](user-research/survey-design.md) | you need answers from more people than you can interview |
+| [Usability test plan](user-research/usability-test-plan.md) | you need to see whether people can actually complete tasks in a design or product |
+
+### Design work
 
 | Prompt | Use when |
 |---|---|
 | [Accessibility review of a design](design-work/accessibility-review.md) | before handoff or as a QA pass on a built screen |
-| [Anomaly review](design-work/anomaly-review.md) | after synthesis, before sharing findings, to catch what got left out |
 | [Service blueprinting workshop](design-work/blueprint-workshop.md) | you're bringing people together to map a service, and need the right people and a plan that gets the backstage truth |
 | [Preparing for a design critique](design-work/critique-prep.md) | before you bring work to crit, so you get useful feedback instead of opinions |
 | [Design rationale doc](design-work/design-rationale-doc.md) | you need to document why a design is the way it is, for engineers, stakeholders, or future you |
 | [Edge case and state sweep](design-work/edge-case-sweep.md) | before handoff, to find the states and cases nobody designed |
-| [Field notes template](design-work/field-notes-template.md) | before each research session, so every note-taker captures the same things, surprises included |
 | [Future-state blueprint](design-work/future-state-blueprint.md) | you have a current-state blueprint and need to design and justify the improved service |
-| [User interview guide](design-work/interview-guide.md) | you're about to run user or stakeholder interviews |
 | [Problem framing brief](design-work/problem-framing-brief.md) | a new project lands, often as a solution request, and you need to frame the actual problem |
-| [Rainbow spreadsheet analysis](design-work/rainbow-spreadsheet-analysis.md) | during a study to log sessions, or after it to turn a filled rainbow spreadsheet into findings |
-| [Rainbow spreadsheet setup](design-work/rainbow-spreadsheet-setup.md) | you're about to run a usability study and want the rainbow spreadsheet ready before the first session |
-| [Lean research plan](design-work/research-plan.md) | you need evidence before a decision and have limited time |
-| [Research synthesis](design-work/research-synthesis.md) | you have interview notes, test results or transcripts and need findings |
 | [Service blueprint review](design-work/service-blueprint-review.md) | you have a blueprint (yours or someone else's) and want to find what it reveals or hides |
 | [Service blueprint](design-work/service-blueprint.md) | you need to see how a service works end to end, front of house and back, before designing any part of it |
-| [Survey design](design-work/survey-design.md) | you need answers from more people than you can interview |
-| [Usability test plan](design-work/usability-test-plan.md) | you need to see whether people can actually complete tasks in a design or product |
 | [UX copy pass](design-work/ux-copy-pass.md) | screens are designed but the words are placeholder, internal or vague |
 
 ### AI product design

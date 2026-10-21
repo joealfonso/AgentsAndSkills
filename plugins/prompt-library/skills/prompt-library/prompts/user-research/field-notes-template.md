@@ -1,6 +1,6 @@
 ---
 title: "Field notes template"
-category: design-work
+category: user-research
 use_when: "before each research session, so every note-taker captures the same things, surprises included"
 inputs: "the research questions, the session type"
 ---

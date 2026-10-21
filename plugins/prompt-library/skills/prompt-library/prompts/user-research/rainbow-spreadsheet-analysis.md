@@ -1,6 +1,6 @@
 ---
 title: "Rainbow spreadsheet analysis"
-category: design-work
+category: user-research
 use_when: "during a study to log sessions, or after it to turn a filled rainbow spreadsheet into findings"
 inputs: "session notes and/or the exported sheet (Observations, Participants, Tasks & Metrics, Notes tabs)"
 ---

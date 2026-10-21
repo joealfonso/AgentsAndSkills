@@ -1,6 +1,6 @@
 ---
 title: "Usability test plan"
-category: design-work
+category: user-research
 use_when: "you need to see whether people can actually complete tasks in a design or product"
 inputs: "the design or prototype, the tasks that matter, who the users are"
 ---
