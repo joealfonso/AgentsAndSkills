@@ -11,7 +11,7 @@ My bank of AI skills, personas, agents and working rules. Everything here is pla
 | [`rules/`](rules) | Reusable CLAUDE.md snippets learned the hard way | Copy the block into a project's CLAUDE.md |
 | [`templates/`](templates) | CLAUDE.md starter and notes on writing specs | Copy into a new project |
 | [`prompts/`](prompts) | System prompts for Claude Projects | Paste into a Project's instructions |
-| [`tools/`](tools) | Interactive HTML versions of the design review frameworks | Open in a browser and fill in during a review |
+| [`tools/`](tools) | Interactive HTML versions of the design review frameworks | Use them live at [josephalfonso.com/AgentsAndSkills/tools](https://josephalfonso.com/AgentsAndSkills/tools/) |
 
 ## Catalog
 
@@ -31,7 +31,7 @@ My bank of AI skills, personas, agents and working rules. Everything here is pla
 | [morning-briefing](plugins/daily-ops/skills/morning-briefing/SKILL.md) | daily-ops | Today's calendar plus the unread email that needs attention |
 | [kb-curator](plugins/daily-ops/skills/kb-curator/SKILL.md) | daily-ops | Weekly cleanup of the personal knowledge base: duplicates, tags, stale items |
 
-The three design-review skills go from light to heavy: the card for any design, the rubric for AI features, AIRR for high-consequence AI features or a launch gate. The card points to AIRR when 3 or more of its AI questions come back open. Interactive versions of all three are in [`tools/`](tools).
+The three design-review skills go from light to heavy: the card for any design, the rubric for AI features, AIRR for high-consequence AI features or a launch gate. The card points to AIRR when 3 or more of its AI questions come back open. Interactive versions of all three are live at [josephalfonso.com/AgentsAndSkills/tools](https://josephalfonso.com/AgentsAndSkills/tools/).
 
 The job-search and daily-ops skills expect Gmail, Google Calendar, Chrome or the knowledge base MCP to be connected. Each has a **Config** section at the top with paths to change.
 
@@ -75,6 +75,8 @@ Every persona has stop conditions (when to say nothing) and a fixed verdict line
 | [kill-by-pid](rules/kill-by-pid.md) | Projects with dev servers |
 | [remove-unreliable-features](rules/remove-unreliable-features.md) | Data-driven products |
 
+Two of these are also enforced by the `guardrails` plugin, since a rule in CLAUDE.md can be forgotten and a hook can't. It blocks `pkill`, `killall` and `pgrep | kill`, and asks you to confirm any `git push` that would update `main` or `master` (including a bare `git push` while on `main`).
+
 ## Using it
 
 ### Claude Code: install as plugins
@@ -84,7 +86,7 @@ Every persona has stop conditions (when to say nothing) and a fixed verdict line
 /plugin install review-personas@joseph-alfonso
 ```
 
-Plugins: `writing`, `review-personas`, `design-review`, `job-search`, `daily-ops`. Install only what a machine needs. `/plugin marketplace update joseph-alfonso` pulls new changes.
+Plugins: `writing`, `review-personas`, `design-review`, `job-search`, `daily-ops`, `guardrails`. Install only what a machine needs. `/plugin marketplace update joseph-alfonso` pulls new changes. When you change a plugin, bump the `version` in its `plugin.json`, or machines that already installed it may keep the cached copy.
 
 ### Claude Code: link straight from this checkout
 
@@ -117,4 +119,14 @@ Open a persona or prompt file, copy the "Instruction to paste" section, and past
 - **New skill:** add `plugins/<plugin>/skills/<name>/SKILL.md` with `name` and `description` frontmatter. A new plugin also needs `.claude-plugin/plugin.json` and an entry in [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json).
 - **New rule:** add `rules/<name>.md` with the paste-ready block and a one-line why.
 
-`python3 scripts/build.py --check` fails if the plugin copies have drifted from `personas/`.
+Every push runs [CI](.github/workflows/check.yml): personas in sync with their plugin copies, no broken links, the guardrail hook tests, valid JSON, and `claude plugin validate` on the marketplace and every plugin. To run the same checks locally:
+
+```bash
+python3 scripts/build.py --check
+python3 scripts/check_links.py
+python3 scripts/test_guard.py
+```
+
+## License
+
+Written content (personas, skills, prompts, rules, templates, the review frameworks) is [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/): use and adapt it freely with credit. Scripts and hook code are MIT. Details in [LICENSE](LICENSE).

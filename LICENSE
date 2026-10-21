@@ -1,0 +1,38 @@
+This repository uses two licenses.
+
+1. Written content: CC BY 4.0
+   Everything except the code listed in part 2: personas, skills (SKILL.md
+   and reference files), prompts, rules, templates, the README, and the
+   review frameworks in tools/ (their text, criteria and structure).
+
+   Licensed under the Creative Commons Attribution 4.0 International
+   License. You may share and adapt it for any purpose, including
+   commercially, as long as you give appropriate credit to Joseph Alfonso
+   (https://josephalfonso.com), link to the license, and say if you made
+   changes. Full legal code: https://creativecommons.org/licenses/by/4.0/legalcode
+
+2. Code: MIT
+   scripts/, plugins/guardrails/hooks/, .github/, and the JavaScript and
+   CSS inside the HTML files in tools/.
+
+MIT License
+
+Copyright (c) 2026 Joseph Alfonso
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

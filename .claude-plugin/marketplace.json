@@ -6,7 +6,7 @@
   },
   "metadata": {
     "description": "Joseph Alfonso's bank of AI skills, personas and agents.",
-    "version": "1.1.0"
+    "version": "1.2.0"
   },
   "plugins": [
     {
@@ -33,6 +33,11 @@
       "name": "daily-ops",
       "source": "./plugins/daily-ops",
       "description": "Daily and weekly routines: morning calendar and email briefing, personal knowledge base cleanup."
+    },
+    {
+      "name": "guardrails",
+      "source": "./plugins/guardrails",
+      "description": "Hooks that enforce two rules: never kill processes by pattern (pkill, killall), and confirm before any git push to main or master."
     }
   ]
 }

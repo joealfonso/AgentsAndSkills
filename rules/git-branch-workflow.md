@@ -13,3 +13,5 @@ Paste into a project's CLAUDE.md when `main` deploys to production.
 ```
 
 **Why:** on more than one project, a single "commit and merge" turned into several unrequested pushes to a branch that deploys to production.
+
+**Backed by a hook:** the `guardrails` plugin makes Claude ask you before any push that would update `main` or `master`.

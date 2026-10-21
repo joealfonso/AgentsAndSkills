@@ -1,0 +1,9 @@
+{
+  "name": "guardrails",
+  "version": "1.0.0",
+  "description": "Hooks that enforce two rules: never kill processes by pattern (pkill, killall), and confirm before any git push to main or master.",
+  "author": {
+    "name": "Joseph Alfonso",
+    "url": "https://josephalfonso.com"
+  }
+}

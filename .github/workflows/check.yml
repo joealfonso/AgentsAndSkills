@@ -1,0 +1,35 @@
+name: check
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Personas in sync with plugin copies
+        run: python3 scripts/build.py --check
+
+      - name: No broken links
+        run: python3 scripts/check_links.py
+
+      - name: Guardrail hook tests
+        run: python3 scripts/test_guard.py
+
+      - name: JSON files parse
+        run: find . -name '*.json' -not -path './.git/*' -print0 | xargs -0 -n1 python3 -m json.tool > /dev/null
+
+      - name: Plugin manifests validate
+        run: |
+          npm install -g @anthropic-ai/claude-code
+          claude plugin validate .
+          for p in plugins/*/; do claude plugin validate "$p"; done

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design Review Tools</title>
+<meta name="description" content="Three interactive design review instruments by Joseph Alfonso, from a fast pre-build pass to an evidence-based AI readiness review.">
+<style>
+  :root {
+    --bg: #f7f5f0; --card: #ffffff; --ink: #1c1b19; --ink-2: #57534c; --line: #e4e0d8; --accent: #2f5d50;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --bg: #141412; --card: #1d1c1a; --ink: #eceae5; --ink-2: #a8a39a; --line: #33312d; --accent: #7fb8a6; }
+  }
+  :root[data-theme="dark"] { --bg: #141412; --card: #1d1c1a; --ink: #eceae5; --ink-2: #a8a39a; --line: #33312d; --accent: #7fb8a6; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.55 Georgia, "Iowan Old Style", serif; }
+  main { max-width: 760px; margin: 0 auto; padding: 56px 16px 64px; }
+  .eyebrow { font: 600 12px/1 system-ui, sans-serif; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin: 0 0 14px; }
+  h1 { font-size: clamp(30px, 6vw, 42px); line-height: 1.1; margin: 0 0 14px; font-weight: 500; }
+  .lede { color: var(--ink-2); margin: 0 0 40px; max-width: 58ch; }
+  ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+  a.tool { display: grid; grid-template-columns: 44px 1fr; gap: 4px 16px; padding: 22px 22px 20px; background: var(--card);
+           border: 1px solid var(--line); border-radius: 10px; color: inherit; text-decoration: none; transition: border-color .15s, transform .15s; }
+  a.tool:hover, a.tool:focus-visible { border-color: var(--accent); transform: translateY(-1px); outline: none; }
+  .n { grid-row: span 3; font: 500 26px/1 system-ui, sans-serif; color: var(--accent); }
+  .name { font-size: 21px; margin: 0; }
+  .meta { font: 13px/1.4 system-ui, sans-serif; color: var(--ink-2); margin: 0; }
+  .desc { margin: 6px 0 0; color: var(--ink-2); }
+  footer { margin-top: 40px; font: 13px/1.5 system-ui, sans-serif; color: var(--ink-2); }
+  footer a { color: var(--accent); }
+  @media (prefers-reduced-motion: reduce) { a.tool { transition: none; } a.tool:hover { transform: none; } }
+</style>
+</head>
+<body>
+<main>
+  <p class="eyebrow">Design review tools</p>
+  <h1>Three ways to review a design, from fast to formal</h1>
+  <p class="lede">Each one runs entirely in your browser and stores nothing. Pick by how much is at stake.</p>
+  <ol>
+    <li><a class="tool" href="design-review-card.html">
+      <span class="n">01</span>
+      <p class="name">Design Review Card</p>
+      <p class="meta">10–15 minutes · any design, before build</p>
+      <p class="desc">26 checks across purpose, states, edges, access, words and failure recovery, plus five AI questions when they apply. Produces a follow-up list, not a grade.</p>
+    </a></li>
+    <li><a class="tool" href="ai-design-evaluation-rubric.html">
+      <span class="n">02</span>
+      <p class="name">AI Design Evaluation Rubric</p>
+      <p class="meta">30-second gut-check, then 18 scored criteria · AI features</p>
+      <p class="desc">Agency, transparency, honesty, equity, real friction reduction and failure design, with gate criteria and a ship verdict.</p>
+    </a></li>
+    <li><a class="tool" href="ai-readiness-review.html">
+      <span class="n">03</span>
+      <p class="name">AI Readiness Review (AIRR-1.0)</p>
+      <p class="meta">Risk-tiered, 27 criteria · high-consequence AI or launch gates</p>
+      <p class="desc">Evidence-backed criteria mapped to NIST AI RMF, the EU AI Act, Microsoft HAX, Google PAIR, ISO/IEC 42001 and WCAG, with a three-condition verdict.</p>
+    </a></li>
+  </ol>
+  <footer>
+    By <a href="https://josephalfonso.com">Joseph Alfonso</a>. Also available as Claude skills in
+    <a href="https://github.com/joealfonso/AgentsAndSkills">AgentsAndSkills</a>. Content licensed CC BY 4.0.
+  </footer>
+</main>
+</body>
+</html>
