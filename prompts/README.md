@@ -66,6 +66,8 @@ Paste-ready prompts for the things I do over and over in my career: job searchin
 | [Future-state blueprint](design-work/future-state-blueprint.md) | you have a current-state blueprint and need to design and justify the improved service |
 | [User interview guide](design-work/interview-guide.md) | you're about to run user or stakeholder interviews |
 | [Problem framing brief](design-work/problem-framing-brief.md) | a new project lands, often as a solution request, and you need to frame the actual problem |
+| [Rainbow spreadsheet analysis](design-work/rainbow-spreadsheet-analysis.md) | during a study to log sessions, or after it to turn a filled rainbow spreadsheet into findings |
+| [Rainbow spreadsheet setup](design-work/rainbow-spreadsheet-setup.md) | you're about to run a usability study and want the rainbow spreadsheet ready before the first session |
 | [Lean research plan](design-work/research-plan.md) | you need evidence before a decision and have limited time |
 | [Research synthesis](design-work/research-synthesis.md) | you have interview notes, test results or transcripts and need findings |
 | [Service blueprint review](design-work/service-blueprint-review.md) | you have a blueprint (yours or someone else's) and want to find what it reveals or hides |

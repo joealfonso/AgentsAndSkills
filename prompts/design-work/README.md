@@ -1,6 +1,6 @@
 # Design and research work
 
-Day-to-day design and research: framing problems; planning, collecting and synthesizing research (interviews, field notes, usability tests, surveys) with an anomaly review so outliers aren't lost; service blueprints for digital products (build, review, future state, workshops); documenting rationale, crit prep, edge cases, copy and accessibility.
+Day-to-day design and research: framing problems; planning, collecting and synthesizing research (interviews, field notes, usability tests with a rainbow spreadsheet, surveys) with an anomaly review so outliers aren't lost; service blueprints for digital products (build, review, future state, workshops); documenting rationale, crit prep, edge cases, copy and accessibility.
 
 Fill in the `[BRACKETS]` and paste a prompt into any assistant, with [about-me.md](../about-me.md) above it, or ask Claude to use it by name through the `prompt-library` skill.
 
@@ -16,6 +16,8 @@ Fill in the `[BRACKETS]` and paste a prompt into any assistant, with [about-me.m
 | [Future-state blueprint](future-state-blueprint.md) | you have a current-state blueprint and need to design and justify the improved service |
 | [User interview guide](interview-guide.md) | you're about to run user or stakeholder interviews |
 | [Problem framing brief](problem-framing-brief.md) | a new project lands, often as a solution request, and you need to frame the actual problem |
+| [Rainbow spreadsheet analysis](rainbow-spreadsheet-analysis.md) | during a study to log sessions, or after it to turn a filled rainbow spreadsheet into findings |
+| [Rainbow spreadsheet setup](rainbow-spreadsheet-setup.md) | you're about to run a usability study and want the rainbow spreadsheet ready before the first session |
 | [Lean research plan](research-plan.md) | you need evidence before a decision and have limited time |
 | [Research synthesis](research-synthesis.md) | you have interview notes, test results or transcripts and need findings |
 | [Service blueprint review](service-blueprint-review.md) | you have a blueprint (yours or someone else's) and want to find what it reveals or hides |

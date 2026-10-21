@@ -1,6 +1,6 @@
 ---
 name: prompt-library
-description: Joseph's career prompt library, 79 prompts for job search, interviews, offers, portfolio and case studies, design and research work, AI product design, stakeholders and leadership, mentoring, writing, career growth, and building with AI. Use when he says "use the ... prompt", "which prompt fits this", asks for help with any of those recurring career tasks, or wants to browse the library.
+description: Joseph's career prompt library, 81 prompts for job search, interviews, offers, portfolio and case studies, design and research work, AI product design, stakeholders and leadership, mentoring, writing, career growth, and building with AI. Use when he says "use the ... prompt", "which prompt fits this", asks for help with any of those recurring career tasks, or wants to browse the library.
 ---
 
 # Prompt library
@@ -80,6 +80,8 @@ If no prompt fits, say so and do the task directly. Don't force a near miss.
 | [Future-state blueprint](prompts/design-work/future-state-blueprint.md) | you have a current-state blueprint and need to design and justify the improved service |
 | [User interview guide](prompts/design-work/interview-guide.md) | you're about to run user or stakeholder interviews |
 | [Problem framing brief](prompts/design-work/problem-framing-brief.md) | a new project lands, often as a solution request, and you need to frame the actual problem |
+| [Rainbow spreadsheet analysis](prompts/design-work/rainbow-spreadsheet-analysis.md) | during a study to log sessions, or after it to turn a filled rainbow spreadsheet into findings |
+| [Rainbow spreadsheet setup](prompts/design-work/rainbow-spreadsheet-setup.md) | you're about to run a usability study and want the rainbow spreadsheet ready before the first session |
 | [Lean research plan](prompts/design-work/research-plan.md) | you need evidence before a decision and have limited time |
 | [Research synthesis](prompts/design-work/research-synthesis.md) | you have interview notes, test results or transcripts and need findings |
 | [Service blueprint review](prompts/design-work/service-blueprint-review.md) | you have a blueprint (yours or someone else's) and want to find what it reveals or hides |

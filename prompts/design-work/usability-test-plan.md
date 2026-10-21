@@ -26,7 +26,7 @@ Include:
 3. A severity scale for issues: 1 blocks the task, 2 causes a costly workaround or error, 3 slows or confuses, 4 cosmetic.
 4. Participants: how many, and at least one from each segment that might struggle differently (new versus experienced, keyboard-only or screen reader, small screen).
 5. Moderator script: intro, think-aloud instructions, neutral prompts ("What are you looking for?"), and what not to say.
-6. A results table template: task by participant, with outcome, time, severity of each issue, and a column for unexpected paths. A participant who succeeded by an unexpected route is a finding, not a pass.
+6. A results table template: task by participant, with outcome, time, severity of each issue, and a column for unexpected paths. A participant who succeeded by an unexpected route is a finding, not a pass. If I use the rainbow spreadsheet template, map the tasks and scoring to its Tasks & Metrics tab.
 
 Flag any task that tests the prototype's limits rather than the design.
 ```

@@ -17,7 +17,7 @@ inputs: "the synthesis or findings, the raw notes"
 Review this research synthesis for what it left out. Don't redo the synthesis.
 
 Synthesis: [PASTE]
-Raw notes or transcripts: [PASTE]
+Raw notes or transcripts: [PASTE, or the rainbow spreadsheet's Observations and Notes tabs]
 
 1. Dropped observations: things in the raw notes that appear nowhere in the synthesis. Quote each with the participant label.
 2. Smoothed contradictions: findings stated as general when some participants contradict them. Name the participants and what they said.

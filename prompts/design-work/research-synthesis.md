@@ -17,7 +17,7 @@ inputs: "notes or transcripts labeled by participant, the research questions"
 Synthesize these research notes.
 
 Research questions: [LIST]
-Notes/transcripts: [PASTE, labeled by participant]
+Notes/transcripts: [PASTE, labeled by participant, or an exported rainbow spreadsheet]
 
 1. Findings, each as one sentence a stakeholder could repeat, ranked by how much they affect the decision.
 2. For each finding: how many participants support it (e.g. 4 of 6), 1-2 short quotes with participant label, and every participant who contradicts it.
