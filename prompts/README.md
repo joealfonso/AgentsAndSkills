@@ -69,7 +69,7 @@ Paste-ready prompts for the things I do over and over in my career: job searchin
 | [Lean research plan](design-work/research-plan.md) | you need evidence before a decision and have limited time |
 | [Research synthesis](design-work/research-synthesis.md) | you have interview notes, test results or transcripts and need findings |
 | [Service blueprint review](design-work/service-blueprint-review.md) | you have a blueprint (yours or someone else's) and want to find what it reveals or hides |
-| [Service blueprint](design-work/service-blueprint.md) | you need to see how a service actually works end to end, front of house and back, before redesigning any part of it |
+| [Service blueprint](design-work/service-blueprint.md) | you need to see how a service works end to end, front of house and back, before designing any part of it |
 | [Survey design](design-work/survey-design.md) | you need answers from more people than you can interview |
 | [Usability test plan](design-work/usability-test-plan.md) | you need to see whether people can actually complete tasks in a design or product |
 | [UX copy pass](design-work/ux-copy-pass.md) | screens are designed but the words are placeholder, internal or vague |

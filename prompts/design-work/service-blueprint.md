@@ -1,49 +1,53 @@
 ---
 title: "Service blueprint"
 category: design-work
-use_when: "you need to see how a service actually works end to end, front of house and back, before redesigning any part of it"
-inputs: "the service and scenario, who the customer is, research notes, what you know about staff, systems and policies"
+use_when: "you need to see how a service works end to end, front of house and back, before designing any part of it"
+inputs: "the source (brief, research, process docs), the journey, the personas involved"
 ---
 
 # Service blueprint
 
-**Use when:** you need to see how a service actually works end to end, front of house and back, before redesigning any part of it
+**Use when:** you need to see how a service works end to end, front of house and back, before designing any part of it
 
-**You'll need:** the service and scenario, who the customer is, research notes, what you know about staff, systems and policies
+**You'll need:** the source (brief, research, process docs), the journey, the personas involved
 
 ## Prompt
 
 ```text
-Build a current-state service blueprint.
+Build a service blueprint.
 
-Service and scenario: [e.g. "an employee requests time off and gets an answer"]
-Customer: [WHO, and which version of them this blueprint follows]
-Start and end points: [WHERE THE SCENARIO BEGINS AND ENDS]
-Evidence: [research notes, support tickets, process docs, system diagrams, staff interviews]
-What I know about backstage: [teams, tools, policies, handoffs]
+Source material: [PASTE BRIEF, research notes, process docs]
+Journey to blueprint: [WHICH JOURNEY, e.g. "core journey 2 in the brief"]
+Personas: [WHO IS INVOLVED, with their tier if known: primary / secondary / tertiary]
 
-Use the steps the customer takes as columns, in order. For each step, fill these rows:
-- Physical evidence: what the customer sees or touches (screens, emails, documents, places).
-- Customer actions.
-- Frontstage: what staff or the interface do that the customer can see.
+Structure each blueprint like this:
+
+1. Context line, one or two sentences: the lead persona and their tier, the source ("Source: core journey 2 in the brief"), anything I extended beyond the source and why, and this rule: "Items marked Proposal, Assumed or Open are additions; everything else comes from the source."
+
+2. Persona strip: the lead persona first, then everyone involved in this flow. For each: tier (primary / secondary / tertiary), name, and one line on their role in this flow specifically ("Approves the request from a notification", not a generic job description). Include easily forgotten contributors, such as the team that writes the interface text or the team that owns the data.
+
+3. Phases: 4-6 numbered phases, left to right, each named in two to four words starting with a verb ("Find", "Compare and choose", "Confirm and track").
+
+Lanes, top to bottom. These blueprints are for digital products, so the defaults assume an app or web product. Each lane gets a short plain-language subtitle under its name:
+- [LEAD PERSONA] actions (What they do): what the lead persona does in each phase. Name the lane after them, e.g. "Employee actions", "Admin actions".
 (line of interaction)
-- Backstage: what staff do that the customer can't see.
+- Evidence and frontstage (What the app, staff and spaces show): the screens, states, notifications, messages and content the persona sees, and anything a person does in view. Write what the interface actually shows and decides ("Available times and a plain summary before confirming", "Saved filters apply on their own"), not just the screen name.
+  Only if the product has real physical touchpoints (signs, devices, printed items, a counter): split this into "Physical evidence (What they see and touch)" above the line of interaction and "Frontstage (What staff do in view)" below it.
 (line of visibility)
-- Support processes: systems, policies, vendors and other teams that make the backstage possible.
-(line of internal interaction)
+- Backstage (What the team does unseen): the services, jobs, rules and people working out of view. Name each one by what it does: a service that picks who to notify and when, a job that runs every morning, a timer that releases a hold, validation that blocks publishing, a queue that routes orders.
+- Support systems (Data, vendors, owners): APIs, data feeds, third-party vendors, identity and sign-on, analytics, policies, and the teams that own each (IT, Legal and Privacy, Content, Data, a vendor). Call out dependencies that aren't confirmed and integrations with long lead times.
+- Risks and open questions (What could break this): one per phase. Each states the risk or question and what to do about it: a fallback ("Fallback: ..."), a proposal ("Proposal: ..."), or who decides and when ("Ask at kickoff."). Include data that might not exist, integrations that might slip, adoption risks (a step that adds friction, a notification that becomes noise), and edge states (empty, error, offline, no permission).
 
-Then add, per step where they apply:
-- Fail points (F): where it breaks or could break, and what the customer experiences when it does.
-- Wait points (W): how long, and whether the customer knows why.
-- Handoffs: every time work changes hands, and who owns it after.
-- Customer feeling, in a word, only where the evidence shows it.
+How to write cells:
+- One or two plain, concrete sentences. Name the actual thing (the screen, the service, the team), not a category.
+- Put design decisions and constraints in the cell where they apply: "No offline mode in this release." "Preferences stay private to the user."
+- Put exceptions and edge states in the cell too: "If nobody confirms by the hold time, the slot is released." Empty, error, offline and no-permission states belong where they happen. Don't drop a step's edge cases because they're uncommon.
+- Untagged means it comes from the source. Tag everything else inline at the start of the sentence:
+  "Proposal:" for my design additions, "Assumed:" for things believed but unconfirmed, "Open:" for decisions or facts nobody has yet.
+- Use numbers when the source has them (targets, durations, baselines). Never invent one.
+- Flag privacy and sensitive data where it flows, and say who can and can't see it.
 
-Rules:
-- Tag every cell OBSERVED (from the evidence, with the source) or ASSUMED. Don't fill a cell with a plausible guess and no tag; leave it [UNKNOWN] and ask who would know.
-- Include exception paths, not just the happy path: what happens when a request is rejected, data is wrong, someone is out, or the customer does something unexpected. Add them as branch columns.
+Output each blueprint as a table: lanes as rows, phases as columns, the line of interaction and line of visibility as their own labeled rows. Then one short list: the Open items, each with who can answer it.
 
-Output the blueprint as a table (rows are the lanes, columns are the steps), then:
-1. Fail points ranked by impact on the customer, with the backstage cause of each.
-2. Handoffs with no clear owner.
-3. The ASSUMED and UNKNOWN cells that matter most, and who to ask.
+If the source has several journeys, offer to blueprint each one as a set, with every persona leading at least one blueprint. When a persona has a role in the source but no journey, draft theirs from the role description and say in the context line that it needs confirming with that persona.
 ```

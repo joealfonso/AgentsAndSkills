@@ -1,6 +1,6 @@
 # Design and research work
 
-Day-to-day design and research: framing problems; planning, collecting and synthesizing research (interviews, field notes, usability tests, surveys) with an anomaly review so outliers aren't lost; service blueprints (current state, review, future state, workshops); documenting rationale, crit prep, edge cases, copy and accessibility.
+Day-to-day design and research: framing problems; planning, collecting and synthesizing research (interviews, field notes, usability tests, surveys) with an anomaly review so outliers aren't lost; service blueprints for digital products (build, review, future state, workshops); documenting rationale, crit prep, edge cases, copy and accessibility.
 
 Fill in the `[BRACKETS]` and paste a prompt into any assistant, with [about-me.md](../about-me.md) above it, or ask Claude to use it by name through the `prompt-library` skill.
 
@@ -19,7 +19,7 @@ Fill in the `[BRACKETS]` and paste a prompt into any assistant, with [about-me.m
 | [Lean research plan](research-plan.md) | you need evidence before a decision and have limited time |
 | [Research synthesis](research-synthesis.md) | you have interview notes, test results or transcripts and need findings |
 | [Service blueprint review](service-blueprint-review.md) | you have a blueprint (yours or someone else's) and want to find what it reveals or hides |
-| [Service blueprint](service-blueprint.md) | you need to see how a service actually works end to end, front of house and back, before redesigning any part of it |
+| [Service blueprint](service-blueprint.md) | you need to see how a service works end to end, front of house and back, before designing any part of it |
 | [Survey design](survey-design.md) | you need answers from more people than you can interview |
 | [Usability test plan](usability-test-plan.md) | you need to see whether people can actually complete tasks in a design or product |
 | [UX copy pass](ux-copy-pass.md) | screens are designed but the words are placeholder, internal or vague |
