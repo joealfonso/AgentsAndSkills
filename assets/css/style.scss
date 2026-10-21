@@ -1,0 +1,11 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+/* Wrap long prompt lines so they read on phones without sideways scrolling. */
+pre, pre code {
+  white-space: pre-wrap;
+  word-break: normal;
+  overflow-wrap: anywhere;
+}
