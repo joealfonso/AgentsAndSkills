@@ -9,6 +9,7 @@ My bank of AI skills, personas, agents and working rules. Everything here is pla
 | [`plugins/`](plugins) | Skills and subagents, packaged as Claude Code plugins | Install a plugin, link a skill, or zip one for claude.ai |
 | [`personas/`](personas) | 19 critique and rehearsal personas, one file each | Paste one into any chat, or use the `review-as` skill |
 | [`rules/`](rules) | Reusable CLAUDE.md snippets learned the hard way | Copy the block into a project's CLAUDE.md |
+| [`claude-code/`](claude-code) | Notes and patterns for running Claude Code, and how my setup compares | Read before changing hooks, memory or workflow |
 | [`templates/`](templates) | CLAUDE.md starter, notes on writing specs, a service blueprint, and a rainbow spreadsheet for usability studies | Copy into a new project or doc |
 | [`prompts/`](prompts) | 81 career prompts across 13 areas, plus a context block about me | Fill in the brackets and paste, or use the `prompt-library` skill |
 | [`tools/`](tools) | Interactive HTML versions of the design review frameworks | Use them live at [josephalfonso.com/AgentsAndSkills/tools](https://josephalfonso.com/AgentsAndSkills/tools/) |
