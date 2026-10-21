@@ -1,0 +1,9 @@
+{
+  "name": "job-search",
+  "version": "1.0.0",
+  "description": "Job search automations: live LinkedIn digest, Gmail-to-tracker updates, interview prep briefs, resume and cover letter tailoring.",
+  "author": {
+    "name": "Joseph Alfonso",
+    "url": "https://josephalfonso.com"
+  }
+}

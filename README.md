@@ -1,0 +1,114 @@
+# Agents and Skills
+
+My bank of AI skills, personas, agents and working rules. Everything here is plain Markdown, so it works in Claude Code, Claude Desktop/Cowork, claude.ai, or pasted into any other assistant.
+
+## What's in here
+
+| Folder | What it is | How to use it |
+|---|---|---|
+| [`plugins/`](plugins) | Skills and subagents, packaged as Claude Code plugins | Install a plugin, link a skill, or zip one for claude.ai |
+| [`personas/`](personas) | 19 critique and rehearsal personas, one file each | Paste one into any chat, or use the `review-as` skill |
+| [`rules/`](rules) | Reusable CLAUDE.md snippets learned the hard way | Copy the block into a project's CLAUDE.md |
+| [`templates/`](templates) | CLAUDE.md starter and notes on writing specs | Copy into a new project |
+| [`prompts/`](prompts) | System prompts for Claude Projects | Paste into a Project's instructions |
+
+## Catalog
+
+### Skills
+
+| Skill | Plugin | What it does |
+|---|---|---|
+| [write-like-joseph](plugins/writing/skills/write-like-joseph/SKILL.md) | writing | Writes and edits in my voice: staged drafting, banned phrases, learns from my edits |
+| [review-as](plugins/review-personas/skills/review-as/SKILL.md) | review-personas | Runs any persona below as a one-shot review or a live rehearsal |
+| [job-listing-digest](plugins/job-search/skills/job-listing-digest/SKILL.md) | job-search | Daily list of new, verified-open design jobs from LinkedIn (Seattle + remote) |
+| [application-tracker-update](plugins/job-search/skills/application-tracker-update/SKILL.md) | job-search | Reads Gmail for application activity and updates the tracker spreadsheet |
+| [interview-prep](plugins/job-search/skills/interview-prep/SKILL.md) | job-search | Finds interviews in the next 48 hours and writes a brief for each |
+| [resume-cover-letter-tailoring](plugins/job-search/skills/resume-cover-letter-tailoring/SKILL.md) | job-search | Tailors my resume and drafts a cover letter for one posting, as .docx |
+| [morning-briefing](plugins/daily-ops/skills/morning-briefing/SKILL.md) | daily-ops | Today's calendar plus the unread email that needs attention |
+| [kb-curator](plugins/daily-ops/skills/kb-curator/SKILL.md) | daily-ops | Weekly cleanup of the personal knowledge base: duplicates, tags, stale items |
+
+The job-search and daily-ops skills expect Gmail, Google Calendar, Chrome or the knowledge base MCP to be connected. Each has a **Config** section at the top with paths to change.
+
+### Personas
+
+Every persona has stop conditions (when to say nothing) and a fixed verdict line, so it reviews what's actually there instead of inventing problems. **Review** personas do one pass and return a verdict. **Rehearsal** personas stay in character for a practice conversation. Review personas also ship as Claude Code subagents.
+
+| Persona | Mode | Use for |
+|---|---|---|
+| **Design critique** | | |
+| [Strict Senior Product Designer](personas/design-critique/strict-senior-product-designer.md) | review | Case studies, portfolio decks, design rationale |
+| [Skeptical Hiring Manager](personas/design-critique/skeptical-hiring-manager.md) | review | Resume review, portfolio walkthroughs, interview answers |
+| [Junior Designer You're Mentoring](personas/design-critique/junior-designer-youre-mentoring.md) | rehearsal | Checking you can teach a concept, not just do it |
+| [Enterprise Stakeholder (Non-Design)](personas/design-critique/enterprise-stakeholder-non-design.md) | review | Translating design decisions into business language |
+| [Research-First Partner](personas/design-critique/research-first-partner.md) | rehearsal | Problem framing before any UI |
+| [AI/ML Product Specialist](personas/design-critique/ai-ml-product-specialist.md) | review | AI features beyond the happy path |
+| **Stakeholder and leadership** | | |
+| [Skeptical VP / Exec Sponsor](personas/stakeholder-leadership/skeptical-vp-exec-sponsor.md) | rehearsal | Roadmap defense, exec decks |
+| [Cross-functional Eng Lead](personas/stakeholder-leadership/cross-functional-eng-lead.md) | review | Pressure-testing a spec before engineering |
+| [Finance / Ops Stakeholder](personas/stakeholder-leadership/finance-ops-stakeholder.md) | review | Cost and risk framing |
+| [Skip-Level Manager](personas/stakeholder-leadership/skip-level-manager.md) | rehearsal | Upward communication |
+| [The New Manager You're Coaching](personas/stakeholder-leadership/the-new-manager-youre-coaching.md) | rehearsal | Coaching instead of solving |
+| [Board-Level Narrative Partner](personas/stakeholder-leadership/board-level-narrative-partner.md) | review | A quarter of work in three slides |
+| **Interviewing** | | |
+| [Skeptical Recruiter (Screen-stage)](personas/interviewing/skeptical-recruiter-screen-stage.md) | rehearsal | Phone screen practice |
+| [Competing Candidate](personas/interviewing/competing-candidate.md) | rehearsal | Finding real differentiators |
+| [Compensation Negotiator](personas/interviewing/compensation-negotiator.md) | rehearsal | Holding a number under pushback |
+| **Reality checks** | | |
+| [The Burned-Out Engineer](personas/reality-checks/the-burned-out-engineer.md) | review | Does the spec survive implementation |
+| [The User Who Hates This](personas/reality-checks/the-user-who-hates-this.md) | review | The emotional read heuristics miss |
+| [Your Own Portfolio Reviewer, Six Months Later](personas/reality-checks/your-own-portfolio-reviewer-six-months-later.md) | review | Decisions made for speed, not quality |
+| [The Silent Skeptic](personas/reality-checks/the-silent-skeptic.md) | review | Where a presentation loses people |
+
+### Rules
+
+| Rule | When to add it |
+|---|---|
+| [git-branch-workflow](rules/git-branch-workflow.md) | `main` deploys to production |
+| [responsive-overlap-check](rules/responsive-overlap-check.md) | Any front-end project |
+| [model-by-task](rules/model-by-task.md) | Projects that use subagents |
+| [kill-by-pid](rules/kill-by-pid.md) | Projects with dev servers |
+| [remove-unreliable-features](rules/remove-unreliable-features.md) | Data-driven products |
+
+## Using it
+
+### Claude Code: install as plugins
+
+```
+/plugin marketplace add joealfonso/AgentsAndSkills
+/plugin install review-personas@joseph-alfonso
+```
+
+Plugins: `writing`, `review-personas`, `job-search`, `daily-ops`. Install only what a machine needs. `/plugin marketplace update joseph-alfonso` pulls new changes.
+
+### Claude Code: link straight from this checkout
+
+Symlinks mean edits in the repo are live immediately.
+
+```bash
+scripts/skills.sh list
+scripts/skills.sh link write-like-joseph
+scripts/skills.sh link all
+scripts/skills.sh unlink all
+```
+
+### claude.ai and Claude Desktop
+
+Zip a skill and upload it in Settings > Capabilities > Skills:
+
+```bash
+scripts/skills.sh zip review-as
+```
+
+The zip lands in `dist/`. For a scheduled task in Cowork, point the task at the skill or paste the SKILL.md body as its prompt.
+
+### Anywhere else
+
+Open a persona or prompt file, copy the "Instruction to paste" section, and paste it into a new conversation with your material.
+
+## Adding to the bank
+
+- **New persona:** add `personas/<set>/<name>.md` with the same frontmatter as the others (`name`, `title`, `set`, `mode`, `use_for`), then run `python3 scripts/build.py`. That copies it into the `review-as` skill, makes a subagent if it's review mode, and updates the skill's index. Add a row to the table above.
+- **New skill:** add `plugins/<plugin>/skills/<name>/SKILL.md` with `name` and `description` frontmatter. A new plugin also needs `.claude-plugin/plugin.json` and an entry in [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json).
+- **New rule:** add `rules/<name>.md` with the paste-ready block and a one-line why.
+
+`python3 scripts/build.py --check` fails if the plugin copies have drifted from `personas/`.

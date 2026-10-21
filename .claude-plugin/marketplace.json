@@ -1,0 +1,33 @@
+{
+  "name": "joseph-alfonso",
+  "owner": {
+    "name": "Joseph Alfonso",
+    "url": "https://josephalfonso.com"
+  },
+  "metadata": {
+    "description": "Joseph Alfonso's bank of AI skills, personas and agents.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "writing",
+      "source": "./plugins/writing",
+      "description": "Write and edit in Joseph's voice: staged drafting, a banned-phrase list, and a learning loop from his edits."
+    },
+    {
+      "name": "review-personas",
+      "source": "./plugins/review-personas",
+      "description": "19 critique and rehearsal personas (design, stakeholder, interview, reality checks) as a review-as skill plus 11 reviewer subagents."
+    },
+    {
+      "name": "job-search",
+      "source": "./plugins/job-search",
+      "description": "Job search automations: live LinkedIn digest, Gmail-to-tracker updates, interview prep briefs, resume and cover letter tailoring."
+    },
+    {
+      "name": "daily-ops",
+      "source": "./plugins/daily-ops",
+      "description": "Daily and weekly routines: morning calendar and email briefing, personal knowledge base cleanup."
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "name": "daily-ops",
+  "version": "1.0.0",
+  "description": "Daily and weekly routines: morning calendar and email briefing, personal knowledge base cleanup.",
+  "author": {
+    "name": "Joseph Alfonso",
+    "url": "https://josephalfonso.com"
+  }
+}
