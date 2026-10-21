@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<script type="application/json" id="cowork-artifact-meta">
+{
+  "name": "Ai Design Evaluation Rubric",
+  "schemaVersion": 1,
+  "description": "Interactive scorecard for evaluating AI-generated or AI-assisted design output before it ships. Six pillars (agency, transparency, honesty, equity, real friction reduction, failure design), a 30-second gut-check, gated critical criteria, and a copy/print summary for pasting into a design review doc.",
+  "mcpTools": [],
+  "mcpServerNames": []
+}
+</script>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Design Evaluation Rubric — Joseph Alfonso</title>
+<style>
+  :root{
+    --bg:#f7f5f1;
+    --paper:#ffffff;
+    --ink:#1f2328;
+    --ink-soft:#4a5058;
+    --line:#e2ddd3;
+    --accent:#2c4bd4;
+    --accent-soft:#eaeeff;
+    --green:#1b7a4d;
+    --green-bg:#e7f5ee;
+    --amber:#8a5a00;
+    --amber-bg:#fbf0dc;
+    --red:#b3241c;
+    --red-bg:#fbe9e7;
+    --radius:10px;
+    font-size:16px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    line-height:1.5;
+    padding-bottom:120px;
+  }
+  .wrap{
+    max-width:920px;
+    margin:0 auto;
+    padding:48px 24px 40px;
+  }
+  header.top{
+    margin-bottom:36px;
+  }
+  .eyebrow{
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    font-size:.72rem;
+    font-weight:700;
+    color:var(--accent);
+    margin:0 0 10px;
+  }
+  h1{
+    font-size:2rem;
+    line-height:1.15;
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+  }
+  .subtitle{
+    font-size:1.05rem;
+    color:var(--ink-soft);
+    max-width:620px;
+    margin:0 0 18px;
+  }
+  .provenance{
+    font-size:.88rem;
+    color:var(--ink-soft);
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:14px 16px;
+    max-width:680px;
+  }
+  .provenance strong{color:var(--ink);}
+
+  .card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:22px 24px;
+    margin-bottom:20px;
+  }
+  .meta-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:14px;
+  }
+  .field label{
+    display:block;
+    font-size:.75rem;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    color:var(--ink-soft);
+    margin-bottom:6px;
+  }
+  .field input{
+    width:100%;
+    padding:8px 10px;
+    border:1px solid var(--line);
+    border-radius:6px;
+    font-size:.95rem;
+    font-family:inherit;
+    color:var(--ink);
+    background:#fcfbf9;
+  }
+  .field input:focus{
+    outline:2px solid var(--accent);
+    outline-offset:1px;
+  }
+
+  h2.section-title{
+    font-size:1.3rem;
+    margin:40px 0 6px;
+    letter-spacing:-.005em;
+  }
+  p.section-desc{
+    color:var(--ink-soft);
+    margin:0 0 16px;
+    max-width:680px;
+    font-size:.95rem;
+  }
+
+  /* Quick gut check */
+  .gutcheck-item{
+    display:flex;
+    align-items:flex-start;
+    gap:12px;
+    padding:12px 4px;
+    border-bottom:1px solid var(--line);
+  }
+  .gutcheck-item:last-child{border-bottom:none;}
+  .gutcheck-item input[type=checkbox]{
+    width:20px;height:20px;flex:0 0 auto;margin-top:2px;
+    accent-color:var(--accent);
+  }
+  .gutcheck-item label{cursor:pointer;font-size:.97rem;}
+  .gutcheck-note{
+    margin-top:14px;
+    font-size:.85rem;
+    color:var(--ink-soft);
+    font-style:italic;
+  }
+
+  /* Pillar */
+  .pillar{
+    margin-bottom:22px;
+  }
+  .pillar-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:12px;
+    margin-bottom:4px;
+  }
+  .pillar-title{
+    font-size:1.08rem;
+    font-weight:700;
+  }
+  .pillar-score{
+    font-size:.85rem;
+    font-weight:600;
+    color:var(--ink-soft);
+    white-space:nowrap;
+  }
+  .pillar-desc{
+    color:var(--ink-soft);
+    font-size:.9rem;
+    margin:0 0 14px;
+  }
+
+  .criterion{
+    border-top:1px solid var(--line);
+    padding:16px 0;
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:14px;
+    align-items:start;
+  }
+  .criterion:last-child{padding-bottom:2px;}
+  .crit-text{font-size:.96rem;font-weight:600;margin:0 0 4px;}
+  .crit-detail{font-size:.85rem;color:var(--ink-soft);margin:0;}
+  .crit-flag{
+    display:inline-block;
+    font-size:.68rem;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    color:var(--red);
+    background:var(--red-bg);
+    border-radius:4px;
+    padding:1px 6px;
+    margin-left:8px;
+    vertical-align:middle;
+  }
+  .score-buttons{
+    display:flex;
+    gap:6px;
+    flex-wrap:wrap;
+    justify-content:flex-end;
+  }
+  .score-btn{
+    min-width:38px;
+    height:34px;
+    padding:0 10px;
+    border-radius:7px;
+    border:1px solid var(--line);
+    background:#fcfbf9;
+    color:var(--ink-soft);
+    font-size:.82rem;
+    font-weight:600;
+    cursor:pointer;
+    font-family:inherit;
+  }
+  .score-btn:hover{border-color:var(--accent);}
+  .score-btn.active-0{background:var(--red-bg);border-color:var(--red);color:var(--red);}
+  .score-btn.active-1{background:var(--amber-bg);border-color:var(--amber);color:var(--amber);}
+  .score-btn.active-2{background:var(--green-bg);border-color:var(--green);color:var(--green);}
+  .score-btn.active-na{background:#eee;border-color:#bbb;color:#666;}
+
+  /* Summary bar */
+  .summary-bar{
+    position:fixed;
+    left:0;right:0;bottom:0;
+    background:var(--paper);
+    border-top:1px solid var(--line);
+    box-shadow:0 -4px 18px rgba(0,0,0,.06);
+    padding:14px 24px;
+    z-index:50;
+  }
+  .summary-inner{
+    max-width:920px;
+    margin:0 auto;
+    display:flex;
+    align-items:center;
+    gap:18px;
+    flex-wrap:wrap;
+  }
+  .verdict{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:700;
+    font-size:.98rem;
+    padding:8px 14px;
+    border-radius:999px;
+  }
+  .verdict.ready{background:var(--green-bg);color:var(--green);}
+  .verdict.revise{background:var(--amber-bg);color:var(--amber);}
+  .verdict.notready{background:var(--red-bg);color:var(--red);}
+  .verdict.empty{background:#eee;color:#666;}
+  .score-pct{font-size:.85rem;color:var(--ink-soft);font-weight:600;}
+  .actions{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;}
+  .btn{
+    border:1px solid var(--line);
+    background:var(--paper);
+    color:var(--ink);
+    padding:9px 14px;
+    border-radius:7px;
+    font-size:.85rem;
+    font-weight:600;
+    cursor:pointer;
+    font-family:inherit;
+  }
+  .btn.primary{background:var(--accent);border-color:var(--accent);color:#fff;}
+  .btn:hover{opacity:.9;}
+  .critical-warning{
+    width:100%;
+    font-size:.82rem;
+    color:var(--red);
+    font-weight:600;
+    margin-top:2px;
+  }
+
+  textarea.notes{
+    width:100%;
+    margin-top:14px;
+    border:1px solid var(--line);
+    border-radius:7px;
+    padding:10px;
+    font-family:inherit;
+    font-size:.88rem;
+    color:var(--ink);
+    background:#fcfbf9;
+    resize:vertical;
+    min-height:52px;
+  }
+
+  footer.foot{
+    margin-top:44px;
+    font-size:.8rem;
+    color:var(--ink-soft);
+    border-top:1px solid var(--line);
+    padding-top:16px;
+  }
+
+  @media print{
+    .summary-bar{position:static;box-shadow:none;border-top:2px solid var(--ink);}
+    .score-buttons .score-btn{display:none;}
+    .score-buttons::after{
+      content: attr(data-print-label);
+      font-weight:700;
+    }
+    body{padding-bottom:0;}
+    .btn{display:none;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <p class="eyebrow">Working Tool · Design Review</p>
+    <h1>AI Design Evaluation Rubric</h1>
+    <p class="subtitle">A working checklist for judging AI-generated or AI-assisted design output before it ships, a case study is built around it, or it goes in front of a user.</p>
+    <div class="provenance">
+      Developed from principles proven while designing the AI integration layer for a large-scale enterprise employee-management platform (4.8B+ documents/year, 67 countries), and generalized here for use on any AI-assisted feature. <strong>Joseph Alfonso</strong> — josephalfonso.com
+    </div>
+  </header>
+
+  <div class="card">
+    <div class="meta-grid">
+      <div class="field"><label for="f-feature">Feature / Project</label><input id="f-feature" type="text" placeholder="e.g. Claims auto-triage panel"></div>
+      <div class="field"><label for="f-company">Company / Team</label><input id="f-company" type="text" placeholder="e.g. Acme HR Platform"></div>
+      <div class="field"><label for="f-reviewer">Reviewer</label><input id="f-reviewer" type="text" placeholder="Your name"></div>
+      <div class="field"><label for="f-date">Date</label><input id="f-date" type="text" placeholder="e.g. Aug 12, 2026"></div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Quick gut-check</h2>
+  <p class="section-desc">Thirty seconds, before a standup or a stakeholder review. Any "no" means run the full rubric below before this ships.</p>
+  <div class="card" id="gutcheck-card">
+    <!-- gutcheck items injected -->
+  </div>
+  <p class="gutcheck-note" id="gutcheck-summary"></p>
+
+  <h2 class="section-title">Full rubric</h2>
+  <p class="section-desc">Score each criterion 0 (not addressed), 1 (partially addressed), or 2 (fully addressed). Mark N/A if genuinely irrelevant to this feature, N/A items are excluded from scoring. Items flagged <span class="crit-flag">Gate</span> will block a "ready to ship" verdict on their own if scored 0, regardless of total.</p>
+  <div id="pillars"></div>
+
+  <footer class="foot">
+    This tool keeps no data between visits, it runs entirely in your browser and nothing is stored or sent anywhere. Use <strong>Copy Summary</strong> before closing the tab to save your results into a review doc, ticket, or Slack message.
+  </footer>
+</div>
+
+<div class="summary-bar">
+  <div class="summary-inner">
+    <div class="verdict empty" id="verdict">No scores yet</div>
+    <div class="score-pct" id="score-pct"></div>
+    <div class="critical-warning" id="critical-warning" style="display:none;"></div>
+    <div class="actions">
+      <button class="btn" id="btn-reset">Reset</button>
+      <button class="btn" id="btn-print">Print / Save PDF</button>
+      <button class="btn primary" id="btn-copy">Copy Summary</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const GUTCHECK = [
+  "Can the user see why the AI did what it did, not just what it did?",
+  "Does the system say \"I don't know\" or flag uncertainty, instead of guessing with confidence?",
+  "Can a human override, edit, or undo this before there's a real-world consequence?",
+  "Has this been tested with assistive technology (screen reader, keyboard-only), not just reviewed visually?",
+  "Would you be comfortable explaining this AI's decision to the person it affected, face to face?"
+];
+
+const PILLARS = [
+  {
+    id: "agency",
+    title: "Agency — surface, don't decide",
+    desc: "The AI's job is to inform a human decision, not quietly replace one.",
+    criteria: [
+      { id:"a1", text:"The system presents options, evidence, or analysis rather than silently executing irreversible actions on the user's behalf.",
+        detail:"Good: an analysis panel with reasoning. Red flag: an action taken with a small 'undo' link buried after the fact." },
+      { id:"a2", text:"A human can see what the AI is about to do before it happens, not only after.",
+        detail:"Good: a preview or proposal state. Red flag: results appear with no preceding confirmation step." },
+      { id:"a3", text:"High-stakes actions (financial, legal, personal data, compliance, employment) always route through explicit human confirmation.",
+        detail:"Good: an explicit approve/reject step for anything with real consequences.", critical:true },
+    ]
+  },
+  {
+    id: "transparency",
+    title: "Transparency — reasoning is legible",
+    desc: "A user should never have to trust the AI blindly.",
+    criteria: [
+      { id:"t1", text:"A confidence level or certainty signal is shown, not just a final answer.",
+        detail:"Good: 'High confidence, based on 3 matching records.' Red flag: a bare output with no indication of how sure the system is." },
+      { id:"t2", text:"The reasoning behind a suggestion is visible in plain language, not buried in a tooltip or absent entirely.",
+        detail:"Good: a short 'why' visible by default. Red flag: reasoning only available via a support ticket or engineering log." },
+      { id:"t3", text:"A user can trace an output back to the source data or logic that produced it.",
+        detail:"Good: 'Flagged because Workday shows a pay band mismatch.' Red flag: an unexplained flag with no link to its source." },
+    ]
+  },
+  {
+    id: "honesty",
+    title: "Honesty — limits are disclosed",
+    desc: "What the system doesn't know is as important as what it does.",
+    criteria: [
+      { id:"h1", text:"The system has an explicit \"can't determine this\" state, rather than guessing with false confidence.",
+        detail:"Good: a distinct, visible 'needs human review' state. Red flag: every case gets a confident-looking answer, even low-quality ones.", critical:true },
+      { id:"h2", text:"Edge cases and low-confidence outputs are flagged distinctly from high-confidence ones, not blended together in the same visual treatment.",
+        detail:"Good: visually and structurally different treatment for uncertain results." },
+      { id:"h3", text:"Product or marketing copy around this feature doesn't oversell what the AI can reliably do.",
+        detail:"Good: 'AI-assisted suggestions, reviewed by you.' Red flag: language implying full automation or guaranteed accuracy." },
+    ]
+  },
+  {
+    id: "equity",
+    title: "Equity — works across different users",
+    desc: "One AI experience rarely fits every user or every context equally well.",
+    criteria: [
+      { id:"e1", text:"The design was tested with assistive technology (screen reader, keyboard-only, voice control), not just visually reviewed.",
+        detail:"Good: a real screen-reader pass on the AI-specific UI, not just the base component library." },
+      { id:"e2", text:"The system accounts for different user contexts (expert vs. novice, high-stakes vs. routine) rather than a single path for everyone.",
+        detail:"Good: a simplified plain-language view for the most vulnerable users. Red flag: identical experience regardless of stakes or literacy." },
+      { id:"e3", text:"Output has been checked for systematic bias against any user group, language, region, or edge-case identity.",
+        detail:"Good: documented testing across diverse names, languages, and data patterns." },
+    ]
+  },
+  {
+    id: "friction",
+    title: "Real reduction — not hidden complexity",
+    desc: "Speed that just moves the work somewhere less visible isn't a win.",
+    criteria: [
+      { id:"f1", text:"The AI measurably reduces steps, tools, or time, not just visual clutter while the underlying complexity remains.",
+        detail:"Good: a workflow that goes from 7 steps across 5 tools to 3 steps in 2. Red flag: the same steps, just wrapped in a nicer UI." },
+      { id:"f2", text:"Automation is reversible, a user can undo, edit, or override without starting the whole task over.",
+        detail:"Good: inline accept/reject per item. Red flag: an all-or-nothing batch action." },
+      { id:"f3", text:"The feature has been validated with real task-timing or usage data, not only a demo or stakeholder walkthrough.",
+        detail:"Good: server-side start/end timing on the actual task, before and after." },
+    ]
+  },
+  {
+    id: "failure",
+    title: "Failure design — graceful degradation",
+    desc: "Every AI feature will be wrong sometimes. This pillar is about what happens next.",
+    criteria: [
+      { id:"fd1", text:"There's a clear, designed path for what happens when the AI is wrong, not just a generic error state.",
+        detail:"Good: a specific recovery flow for AI mistakes. Red flag: a blank error toast shared with every other failure mode.", critical:true },
+      { id:"fd2", text:"Unfixable or ambiguous cases are flagged explicitly and don't silently block or corrupt unrelated work.",
+        detail:"Good: one flagged row doesn't hold up the other 99 in a batch." },
+      { id:"fd3", text:"A human reviewer can always intervene without needing engineering support to do it.",
+        detail:"Good: an admin-facing override control. Red flag: fixing a bad AI call requires a bug ticket.", critical:true },
+    ]
+  },
+];
+
+const state = {}; // criterionId -> 0|1|2|'na'
+const gutcheckState = {};
+
+function buildGutcheck(){
+  const card = document.getElementById('gutcheck-card');
+  GUTCHECK.forEach((text, i) => {
+    const id = 'gc'+i;
+    const row = document.createElement('div');
+    row.className = 'gutcheck-item';
+    row.innerHTML = `<input type="checkbox" id="${id}"><label for="${id}">${text}</label>`;
+    card.appendChild(row);
+    row.querySelector('input').addEventListener('change', e => {
+      gutcheckState[id] = e.target.checked;
+      updateGutcheckSummary();
+    });
+  });
+  updateGutcheckSummary();
+}
+
+function updateGutcheckSummary(){
+  const total = GUTCHECK.length;
+  const checked = Object.values(gutcheckState).filter(Boolean).length;
+  const el = document.getElementById('gutcheck-summary');
+  if(checked === 0){
+    el.textContent = 'Not started.';
+  } else if(checked === total){
+    el.textContent = `${checked}/${total} clear. Good sign, still worth a pass through the full rubric for anything shipping broadly.`;
+  } else {
+    el.textContent = `${checked}/${total} clear. Run the full rubric below before this ships.`;
+  }
+}
+
+function buildPillars(){
+  const container = document.getElementById('pillars');
+  PILLARS.forEach(pillar => {
+    const section = document.createElement('div');
+    section.className = 'pillar card';
+    section.innerHTML = `
+      <div class="pillar-head">
+        <div class="pillar-title">${pillar.title}</div>
+        <div class="pillar-score" id="score-${pillar.id}"></div>
+      </div>
+      <p class="pillar-desc">${pillar.desc}</p>
+    `;
+    pillar.criteria.forEach(c => {
+      const row = document.createElement('div');
+      row.className = 'criterion';
+      row.innerHTML = `
+        <div>
+          <p class="crit-text">${c.text}${c.critical ? '<span class="crit-flag">Gate</span>' : ''}</p>
+          <p class="crit-detail">${c.detail}</p>
+        </div>
+        <div class="score-buttons" id="buttons-${c.id}">
+          <button class="score-btn" data-val="0">0</button>
+          <button class="score-btn" data-val="1">1</button>
+          <button class="score-btn" data-val="2">2</button>
+          <button class="score-btn" data-val="na">N/A</button>
+        </div>
+      `;
+      section.appendChild(row);
+      row.querySelectorAll('.score-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const val = btn.dataset.val;
+          state[c.id] = state[c.id] === val ? undefined : val;
+          refreshButtonStates(c.id);
+          recompute();
+        });
+      });
+    });
+    const notes = document.createElement('textarea');
+    notes.className = 'notes';
+    notes.placeholder = 'Notes for this pillar (optional)...';
+    notes.dataset.pillarNotes = pillar.id;
+    section.appendChild(notes);
+    container.appendChild(section);
+  });
+}
+
+function refreshButtonStates(critId){
+  const wrap = document.getElementById('buttons-'+critId);
+  wrap.querySelectorAll('.score-btn').forEach(b => {
+    b.classList.remove('active-0','active-1','active-2','active-na');
+    if(state[critId] !== undefined && b.dataset.val === state[critId]){
+      b.classList.add('active-'+state[critId]);
+    }
+  });
+}
+
+function recompute(){
+  let earned = 0, possible = 0;
+  let criticalFail = [];
+  PILLARS.forEach(pillar => {
+    let pEarned = 0, pPossible = 0;
+    pillar.criteria.forEach(c => {
+      const v = state[c.id];
+      if(v === undefined || v === 'na') return;
+      const num = parseInt(v,10);
+      pEarned += num; pPossible += 2;
+      earned += num; possible += 2;
+      if(c.critical && num === 0) criticalFail.push(c.text);
+    });
+    document.getElementById('score-'+pillar.id).textContent =
+      pPossible ? `${pEarned}/${pPossible}` : '—';
+  });
+
+  const verdictEl = document.getElementById('verdict');
+  const pctEl = document.getElementById('score-pct');
+  const warnEl = document.getElementById('critical-warning');
+
+  if(possible === 0){
+    verdictEl.className = 'verdict empty';
+    verdictEl.textContent = 'No scores yet';
+    pctEl.textContent = '';
+    warnEl.style.display = 'none';
+    return;
+  }
+
+  const pct = Math.round((earned/possible)*100);
+  pctEl.textContent = `${earned}/${possible} points scored (${pct}%)`;
+
+  if(criticalFail.length){
+    verdictEl.className = 'verdict notready';
+    verdictEl.textContent = 'Do not ship — gate failed';
+    warnEl.style.display = 'block';
+    warnEl.textContent = 'Gate criteria scored 0: ' + criticalFail.join(' · ');
+  } else if(pct >= 80){
+    verdictEl.className = 'verdict ready';
+    verdictEl.textContent = 'Ready to ship';
+    warnEl.style.display = 'none';
+  } else if(pct >= 50){
+    verdictEl.className = 'verdict revise';
+    verdictEl.textContent = 'Needs revision';
+    warnEl.style.display = 'none';
+  } else {
+    verdictEl.className = 'verdict notready';
+    verdictEl.textContent = 'Not ready';
+    warnEl.style.display = 'none';
+  }
+}
+
+function buildSummaryText(){
+  const feature = document.getElementById('f-feature').value || '(unnamed feature)';
+  const company = document.getElementById('f-company').value;
+  const reviewer = document.getElementById('f-reviewer').value;
+  const date = document.getElementById('f-date').value;
+  let lines = [];
+  lines.push(`AI Design Evaluation Rubric — ${feature}`);
+  if(company) lines.push(`Company/Team: ${company}`);
+  if(reviewer) lines.push(`Reviewer: ${reviewer}`);
+  if(date) lines.push(`Date: ${date}`);
+  lines.push('');
+  const verdictText = document.getElementById('verdict').textContent;
+  const pctText = document.getElementById('score-pct').textContent;
+  lines.push(`Verdict: ${verdictText}${pctText ? ' — ' + pctText : ''}`);
+  const warnEl = document.getElementById('critical-warning');
+  if(warnEl.style.display !== 'none' && warnEl.textContent){
+    lines.push(warnEl.textContent);
+  }
+  lines.push('');
+  PILLARS.forEach(pillar => {
+    lines.push(`## ${pillar.title} (${document.getElementById('score-'+pillar.id).textContent})`);
+    pillar.criteria.forEach(c => {
+      const v = state[c.id];
+      const label = v === undefined ? '—' : (v === 'na' ? 'N/A' : v);
+      lines.push(`- [${label}] ${c.text}`);
+    });
+    const notesEl = document.querySelector(`textarea[data-pillar-notes="${pillar.id}"]`);
+    if(notesEl && notesEl.value.trim()){
+      lines.push(`  Notes: ${notesEl.value.trim()}`);
+    }
+    lines.push('');
+  });
+  return lines.join('\n');
+}
+
+document.getElementById('btn-copy').addEventListener('click', () => {
+  const text = buildSummaryText();
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('btn-copy');
+    const orig = btn.textContent;
+    btn.textContent = 'Copied!';
+    setTimeout(() => btn.textContent = orig, 1500);
+  }).catch(() => {
+    alert(text);
+  });
+});
+
+document.getElementById('btn-print').addEventListener('click', () => window.print());
+
+document.getElementById('btn-reset').addEventListener('click', () => {
+  if(!confirm('Clear all scores and notes?')) return;
+  Object.keys(state).forEach(k => delete state[k]);
+  document.querySelectorAll('.score-btn').forEach(b => b.classList.remove('active-0','active-1','active-2','active-na'));
+  document.querySelectorAll('textarea.notes').forEach(t => t.value = '');
+  document.querySelectorAll('.gutcheck-item input').forEach(cb => cb.checked = false);
+  Object.keys(gutcheckState).forEach(k => delete gutcheckState[k]);
+  updateGutcheckSummary();
+  recompute();
+});
+
+buildGutcheck();
+buildPillars();
+recompute();
+</script>
+</body>
+</html>

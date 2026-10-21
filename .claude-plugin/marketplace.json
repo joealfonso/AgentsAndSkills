@@ -6,7 +6,7 @@
   },
   "metadata": {
     "description": "Joseph Alfonso's bank of AI skills, personas and agents.",
-    "version": "1.0.0"
+    "version": "1.1.0"
   },
   "plugins": [
     {
@@ -18,6 +18,11 @@
       "name": "review-personas",
       "source": "./plugins/review-personas",
       "description": "19 critique and rehearsal personas (design, stakeholder, interview, reality checks) as a review-as skill plus 11 reviewer subagents."
+    },
+    {
+      "name": "design-review",
+      "source": "./plugins/design-review",
+      "description": "Design review frameworks: a fast Design Review Card, the AI Design Evaluation Rubric, and the evidence-based AI Readiness Review (AIRR-1.0)."
     },
     {
       "name": "job-search",

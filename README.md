@@ -11,6 +11,7 @@ My bank of AI skills, personas, agents and working rules. Everything here is pla
 | [`rules/`](rules) | Reusable CLAUDE.md snippets learned the hard way | Copy the block into a project's CLAUDE.md |
 | [`templates/`](templates) | CLAUDE.md starter and notes on writing specs | Copy into a new project |
 | [`prompts/`](prompts) | System prompts for Claude Projects | Paste into a Project's instructions |
+| [`tools/`](tools) | Interactive HTML versions of the design review frameworks | Open in a browser and fill in during a review |
 
 ## Catalog
 
@@ -20,12 +21,17 @@ My bank of AI skills, personas, agents and working rules. Everything here is pla
 |---|---|---|
 | [write-like-joseph](plugins/writing/skills/write-like-joseph/SKILL.md) | writing | Writes and edits in my voice: staged drafting, banned phrases, learns from my edits |
 | [review-as](plugins/review-personas/skills/review-as/SKILL.md) | review-personas | Runs any persona below as a one-shot review or a live rehearsal |
+| [design-review-card](plugins/design-review/skills/design-review-card/SKILL.md) | design-review | 10-15 minute pre-build pass, 26 checks plus an optional AI check, outputs a follow-up list |
+| [ai-design-rubric](plugins/design-review/skills/ai-design-rubric/SKILL.md) | design-review | Gut-check plus 18 scored criteria across six pillars, with gates and a ship verdict |
+| [ai-readiness-review](plugins/design-review/skills/ai-readiness-review/SKILL.md) | design-review | AIRR-1.0: risk tiers, 27 evidence-backed criteria mapped to NIST, EU AI Act, HAX, PAIR, ISO 42001, WCAG |
 | [job-listing-digest](plugins/job-search/skills/job-listing-digest/SKILL.md) | job-search | Daily list of new, verified-open design jobs from LinkedIn (Seattle + remote) |
 | [application-tracker-update](plugins/job-search/skills/application-tracker-update/SKILL.md) | job-search | Reads Gmail for application activity and updates the tracker spreadsheet |
 | [interview-prep](plugins/job-search/skills/interview-prep/SKILL.md) | job-search | Finds interviews in the next 48 hours and writes a brief for each |
 | [resume-cover-letter-tailoring](plugins/job-search/skills/resume-cover-letter-tailoring/SKILL.md) | job-search | Tailors my resume and drafts a cover letter for one posting, as .docx |
 | [morning-briefing](plugins/daily-ops/skills/morning-briefing/SKILL.md) | daily-ops | Today's calendar plus the unread email that needs attention |
 | [kb-curator](plugins/daily-ops/skills/kb-curator/SKILL.md) | daily-ops | Weekly cleanup of the personal knowledge base: duplicates, tags, stale items |
+
+The three design-review skills go from light to heavy: the card for any design, the rubric for AI features, AIRR for high-consequence AI features or a launch gate. The card points to AIRR when 3 or more of its AI questions come back open. Interactive versions of all three are in [`tools/`](tools).
 
 The job-search and daily-ops skills expect Gmail, Google Calendar, Chrome or the knowledge base MCP to be connected. Each has a **Config** section at the top with paths to change.
 
@@ -78,7 +84,7 @@ Every persona has stop conditions (when to say nothing) and a fixed verdict line
 /plugin install review-personas@joseph-alfonso
 ```
 
-Plugins: `writing`, `review-personas`, `job-search`, `daily-ops`. Install only what a machine needs. `/plugin marketplace update joseph-alfonso` pulls new changes.
+Plugins: `writing`, `review-personas`, `design-review`, `job-search`, `daily-ops`. Install only what a machine needs. `/plugin marketplace update joseph-alfonso` pulls new changes.
 
 ### Claude Code: link straight from this checkout
 

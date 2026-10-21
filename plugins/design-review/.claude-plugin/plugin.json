@@ -1,0 +1,9 @@
+{
+  "name": "design-review",
+  "version": "1.0.0",
+  "description": "Design review frameworks: a fast Design Review Card, the AI Design Evaluation Rubric, and the evidence-based AI Readiness Review (AIRR-1.0).",
+  "author": {
+    "name": "Joseph Alfonso",
+    "url": "https://josephalfonso.com"
+  }
+}
