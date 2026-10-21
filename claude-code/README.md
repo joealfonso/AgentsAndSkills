@@ -10,7 +10,7 @@ Notes, patterns and pointers for how I set up and run Claude Code.
 
 | Where | What |
 |---|---|
-| [plugins/guardrails](../plugins/guardrails/) | PreToolUse hooks: blocks pattern-based process kills, asks before pushes to main |
+| [plugins/guardrails](../plugins/guardrails/) | PreToolUse hooks: blocks pattern-based process kills, turns deletes into moves to `_archive/`, asks before pushes to main |
 | [rules/](../rules/) | CLAUDE.md blocks, each from a real mistake |
 | [templates/CLAUDE.md](../templates/CLAUDE.md) | Starter CLAUDE.md |
 | [templates/writing-claude-md-and-specs.md](../templates/writing-claude-md-and-specs.md) | What belongs in a CLAUDE.md, and how to write specs agents can build from |
@@ -21,7 +21,7 @@ Notes, patterns and pointers for how I set up and run Claude Code.
 
 | Pattern | What I have | Worth adding |
 |---|---|---|
-| Rules enforced by hooks | `guardrails` blocks `pkill`/`killall` and confirms pushes to main | Adopt the "corrected twice becomes a hook" rule. Candidates: deletes become moves to `_archive/`; block closing keywords in commit messages if I ever want my own close-out step |
+| Rules enforced by hooks | `guardrails` blocks `pkill`/`killall`, turns deletes into moves to `_archive/`, and confirms pushes to main | Adopt the "corrected twice becomes a hook" rule. Next candidate: block closing keywords in commit messages if I ever want my own close-out step |
 | Tracker as system of record | Nothing. Work lives in chat and commits | A GitHub Issues setup with one status label per issue and human-only `backlog → ready` and `review → done` |
 | Main session orchestrates, model tiers | [model-by-task](../rules/model-by-task.md) rule (Haiku / Sonnet / Opus by job) | Keep the main session to planning and review on bigger projects |
 | Cheap judgment model | Nothing | Only worth it for large piles (past roughly 45-60 items). Measure break-even before building |

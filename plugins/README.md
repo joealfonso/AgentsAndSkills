@@ -10,7 +10,7 @@ Everything Claude Code can install from this repo. Each folder is a plugin liste
 | [prompt-library](prompt-library/) | The `prompt-library` skill and a copy of all 81 [prompts](../prompts/) |
 | [job-search](job-search/) | Job digest, Gmail tracker updates, interview prep, resume tailoring |
 | [daily-ops](daily-ops/) | Morning briefing and weekly knowledge base cleanup |
-| [guardrails](guardrails/) | Hooks that block pattern-based process kills and confirm pushes to main |
+| [guardrails](guardrails/) | Hooks that block pattern-based process kills, turn deletes into moves to `_archive/`, and confirm pushes to main |
 
 ```
 /plugin marketplace add joealfonso/AgentsAndSkills

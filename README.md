@@ -97,8 +97,9 @@ Paste [prompts/about-me.md](prompts/about-me.md) above any prompt so the assista
 | [model-by-task](rules/model-by-task.md) | Projects that use subagents |
 | [kill-by-pid](rules/kill-by-pid.md) | Projects with dev servers |
 | [remove-unreliable-features](rules/remove-unreliable-features.md) | Data-driven products |
+| [archive-dont-delete](rules/archive-dont-delete.md) | Losing a file would hurt |
 
-Two of these are also enforced by the `guardrails` plugin, since a rule in CLAUDE.md can be forgotten and a hook can't. It blocks `pkill`, `killall` and `pgrep | kill`, and asks you to confirm any `git push` that would update `main` or `master` (including a bare `git push` while on `main`).
+Three of these are also enforced by the `guardrails` plugin, since a rule in CLAUDE.md can be forgotten and a hook can't. It blocks `pkill`, `killall` and `pgrep | kill`, blocks deletes and replies with the `mv` into `_archive/` to run instead, and asks you to confirm any `git push` that would update `main` or `master` (including a bare `git push` while on `main`).
 
 ## Using it
 

@@ -1,5 +1,5 @@
 {
-  "description": "Blocks pattern-based process killing and asks before pushing to main or master.",
+  "description": "Blocks pattern-based process killing, blocks deletes in favor of archiving, and asks before pushing to main or master.",
   "hooks": {
     "PreToolUse": [
       {
