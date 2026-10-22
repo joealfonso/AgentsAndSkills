@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stage by Stage</title>
+<meta name="description" content="Every prompt, skill, persona, template and tool in AgentsAndSkills, grouped by the stage of design work or career where it helps.">
+<style>
+  :root {
+    --bg: #f7f5f0; --dot: #ddd8cd; --card: #ffffff; --ink: #1c1b19; --ink-2: #6b665d; --ink-3: #8f897e; --line: #e8e4dc;
+    --hi-bg: #fdf1ec; --hi-line: #e3a58d; --accent: #b4532f; --shadow: 0 1px 2px rgba(28,27,25,.04);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --bg: #141412; --dot: #2a2926; --card: #1d1c1a; --ink: #eceae5; --ink-2: #aaa59b; --ink-3: #7f7a71; --line: #33312d;
+      --hi-bg: #2a1f1a; --hi-line: #8a4a33; --accent: #e8957a; --shadow: none; }
+  }
+  :root[data-theme="dark"] { --bg: #141412; --dot: #2a2926; --card: #1d1c1a; --ink: #eceae5; --ink-2: #aaa59b; --ink-3: #7f7a71; --line: #33312d;
+    --hi-bg: #2a1f1a; --hi-line: #8a4a33; --accent: #e8957a; --shadow: none; }
+  * { box-sizing: border-box; }
+  body { margin: 0; color: var(--ink); font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+         background: var(--bg) radial-gradient(var(--dot) 1px, transparent 1.2px) 0 0 / 18px 18px; }
+  main { max-width: 860px; margin: 0 auto; padding: 56px 16px 64px; }
+  .eyebrow, .stage-n, .count, .legend { font-family: ui-monospace, "SF Mono", Menlo, monospace; }
+  .eyebrow { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); margin: 0 0 14px; }
+  h1, h2, .stage-title { font-family: Georgia, "Iowan Old Style", serif; font-weight: 700; }
+  h1 { font-size: clamp(30px, 6vw, 42px); line-height: 1.1; margin: 0 0 14px; }
+  .lede { color: var(--ink-2); margin: 0 0 22px; max-width: 60ch; font-size: 16px; }
+  .legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 12px; color: var(--ink-2); margin: 0 0 44px; padding: 0; list-style: none; }
+  .legend .k { margin-right: 6px; }
+  section { margin-bottom: 52px; }
+  h2 { font-size: 24px; margin: 0 0 6px; }
+  .section-sub { color: var(--ink-2); margin: 0 0 18px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 360px), 1fr)); gap: 14px; margin: 0; padding: 0; list-style: none; }
+  .stage { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px 18px; box-shadow: var(--shadow); }
+  .stage.hi { background: var(--hi-bg); border-color: var(--hi-line); }
+  .stage-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+  .stage-n { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
+  .count { font-size: 11px; color: var(--ink-3); white-space: nowrap; }
+  .stage-title { font-size: 21px; line-height: 1.2; margin: 6px 0 8px; }
+  .items { margin: 0; color: var(--ink-2); font-size: 13.5px; line-height: 1.6; }
+  .items a { color: inherit; text-decoration: none; border-bottom: 1px solid transparent; }
+  .items a:hover, .items a:focus-visible { color: var(--ink); border-bottom-color: currentColor; outline: none; }
+  .items .sep { color: var(--ink-3); margin: 0 .35em; }
+  .items .k { font-family: ui-monospace, monospace; font-size: 10px; color: var(--accent); margin-right: 3px; vertical-align: 1px; }
+  .items a.tool, .items a.skill { color: var(--accent); }
+  .items a.persona { font-style: italic; }
+  footer { font-size: 13px; color: var(--ink-2); border-top: 1px solid var(--line); padding-top: 20px; }
+  footer a { color: var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <p class="eyebrow">AgentsAndSkills · stage by stage</p>
+  <h1>Everything in the bank, by the stage it helps</h1>
+  <p class="lede">The same prompts, skills, personas and templates, grouped by where you are in the work instead of what kind of file they are. Highlighted stages have an interactive tool you can run in the browser.</p>
+  <ul class="legend">
+    <li><span class="k">·</span>prompt</li>
+    <li><span class="k" style="color:var(--accent)">S</span>Claude skill</li>
+    <li><span class="k" style="color:var(--accent)">T</span>browser tool</li>
+    <li><span class="k">P</span><em>persona</em></li>
+    <li><span class="k">▢</span>template</li>
+  </ul>
+  <div id="sections"></div>
+  <footer>
+    By <a href="https://josephalfonso.com">Joseph Alfonso</a>. Source in
+    <a href="https://github.com/joealfonso/AgentsAndSkills">AgentsAndSkills</a>. Content licensed CC BY 4.0.
+  </footer>
+</main>
+<script>
+  const REPO = "https://github.com/joealfonso/AgentsAndSkills/blob/main/";
+  const p = (name, path) => ({ name, path: "prompts/" + path + ".md", kind: "prompt" });
+  const s = (name, path) => ({ name, path: "plugins/" + path + "/SKILL.md", kind: "skill" });
+  const r = (name, path) => ({ name, path: "personas/" + path + ".md", kind: "persona" });
+  const t = (name, file) => ({ name, href: file, kind: "tool" });
+  const m = (name, path) => ({ name, path: "templates/" + path, kind: "template" });
+
+  const SECTIONS = [
+    {
+      title: "Design work",
+      sub: "From a fuzzy request to a shipped, defended decision.",
+      stages: [
+        { title: "Frame the problem", items: [
+          p("Problem Framing Brief", "design-work/problem-framing-brief"),
+          p("AI Pitch Reality Check", "ai-product-design/ai-pitch-reality-check"),
+          p("Stakeholder Map", "stakeholders-and-leadership/stakeholder-map"),
+          r("Research-First Partner", "design-critique/research-first-partner") ] },
+        { title: "Research users", items: [
+          p("Lean Research Plan", "user-research/research-plan"),
+          p("User Interview Guide", "user-research/interview-guide"),
+          p("Survey Design", "user-research/survey-design"),
+          p("Field Notes Template", "user-research/field-notes-template"),
+          p("Research Synthesis", "user-research/research-synthesis"),
+          p("Anomaly Review", "user-research/anomaly-review") ] },
+        { title: "Map the service", items: [
+          p("Service Blueprint", "design-work/service-blueprint"),
+          m("Service Blueprint Template", "service-blueprint.md"),
+          p("Blueprint Workshop", "design-work/blueprint-workshop"),
+          p("Service Blueprint Review", "design-work/service-blueprint-review"),
+          p("Future-State Blueprint", "design-work/future-state-blueprint") ] },
+        { title: "Design the AI behavior", items: [
+          p("AI Failure Modes", "ai-product-design/ai-failure-modes"),
+          p("AI Behavior Spec", "ai-product-design/ai-behavior-spec"),
+          p("Human-in-the-Loop Design", "ai-product-design/human-in-the-loop-design"),
+          p("Uncertainty and Trust", "ai-product-design/uncertainty-and-trust-patterns"),
+          r("AI/ML Product Specialist", "design-critique/ai-ml-product-specialist") ] },
+        { title: "Build with agents", items: [
+          p("Project Brief to SPEC.md", "building-with-ai/project-brief-to-spec"),
+          p("CLAUDE.md Draft", "building-with-ai/claude-md-draft"),
+          m("CLAUDE.md Starter", "CLAUDE.md"),
+          p("Subagent Brief", "building-with-ai/subagent-brief"),
+          p("Prototype Critique", "building-with-ai/prototype-critique"),
+          p("Bug Report for an Agent", "building-with-ai/bug-report-for-agent") ] },
+        { title: "Critique and quality", hi: true, items: [
+          t("Design Review Card", "design-review-card.html"),
+          t("AI Design Rubric", "ai-design-evaluation-rubric.html"),
+          p("Edge Case Sweep", "design-work/edge-case-sweep"),
+          p("Accessibility Review", "design-work/accessibility-review"),
+          p("UX Copy Pass", "design-work/ux-copy-pass"),
+          p("Critique Prep", "design-work/critique-prep"),
+          r("The User Who Hates This", "reality-checks/the-user-who-hates-this") ] },
+        { title: "Test with real users", items: [
+          p("Usability Test Plan", "user-research/usability-test-plan"),
+          p("Rainbow Spreadsheet Setup", "user-research/rainbow-spreadsheet-setup"),
+          m("Rainbow Spreadsheet", "rainbow-spreadsheet/"),
+          p("Rainbow Spreadsheet Analysis", "user-research/rainbow-spreadsheet-analysis") ] },
+        { title: "Ship and defend", hi: true, items: [
+          t("AI Readiness Review", "ai-readiness-review.html"),
+          p("AI Eval Plan", "ai-product-design/ai-eval-plan"),
+          p("Design Rationale Doc", "design-work/design-rationale-doc"),
+          p("Decision Memo", "stakeholders-and-leadership/decision-memo"),
+          p("Executive Summary", "stakeholders-and-leadership/exec-summary"),
+          r("Cross-functional Eng Lead", "stakeholder-leadership/cross-functional-eng-lead"),
+          r("The Burned-Out Engineer", "reality-checks/the-burned-out-engineer") ] }
+      ]
+    },
+    {
+      title: "Career",
+      sub: "From spotting a role to growing once you're in it.",
+      stages: [
+        { title: "Find the right roles", items: [
+          s("Job Listing Digest", "job-search/skills/job-listing-digest"),
+          p("Job Posting Decoder", "job-search/job-posting-decoder"),
+          p("Should I Apply? Scorecard", "job-search/should-i-apply-scorecard"),
+          p("Company Research Brief", "job-search/company-research-brief") ] },
+        { title: "Apply and follow up", items: [
+          s("Resume and Cover Letter Tailoring", "job-search/skills/resume-cover-letter-tailoring"),
+          p("Resume Bullet Rewrite", "job-search/resume-bullet-rewrite"),
+          p("Recruiter Outreach", "job-search/recruiter-outreach"),
+          p("Referral Ask", "job-search/referral-ask"),
+          s("Application Tracker Update", "job-search/skills/application-tracker-update"),
+          p("Application Follow-Up", "job-search/application-follow-up") ] },
+        { title: "Tell the story", items: [
+          p("Case Study from Raw Notes", "portfolio-and-case-studies/case-study-from-raw-notes"),
+          p("Impact Metric Finder", "portfolio-and-case-studies/impact-metric-finder"),
+          p("Cut a Case Study in Half", "portfolio-and-case-studies/case-study-cut"),
+          p("NDA-Safe Rewrite", "portfolio-and-case-studies/nda-safe-rewrite"),
+          p("Project One-Liners", "portfolio-and-case-studies/project-one-liner"),
+          p("Portfolio Site Review", "portfolio-and-case-studies/portfolio-site-review"),
+          r("Strict Senior Product Designer", "design-critique/strict-senior-product-designer") ] },
+        { title: "Interview", items: [
+          s("Interview Prep", "job-search/skills/interview-prep"),
+          p("Story Bank Builder", "interviewing/story-bank-builder"),
+          p("Portfolio Presentation Script", "interviewing/portfolio-presentation-script"),
+          p("Design Exercise Prep", "interviewing/design-exercise-prep"),
+          p("Mock Interview", "interviewing/mock-interview"),
+          p("Questions to Ask", "interviewing/questions-to-ask"),
+          r("Skeptical Hiring Manager", "design-critique/skeptical-hiring-manager") ] },
+        { title: "Negotiate the offer", items: [
+          p("Offer Comparison", "offers-and-negotiation/offer-comparison"),
+          p("Counter-Offer", "offers-and-negotiation/counter-offer"),
+          r("Compensation Negotiator", "interviewing/compensation-negotiator"),
+          p("Accept or Decline", "offers-and-negotiation/accept-or-decline"),
+          p("Resignation Plan", "offers-and-negotiation/resignation") ] },
+        { title: "Grow in the role", items: [
+          p("First 90 Days", "career-growth/first-90-days"),
+          p("Brag Doc Entry", "career-growth/brag-doc-entry"),
+          p("Career Check-In", "career-growth/career-check-in"),
+          p("Self-Review", "career-growth/self-review"),
+          p("Promotion Case", "career-growth/promotion-case"),
+          p("Skill Gap Audit", "career-growth/skill-gap-audit") ] },
+        { title: "Lead and teach", items: [
+          p("Feedback on Junior Work", "mentoring-and-teaching/feedback-on-junior-work"),
+          p("Explain It Plainly", "mentoring-and-teaching/explain-plainly"),
+          p("Learning Plan", "mentoring-and-teaching/learning-plan"),
+          p("Workshop Outline", "mentoring-and-teaching/workshop-outline"),
+          r("The New Manager You're Coaching", "stakeholder-leadership/the-new-manager-youre-coaching") ] },
+        { title: "Be visible", items: [
+          s("Write Like Joseph", "writing/skills/write-like-joseph"),
+          p("LinkedIn Post", "writing-and-visibility/linkedin-post"),
+          p("Article Outline", "writing-and-visibility/article-outline"),
+          p("Talk Proposal", "writing-and-visibility/talk-proposal"),
+          p("Bio Variants", "writing-and-visibility/bio-variants"),
+          p("Claim Checker", "writing-and-visibility/claim-checker") ] }
+      ]
+    }
+  ];
+
+  const KEY = { skill: "S", tool: "T", persona: "P", template: "▢" };
+  const esc = (x) => x.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const link = (it) => {
+    const href = it.href || REPO + it.path;
+    const k = KEY[it.kind] ? `<span class="k" aria-hidden="true">${KEY[it.kind]}</span>` : "";
+    return `<a class="${it.kind}" href="${esc(href)}" title="${it.kind}">${k}${esc(it.name)}</a>`;
+  };
+  document.getElementById("sections").innerHTML = SECTIONS.map((sec) => `
+    <section>
+      <h2>${esc(sec.title)}</h2>
+      <p class="section-sub">${esc(sec.sub)}</p>
+      <ol class="grid">${sec.stages.map((st, i) => `
+        <li class="stage${st.hi ? " hi" : ""}">
+          <div class="stage-head">
+            <span class="stage-n">Stage ${String(i + 1).padStart(2, "0")}</span>
+            <span class="count">${st.items.length} items</span>
+          </div>
+          <h3 class="stage-title">${esc(st.title)}</h3>
+          <p class="items">${st.items.map(link).join('<span class="sep">·</span>')}</p>
+        </li>`).join("")}
+      </ol>
+    </section>`).join("");
+</script>
+</body>
+</html>
