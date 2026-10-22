@@ -10,9 +10,11 @@ Search for new design job postings for Joseph, a product/UX designer. This runs 
 - Target roles: Senior Product Designer, Product Designer, UX/UI Designer.
 - Adjacent titles worth surfacing on a strong match: Product Design Lead, UX Designer, Design Systems Designer, Service Designer, Interaction Designer.
 - Locations: Seattle WA and fully remote.
-- Dedupe file: `Job_Digest_Seen.txt` next to this skill's scheduled task folder (one URL per line).
+- Dedupe file: `~/Documents/JobSearch/Job_Digest_Seen.txt` (one clean `/jobs/view/<id>/` URL per line). This file is the only memory between runs.
 
 ## Steps
+
+If LinkedIn shows a sign-in wall, a CAPTCHA or a rate-limit page, stop and report it with whatever was verified so far. Don't sign in, solve the CAPTCHA or work around the block.
 
 Do NOT use web search for this. It returns stale, cached job board snippets, and many listings turn out closed. Use the browser tools, which load the live page and let you confirm a listing still accepts applications.
 
@@ -28,7 +30,7 @@ Do NOT use web search for this. It returns stale, cached job board snippets, and
 
 4. Before including a listing, open its clean `https://www.linkedin.com/jobs/view/<id>/` URL and confirm an active "Apply" or "Easy Apply" button and no "no longer accepting applications" notice. Include only listings verified this way.
 
-5. Dedupe: read the dedupe file if it exists and skip postings already in it. After compiling today's list, append the new clean URLs (create the file if needed). If that path isn't reachable from the session, write it to the session's outputs folder and say so.
+5. Dedupe: read the dedupe file if it exists and skip postings already in it. After compiling today's list, append the new clean URLs (create the file if needed). If the path isn't reachable from the session, say so at the top of the output: "Dedupe file not reachable, some of these may be repeats." Don't write a copy somewhere else, since the next run won't find it.
 
 6. Output new postings only (skip the section if nothing is new). For each: Company, Role, Location, one line on why it fits, and the clean link. Cap at 10, closest matches and freshest first.
 

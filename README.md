@@ -12,6 +12,7 @@ My bank of AI skills, personas, agents and working rules. Everything here is pla
 | [`claude-code/`](claude-code) | Notes and patterns for running Claude Code, and how my setup compares | Read before changing hooks, memory or workflow |
 | [`templates/`](templates) | CLAUDE.md starter, notes on writing specs, a service blueprint, and a rainbow spreadsheet for usability studies | Copy into a new project or doc |
 | [`prompts/`](prompts) | 81 career prompts across 13 areas, plus a context block about me | Fill in the brackets and paste, or use the `prompt-library` skill |
+| [`examples/`](examples) | Sample outputs from a review skill and a persona, on two made-up specs | See what you get before installing anything |
 | [`tools/`](tools) | Interactive HTML versions of the design review frameworks | Use them live at [josephalfonso.com/AgentsAndSkills/tools](https://josephalfonso.com/AgentsAndSkills/tools/), or browse the whole bank [by stage](https://josephalfonso.com/AgentsAndSkills/tools/stages.html) |
 
 ## Catalog
@@ -34,11 +35,11 @@ My bank of AI skills, personas, agents and working rules. Everything here is pla
 
 The three design-review skills go from light to heavy: the card for any design, the rubric for AI features, AIRR for high-consequence AI features or a launch gate. The card points to AIRR when 3 or more of its AI questions come back open. Interactive versions of all three are live at [josephalfonso.com/AgentsAndSkills/tools](https://josephalfonso.com/AgentsAndSkills/tools/).
 
-The job-search and daily-ops skills expect Gmail, Google Calendar, Chrome or the knowledge base MCP to be connected. Each has a **Config** section at the top with paths to change.
+The job-search and daily-ops skills are my personal setup, published as examples to adapt. They expect Gmail, Google Calendar, Chrome or my knowledge base MCP (not in this repo) to be connected, and they're written for my search (Seattle and remote design roles, my file paths). Each has a **Config** section at the top with the values to change.
 
 ### Personas
 
-Every persona has stop conditions (when to say nothing) and a fixed verdict line, so it reviews what's actually there instead of inventing problems. **Review** personas do one pass and return a verdict. **Rehearsal** personas stay in character for a practice conversation. Review personas also ship as Claude Code subagents.
+Every persona has stop conditions (when to say nothing) and a fixed verdict line, so it reviews what's actually there instead of inventing problems. [examples/](examples) shows the same persona flagging an incomplete spec and passing a complete one. **Review** personas do one pass and return a verdict. **Rehearsal** personas stay in character for a practice conversation. Review personas also ship as Claude Code subagents.
 
 | Persona | Mode | Use for |
 |---|---|---|
@@ -99,7 +100,7 @@ Paste [prompts/about-me.md](prompts/about-me.md) above any prompt so the assista
 | [remove-unreliable-features](rules/remove-unreliable-features.md) | Data-driven products |
 | [archive-dont-delete](rules/archive-dont-delete.md) | Losing a file would hurt |
 
-Three of these are also enforced by the `guardrails` plugin, since a rule in CLAUDE.md can be forgotten and a hook can't. It blocks `pkill`, `killall` and `pgrep | kill`, blocks deletes and replies with the `mv` into `_archive/` to run instead, and asks you to confirm any `git push` that would update `main` or `master` (including a bare `git push` while on `main`).
+Three of these are also backed by the `guardrails` plugin, since a rule in CLAUDE.md can be forgotten and a hook can't. It blocks pattern and bulk process kills (`pkill`, `killall`, `pgrep | kill`, `xargs kill`, `kill -1`), blocks deletes and replies with the `mv` into `_archive/` to run instead, blocks git commands that throw away uncommitted work (`git clean`, `reset --hard`, `checkout -- .`, `restore`, `stash drop`), and asks you to confirm any `git push` that would update `main` or `master` (including a bare `git push` while on `main`). It also checks inside `bash -c` and `eval`. It reads command text, so it catches mistakes, not a determined workaround; the [plugin README](plugins/guardrails/README.md#guardrails) lists what gets through.
 
 ## Using it
 
@@ -139,11 +140,11 @@ Open a persona or prompt file, copy the instruction or prompt block, and paste i
 
 ## Adding to the bank
 
-- **New persona:** add `personas/<set>/<name>.md` with the same frontmatter as the others (`name`, `title`, `set`, `mode`, `use_for`), then run `python3 scripts/build.py`. That copies it into the `review-as` skill, makes a subagent if it's review mode, and updates the skill's index. Add a row to the table above.
+- **New persona:** add `personas/<set>/<name>.md` with the same frontmatter as the others (`name`, `title`, `set`, `mode`, `use_for`), then run `python3 scripts/build.py`. That makes a subagent if it's review mode and updates the skill's index. The `review-as` skill reads `personas/` through a symlink, so there's no copy to update. Add a row to the table above.
 - **New skill:** add `plugins/<plugin>/skills/<name>/SKILL.md` with `name` and `description` frontmatter. A new plugin also needs `.claude-plugin/plugin.json` and an entry in [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json).
 - **New rule:** add `rules/<name>.md` with the paste-ready block and a one-line why.
 
-Every push runs [CI](.github/workflows/check.yml): personas in sync with their plugin copies, no broken links, the guardrail hook tests, valid JSON, and `claude plugin validate` on the marketplace and every plugin. To run the same checks locally:
+Every push runs [CI](.github/workflows/check.yml): generated agents and indexes up to date, the plugin symlinks in place, no broken links, the guardrail hook tests, valid JSON, and `claude plugin validate` on the marketplace and every plugin. To run the same checks locally:
 
 ```bash
 python3 scripts/build.py --check

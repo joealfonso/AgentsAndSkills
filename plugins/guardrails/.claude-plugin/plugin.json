@@ -1,7 +1,7 @@
 {
   "name": "guardrails",
-  "version": "1.1.0",
-  "description": "Hooks that enforce three rules: never kill processes by pattern (pkill, killall), never delete files (archive them into _archive/ instead), and confirm before any git push to main or master.",
+  "version": "1.2.0",
+  "description": "Hooks that back three rules: never kill processes by pattern or in bulk (pkill, killall, xargs kill, kill -1), never delete files or discard uncommitted git work (archive into _archive/ or stash instead), and confirm before any git push to main or master. Checks command text, including inside bash -c and eval; not a sandbox.",
   "author": {
     "name": "Joseph Alfonso",
     "url": "https://josephalfonso.com"

@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: "22"
 
-      - name: Personas in sync with plugin copies
+      - name: Generated files up to date, plugin symlinks in place
         run: python3 scripts/build.py --check
 
       - name: No broken links
@@ -30,6 +30,6 @@ jobs:
 
       - name: Plugin manifests validate
         run: |
-          npm install -g @anthropic-ai/claude-code
+          npm install -g @anthropic-ai/claude-code@2.1.296  # pinned so a new release can't break CI; bump on purpose
           claude plugin validate .
           for p in plugins/*/; do claude plugin validate "$p"; done

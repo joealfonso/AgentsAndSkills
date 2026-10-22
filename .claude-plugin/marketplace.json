@@ -32,17 +32,17 @@
     {
       "name": "job-search",
       "source": "./plugins/job-search",
-      "description": "Job search automations: live LinkedIn digest, Gmail-to-tracker updates, interview prep briefs, resume and cover letter tailoring."
+      "description": "Personal setup, edit the Config sections before use. Job search automations: live LinkedIn digest, Gmail-to-tracker updates, interview prep briefs, resume and cover letter tailoring."
     },
     {
       "name": "daily-ops",
       "source": "./plugins/daily-ops",
-      "description": "Daily and weekly routines: morning calendar and email briefing, personal knowledge base cleanup."
+      "description": "Personal setup, edit before use. Daily and weekly routines: morning calendar and email briefing, personal knowledge base cleanup."
     },
     {
       "name": "guardrails",
       "source": "./plugins/guardrails",
-      "description": "Hooks that enforce three rules: never kill processes by pattern (pkill, killall), never delete files (archive them into _archive/ instead), and confirm before any git push to main or master."
+      "description": "Hooks that back three rules: never kill processes by pattern or in bulk (pkill, killall, xargs kill, kill -1), never delete files or discard uncommitted git work (archive into _archive/ or stash instead), and confirm before any git push to main or master. Checks command text, including inside bash -c and eval; not a sandbox."
     }
   ]
 }
