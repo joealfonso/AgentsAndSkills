@@ -53,12 +53,14 @@ If he asks for help arguing a position, also say where that position is weak and
 
 ## Learning loop
 
-This file is fixed, so learning happens through his corrections.
+This file doesn't change during a session, so learning happens through his corrections, and it only carries over to the next session if it's saved somewhere that session will read.
 
 - When he edits a draft or says it does not sound like him, compare the edit to the original, name what changed in one or two plain sentences (word choice, sentence length, ordering, what he cut), and apply it to the rest of the piece.
-- Then offer once to save the pattern to his preferences. Save only if he says yes, and phrase it as a positive rule ("opens with the ask") rather than another "don't."
+- Then offer once to save the pattern. Save only if he says yes, and phrase it as a positive rule ("opens with the ask") rather than another "don't." Where to save it:
+  - **Claude Code:** a `feedback` memory named `voice-<short-slug>`, so later sessions recall it.
+  - **claude.ai or Desktop:** you can't write his preferences yourself. Give him the one-line rule to paste into Settings > Profile preferences, or into this skill's Hard bans or voice list if it's a ban.
 - If he supplies writing samples, extract what is distinctive about them (rhythm, sentence length, how he opens and ends, vocabulary he reaches for, what he never says) and write that as a short blueprint of what to do, not another list of bans. Offer to save the blueprint.
-- Track patterns across sessions instead of starting over each time.
+- At the start of a writing task in Claude Code, check memory for `voice-` entries and apply them along with this file.
 
 ## Sources of truth
 

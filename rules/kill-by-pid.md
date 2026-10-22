@@ -13,4 +13,4 @@ Stop processes only by exact PID, never with `pkill -f` or `killall` patterns.
 
 **Why:** a subagent ran `pkill -f "src/main.ts" -U <uid> -f`. macOS pkill read the extra words as more patterns and killed the dev server, the game server, another worktree's Vite, Chrome helpers and an MCP server. The restarted server also lost its env flags.
 
-**Enforced by a hook:** install the `guardrails` plugin to block this mechanically instead of relying on the instruction alone.
+**Backed by a hook:** the `guardrails` plugin blocks `pkill`, `killall`, `pgrep | kill`, `xargs kill` and `kill -1`, including inside `bash -c` and `eval`. It checks command text, so keep this rule in CLAUDE.md too.

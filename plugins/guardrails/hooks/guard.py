@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """PreToolUse guard for Bash commands.
 
-- Denies pattern-based process killing: pkill, killall, and kill fed by pgrep.
+- Denies pattern-based and bulk process killing: pkill, killall, kill fed by
+  pgrep, pidof or ps | grep, xargs kill, and kill -1 or a process group.
   Stop processes by exact PID instead (rules/kill-by-pid.md).
 - Asks for confirmation before any git push that targets main or master
   (rules/git-branch-workflow.md).
@@ -10,6 +11,10 @@
   Temp paths and regenerable folders (node_modules, dist, build, caches) can still
   be deleted. Add more with GUARDRAILS_DELETE_ALLOW, colon-separated: entries with
   a slash are path prefixes, anything else is a folder name.
+- Denies git commands that throw away uncommitted work or stashes: git clean,
+  reset --hard, checkout -- / . / -f, restore (worktree), switch -f, stash drop/clear.
+
+Commands wrapped in bash -c, sh -c, zsh -c or eval are checked as if run directly.
 
 Reads the hook payload on stdin and prints a permission decision as JSON.
 Prints nothing (allow) for every other command, and never fails closed on
@@ -31,11 +36,25 @@ TEMP_PREFIXES = ("/tmp/", "/private/tmp/", "/var/folders/")
 REGENERABLE = {"node_modules", "dist", "build", "__pycache__", ".pytest_cache", ".mypy_cache",
                ".next", ".nuxt", ".turbo", ".cache", ".parcel-cache", "coverage", ".venv"}
 
+SHELLS = {"bash", "sh", "zsh", "dash", "ksh"}
+MAX_DEPTH = 5
+
 KILL_REASON = (
-    "Blocked: pattern-based process killing (pkill, killall, pgrep | kill) can take down "
-    "unrelated processes. Find the exact PID with `lsof -nP -iTCP:<port> -sTCP:LISTEN` "
-    "and run `kill <PID>`, then restart with the server's usual command and env vars."
+    "Blocked: pattern-based or bulk process killing (pkill, killall, pgrep or ps | grep feeding kill, "
+    "xargs kill, kill -1 or a process group) can take down unrelated processes. Find the exact PID with "
+    "`lsof -nP -iTCP:<port> -sTCP:LISTEN` and run `kill <PID>`, then restart with the server's usual "
+    "command and env vars."
 )
+
+GIT_DISCARD_FIX = {
+    "clean": "List the files with `git clean -n`, then move the ones that should go into _archive/.",
+    "reset": "Save the work first with `git stash push -u -m \"<why>\"`, or use `git reset --keep`, "
+             "which refuses to drop local changes.",
+    "checkout": "Save the work first with `git stash push -u -m \"<why>\"`; it stays recoverable in `git stash list`.",
+    "restore": "Save the work first with `git stash push -u -m \"<why>\"`; it stays recoverable in `git stash list`.",
+    "switch": "Save the work first with `git stash push -u -m \"<why>\"`, then switch without forcing.",
+    "stash": "Leave the stash where it is; it costs nothing.",
+}
 
 
 def decide(decision, reason):
@@ -67,6 +86,92 @@ def command_word(seg):
     while i < len(seg) and (seg[i] in PREFIXES or re.match(r"^[A-Za-z_][A-Za-z0-9_]*=", seg[i])):
         i += 1
     return (os.path.basename(seg[i]), seg[i + 1:]) if i < len(seg) else (None, [])
+
+
+def wrapped_command(word, args):
+    """The command string run by `bash -c '...'`, `sh -lc '...'` or `eval ...`, or None."""
+    if word == "eval":
+        return " ".join(args) or None
+    if word in SHELLS:
+        has_c = False
+        for a in args:
+            if a.startswith("-") and not a.startswith("--"):
+                has_c = has_c or "c" in a[1:]
+            elif not a.startswith("-"):
+                return a if has_c else None
+    return None
+
+
+def expand(command, depth=0):
+    """Segments of the command, with the body of each shell wrapper split into segments of its own."""
+    for seg in segments(command):
+        inner = wrapped_command(*command_word(seg))
+        if inner is None or depth >= MAX_DEPTH:
+            yield seg
+            continue
+        try:
+            inner_segs = list(expand(inner, depth + 1))
+        except ValueError:
+            inner_segs = [seg]
+        yield from inner_segs
+
+
+def broad_kill(args):
+    """True when kill targets every process (-1), a process group (-<pgid>) or its own group (0)."""
+    i = 0
+    if args and args[0] in ("-s", "-n"):
+        i = 2
+    elif args and args[0].startswith("-") and args[0] != "--":
+        i = 1
+    targets = [a for a in args[i:] if a != "--"]
+    return any(re.match(r"^-\d+$", t) or t == "0" for t in targets)
+
+
+def kill_blocked(command, segs):
+    words = [command_word(s)[0] for s in segs]
+    if any(w in ("pkill", "killall") for w in words):
+        return True
+    for seg in segs:
+        word, args = command_word(seg)
+        if word == "kill" and broad_kill(args):
+            return True
+        if word == "xargs" and any(os.path.basename(a) == "kill" for a in args):
+            return True
+    lookup = re.search(r"\b(pgrep|pidof)\b", command) or ("ps" in words and ("grep" in words or "awk" in words))
+    return bool(lookup and "kill" in words)
+
+
+def git_subcommand(args):
+    i = 0
+    while i < len(args) and args[i].startswith("-"):
+        i += 2 if args[i] in ("-C", "-c") else 1
+    return (args[i], args[i + 1:]) if i < len(args) else (None, [])
+
+
+def git_discard(args):
+    """The git subcommand if this call throws away uncommitted work or stashes, else None."""
+    sub, rest = git_subcommand(args)
+    flags = lambda *names: any(a in names for a in rest)
+    if sub == "clean":
+        dry = any(a == "--dry-run" or (a.startswith("-") and not a.startswith("--") and "n" in a[1:]) for a in rest)
+        return None if dry else sub
+    if sub == "reset" and flags("--hard"):
+        return sub
+    if sub == "checkout" and flags("--", ".", "-f", "--force"):
+        return sub
+    if sub == "restore" and not (flags("--staged", "-S") and not flags("--worktree", "-W")):
+        return sub
+    if sub == "switch" and flags("-f", "--force", "--discard-changes"):
+        return sub
+    if sub == "stash" and rest[:1] in (["drop"], ["clear"]):
+        return sub
+    return None
+
+
+def git_discard_reason(sub):
+    return (f"Blocked: `git {sub}` here throws away work that may not be committed or stashed, "
+            f"and it can't be undone. {GIT_DISCARD_FIX[sub]} If discarding is really what's wanted, "
+            "ask the user to run it.")
 
 
 def delete_allowed(path, cwd):
@@ -122,11 +227,9 @@ def delete_targets(word, args):
     if word == "xargs" and any(os.path.basename(a) in DELETE_WORDS for a in args):
         return True, []
     if word == "git":
-        i = 0
-        while i < len(args) and args[i].startswith("-"):
-            i += 2 if args[i] in ("-C", "-c") else 1
-        if i < len(args) and args[i] == "rm" and "--cached" not in args[i + 1:]:
-            return True, [a for a in args[i + 1:] if not a.startswith("-")]
+        sub, rest = git_subcommand(args)
+        if sub == "rm" and "--cached" not in rest:
+            return True, [a for a in rest if not a.startswith("-")]
     return False, []
 
 
@@ -182,14 +285,11 @@ def main():
         command = payload.get("tool_input", {}).get("command", "")
         cwd = payload.get("cwd") or os.getcwd()
         root = cwd
-        segs = list(segments(command))
+        segs = list(expand(command))
     except Exception:
         return
 
-    words = [command_word(s)[0] for s in segs]
-    if any(w in ("pkill", "killall") for w in words):
-        decide("deny", KILL_REASON)
-    if "pgrep" in command and ("kill" in words or "xargs" in words and "kill" in command):
+    if kill_blocked(command, segs):
         decide("deny", KILL_REASON)
 
     for seg in segs:
@@ -205,6 +305,9 @@ def main():
         if word == "cd" and args:
             cwd = os.path.join(cwd, os.path.expanduser(args[0]))
         elif word == "git":
+            discarded = git_discard(args)
+            if discarded:
+                decide("deny", git_discard_reason(discarded))
             target = push_target(args, cwd)
             if target:
                 decide("ask", f"This pushes to {target}, which may deploy to production. "

@@ -11,6 +11,6 @@ Paste-ready blocks for a project's CLAUDE.md. Each one came from a real mistake 
 | [remove-unreliable-features](remove-unreliable-features.md) | The product is built on derived data |
 | [archive-dont-delete](archive-dont-delete.md) | Losing a file would hurt |
 
-git-branch-workflow, kill-by-pid and archive-dont-delete are also enforced by the [guardrails](../plugins/guardrails/) plugin, because an instruction can be forgotten and a hook can't.
+git-branch-workflow, kill-by-pid and archive-dont-delete are also backed by the [guardrails](../plugins/guardrails/) plugin, because an instruction can be forgotten and a hook can't.
 
 **Add one:** the paste-ready block, then a one-line **Why** with the incident that caused it. A rule without a why gets deleted the first time it's inconvenient.
