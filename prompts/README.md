@@ -156,4 +156,4 @@ Paste-ready prompts for the things I do over and over in my career: job searchin
 
 ## Adding a prompt
 
-Create `prompts/<category>/<name>.md` with `title`, `category`, `use_when` and `inputs` frontmatter, a `## Prompt` section with the prompt in a `text` code block, and `[BRACKETS]` for anything to fill in. Then run `python3 scripts/build.py` to update this index and the skill's copy. Use square brackets, not double curly braces: the site is built with Jekyll, which treats those as template code.
+Create `prompts/<category>/<name>.md` with `title`, `category`, `use_when` and `inputs` frontmatter, a `## Prompt` section with the prompt in a `text` code block, and `[BRACKETS]` for anything to fill in. Then run `python3 scripts/build.py` to update this index and the skill's. The `prompt-library` skill reads this folder through a symlink, so there's no copy to update. Use square brackets, not double curly braces: the site is built with Jekyll, which treats those as template code.

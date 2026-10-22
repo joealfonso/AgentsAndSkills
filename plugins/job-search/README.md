@@ -1,6 +1,8 @@
 # job-search
 
-Job search automations, written to run as scheduled tasks in Claude Desktop/Cowork or on demand. Each skill has a **Config** section at the top with the paths and targets to change.
+Job search automations, written to run as scheduled tasks in Claude Desktop/Cowork or on demand.
+
+**This is my setup, not a general tool.** The skills are written for me: Seattle and remote product design roles, my tracker at `~/Documents/JobSearch`, my resume and portfolio links. To use them yourself, edit each skill's **Config** section, and replace "Joseph" with your name in the skill text. Install it as a starting point to adapt, not something that works as-is.
 
 | Skill | Runs | Needs |
 |---|---|---|
