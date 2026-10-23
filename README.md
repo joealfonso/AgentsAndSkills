@@ -13,7 +13,7 @@ My bank of AI skills, personas, agents and working rules. Everything here is pla
 | [`templates/`](templates) | CLAUDE.md starter, notes on writing specs, a service blueprint, and a rainbow spreadsheet for usability studies | Copy into a new project or doc |
 | [`prompts/`](prompts) | 81 career prompts across 13 areas, plus a context block about me | Fill in the brackets and paste, or use the `prompt-library` skill |
 | [`examples/`](examples) | Sample outputs from a review skill and a persona, on two made-up specs | See what you get before installing anything |
-| [`tools/`](tools) | Interactive HTML versions of the design review frameworks | Use them live at [josephalfonso.com/AgentsAndSkills/tools](https://josephalfonso.com/AgentsAndSkills/tools/) |
+| [`tools/`](tools) | Interactive HTML versions of the design review frameworks | Use them live at [josephalfonso.com/AgentsAndSkills/tools](https://josephalfonso.com/AgentsAndSkills/tools/), or browse the whole bank [by stage](https://josephalfonso.com/AgentsAndSkills/tools/stages.html) |
 
 ## Catalog
 

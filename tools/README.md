@@ -10,5 +10,6 @@ Interactive, browser-only versions of the three design review frameworks. Nothin
 | [ai-design-evaluation-rubric.html](ai-design-evaluation-rubric.html) | AI features: gut-check plus 18 scored criteria and a ship verdict |
 | [ai-readiness-review.html](ai-readiness-review.html) | High-consequence AI: risk tiers, 27 criteria mapped to NIST, EU AI Act, HAX, PAIR, ISO 42001, WCAG |
 | [index.html](index.html) | The landing page linking all three |
+| [stages.html](stages.html) | Every prompt, skill, persona, template and tool in the repo, grouped into design and career stages |
 
 The same frameworks run inside Claude as the [design-review](../plugins/design-review/) skills.
