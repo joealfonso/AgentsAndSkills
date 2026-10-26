@@ -6,7 +6,7 @@ Everything Claude Code can install from this repo. Each folder is a plugin liste
 |---|---|
 | [design-guide](design-guide/) | **Start here.** The `design-guide` skill: describe what you need, get a diagnosis and the right resource run for you |
 | [writing](writing/) | `write-like-joseph`, my voice for anything written or rewritten |
-| [review-personas](review-personas/) | The `review-as` skill and 11 reviewer subagents built from [personas](../personas/) |
+| [review-personas](review-personas/) | The `review-as` skill and 12 reviewer subagents built from [personas](../personas/) |
 | [design-review](design-review/) | Design Review Card, AI Design Evaluation Rubric, AI Readiness Review |
 | [prompt-library](prompt-library/) | The `prompt-library` skill and a copy of all 81 [prompts](../prompts/) |
 | [job-search](job-search/) | Job digest, Gmail tracker updates, interview prep, resume tailoring |
