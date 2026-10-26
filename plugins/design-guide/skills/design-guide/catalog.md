@@ -148,12 +148,69 @@ From spotting a role to growing once you're in it.
 - [Bio Variants](prompts/writing-and-visibility/bio-variants.md) · prompt · you need a bio for a talk, a podcast, a site, or an intro
 - [Claim Checker](prompts/writing-and-visibility/claim-checker.md) · prompt · before publishing anything with factual claims, numbers or citations
 
+## Self-evaluation
+
+Check your own work before someone else does. Every persona stops when the work holds up.
+
+### 01 Check the design
+
+- [Design Review Card](frameworks/design-review-card/SKILL.md) · review framework · Fast, repeatable pre-build review of any design (screens, flows, specs, prototypes) using Joseph's Design Review Card. Interactive version: https://josephalfonso.com/AgentsAndSkills/tools/design-review-card.html
+- [AI Design Rubric](frameworks/ai-design-rubric/SKILL.md) · review framework · Score AI-generated or AI-assisted design output before it ships with Joseph's AI Design Evaluation Rubric. Interactive version: https://josephalfonso.com/AgentsAndSkills/tools/ai-design-evaluation-rubric.html
+- [Strict Senior Product Designer](personas/design-critique/strict-senior-product-designer.md) · review persona · case studies, portfolio decks, design rationale, anything going external
+- [AI/ML Product Specialist](personas/design-critique/ai-ml-product-specialist.md) · review persona · pressure-testing AI feature design beyond the happy path
+- [The User Who Hates This](personas/reality-checks/the-user-who-hates-this.md) · review persona · catching the emotional read a usability heuristic would miss
+
+### 02 Check it can be built
+
+- [AI Readiness Review](frameworks/ai-readiness-review/SKILL.md) · review framework · Formal, evidence-based assessment of whether an AI-assisted product experience is fit to ship, using Joseph's AI Readiness Review (AIRR-1.0). Interactive version: https://josephalfonso.com/AgentsAndSkills/tools/ai-readiness-review.html
+- [The Burned-Out Engineer](personas/reality-checks/the-burned-out-engineer.md) · review persona · pressure-testing whether a spec actually holds up to implementation reality
+- [Cross-functional Eng Lead](personas/stakeholder-leadership/cross-functional-eng-lead.md) · review persona · pressure-testing a spec before it goes to engineering
+- [Edge Case Sweep](prompts/design-work/edge-case-sweep.md) · prompt · before handoff, to find the states and cases nobody designed
+
+### 03 Check the business case
+
+- [Enterprise Stakeholder (Non-Design)](personas/design-critique/enterprise-stakeholder-non-design.md) · review persona · translating design decisions into business language before an exec review
+- [Finance / Ops Stakeholder](personas/stakeholder-leadership/finance-ops-stakeholder.md) · review persona · framing design work in terms leadership tracks at scale
+- [Skeptical VP / Exec Sponsor](personas/stakeholder-leadership/skeptical-vp-exec-sponsor.md) · rehearsal persona · roadmap defense, exec-facing decks, anything that needs to land in one breath
+- [Skip-Level Manager](personas/stakeholder-leadership/skip-level-manager.md) · rehearsal persona · practicing upward communication above your direct manager
+- [Board-Level Narrative Partner](personas/stakeholder-leadership/board-level-narrative-partner.md) · review persona · compressing a quarter of work into a short, decision-relevant story
+- [Claim Checker](prompts/writing-and-visibility/claim-checker.md) · prompt · before publishing anything with factual claims, numbers or citations
+
+### 04 Check the story
+
+- [The Silent Skeptic](personas/reality-checks/the-silent-skeptic.md) · review persona · finding where a presentation or narrative loses people before they even ask a question
+- [Your Own Portfolio Reviewer, Six Months Later](personas/reality-checks/your-own-portfolio-reviewer-six-months-later.md) · review persona · catching decisions you made for expedience that you're not actually proud of
+- [Skeptical Hiring Manager](personas/design-critique/skeptical-hiring-manager.md) · review persona · resume review, portfolio walkthroughs, interview answer prep
+- [Portfolio Site Review](prompts/portfolio-and-case-studies/portfolio-site-review.md) · prompt · before sending your portfolio to anyone important
+
+### 05 Rehearse out loud
+
+- [Skeptical Recruiter (Screen-stage)](personas/interviewing/skeptical-recruiter-screen-stage.md) · rehearsal persona · practicing the initial phone screen, "walk me through your background."
+- [Competing Candidate](personas/interviewing/competing-candidate.md) · rehearsal persona · sharpening what's actually differentiated before a final round
+- [Compensation Negotiator](personas/interviewing/compensation-negotiator.md) · rehearsal persona · offer conversations, practicing holding a number under pushback
+- [Answer Tightener](prompts/interviewing/answer-tightener.md) · prompt · you've drafted or recorded an answer and it runs long or wanders
+- [Post-Interview Debrief](prompts/interviewing/post-interview-debrief.md) · prompt · right after an interview, while it's fresh
+
+### 06 Check you can teach it
+
+- [Research-First Partner](personas/design-critique/research-first-partner.md) · rehearsal persona · early-stage problem framing, before any UI gets discussed
+- [Junior Designer You're Mentoring](personas/design-critique/junior-designer-youre-mentoring.md) · rehearsal persona · stress-testing whether you can actually teach a concept, not just do it
+- [The New Manager You're Coaching](personas/stakeholder-leadership/the-new-manager-youre-coaching.md) · rehearsal persona · practicing coaching rather than solving, fits an educator-for-junior-staff role
+- [Explain It Plainly](prompts/mentoring-and-teaching/explain-plainly.md) · prompt · teaching a junior designer, a stakeholder, or a class something you know well
+
+### 07 Score yourself over time
+
+- [Brag Doc Entry](prompts/career-growth/brag-doc-entry.md) · prompt · end of each week, 5 minutes, so review season isn't archaeology
+- [Career Check-In](prompts/career-growth/career-check-in.md) · prompt · every quarter, to make sure your work is going where you want
+- [Self-Review](prompts/career-growth/self-review.md) · prompt · review season
+- [Skill Gap Audit](prompts/career-growth/skill-gap-audit.md) · prompt · you're aiming at a type of role (e.g. AI design lead, design director) and want to know what's missing
+- [Calibration Committee](personas/reality-checks/calibration-committee.md) · review persona · self-reviews, promotion cases, brag docs, anything that argues for your level
+- [Self-Evaluation Log](templates/self-evaluation-log.md) · template · you review your own work with personas and want a record of which flags keep coming back
+
 ## Also in the bank
 
 Not placed in a stage, still worth matching.
 
-- [Behavioral answer tightener](prompts/interviewing/answer-tightener.md) · prompt · you've drafted or recorded an answer and it runs long or wanders
-- [Post-interview debrief](prompts/interviewing/post-interview-debrief.md) · prompt · right after an interview, while it's fresh
 - [Replying to a rejection](prompts/job-search/rejection-reply.md) · prompt · you got a no and want to keep the door open or learn something
 - [Career conversation with a mentee](prompts/mentoring-and-teaching/career-conversation.md) · prompt · a mentee or report wants to talk about where they're headed
 - [Visual inspiration assistant](prompts/projects/visual-inspiration-assistant.md) · prompt · setting up a Claude Project that captures, tags and searches design inspiration
@@ -163,16 +220,6 @@ Not placed in a stage, still worth matching.
 - [1:1 with my manager](prompts/stakeholders-and-leadership/one-on-one-prep.md) · prompt · regular 1:1s, so they cover what matters instead of status
 - [Status update](prompts/stakeholders-and-leadership/status-update.md) · prompt · weekly or project updates that people actually read
 - [Newsletter issue](prompts/writing-and-visibility/newsletter-issue.md) · prompt · writing a recurring note to your audience
-- [Enterprise Stakeholder (Non-Design)](personas/design-critique/enterprise-stakeholder-non-design.md) · review persona · translating design decisions into business language before an exec review
-- [Junior Designer You're Mentoring](personas/design-critique/junior-designer-youre-mentoring.md) · rehearsal persona · stress-testing whether you can actually teach a concept, not just do it
-- [Competing Candidate](personas/interviewing/competing-candidate.md) · rehearsal persona · sharpening what's actually differentiated before a final round
-- [Skeptical Recruiter (Screen-stage)](personas/interviewing/skeptical-recruiter-screen-stage.md) · rehearsal persona · practicing the initial phone screen, "walk me through your background."
-- [The Silent Skeptic](personas/reality-checks/the-silent-skeptic.md) · review persona · finding where a presentation or narrative loses people before they even ask a question
-- [Your Own Portfolio Reviewer, Six Months Later](personas/reality-checks/your-own-portfolio-reviewer-six-months-later.md) · review persona · catching decisions you made for expedience that you're not actually proud of
-- [Board-Level Narrative Partner](personas/stakeholder-leadership/board-level-narrative-partner.md) · review persona · compressing a quarter of work into a short, decision-relevant story
-- [Finance / Ops Stakeholder](personas/stakeholder-leadership/finance-ops-stakeholder.md) · review persona · framing design work in terms leadership tracks at scale
-- [Skeptical VP / Exec Sponsor](personas/stakeholder-leadership/skeptical-vp-exec-sponsor.md) · rehearsal persona · roadmap defense, exec-facing decks, anything that needs to land in one breath
-- [Skip-Level Manager](personas/stakeholder-leadership/skip-level-manager.md) · rehearsal persona · practicing upward communication above your direct manager
 - kb-curator · installed skill `kb-curator` from the `daily-ops` plugin, personal setup · Weekly maintenance pass on the personal knowledge base MCP: archive clear duplicates, normalize tags, flag stale items for review
 - morning-briefing · installed skill `morning-briefing` from the `daily-ops` plugin, personal setup · Short morning briefing of today's calendar plus unread email that actually needs attention
 - [Files: archive, don't delete](rules/archive-dont-delete.md) · CLAUDE.md rule · Paste into CLAUDE.md for any project where losing a file would hurt

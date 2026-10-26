@@ -40,6 +40,7 @@ Ask one question only when two stages fit and would lead to different work. Othe
 | The same, for a feature that uses AI | Critique and quality | AI Design Rubric (the card first if the basics aren't covered) |
 | "Can people actually use it?" with a prototype and access to users | Test with real users | Usability Test Plan with the Rainbow Spreadsheet |
 | Launch coming, sign-off needed, "defend this decision" | Ship and defend | AI Readiness Review for high-consequence AI, otherwise Decision Memo or Design Rationale Doc |
+| "Check my own work before anyone sees it", a self-review | Self-evaluation | The matching Self-evaluation stage in `catalog.md`, with the verdict added to the Self-Evaluation Log |
 | Portfolio, resume, interviews, offers, promotion, mentoring, being visible | Career | The matching Career stage in `catalog.md` |
 
 For anything the table doesn't cover, search `catalog.md`. For "where do I start?" with nothing else, list the eight Design work stages in one line each and ask what they're working on.

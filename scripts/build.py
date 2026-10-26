@@ -250,6 +250,7 @@ TEMPLATE_USE = {
     "service-blueprint.md": "you're mapping a service by hand and want the blank structure the blueprint prompts use",
     "CLAUDE.md": "a new project needs agent instructions and you want a short starting point",
     "rainbow-spreadsheet/": "you're running a usability study and want one sheet for goals, participants, tasks and observations",
+    "self-evaluation-log.md": "you review your own work with personas and want a record of which flags keep coming back",
 }
 
 
@@ -275,6 +276,8 @@ def catalog_wanted():
             return (f"[{name}](frameworks/{skill}/SKILL.md) · review framework · {desc}. "
                     f"Interactive version: {TOOLS_URL}{path}")
         if kind == "m":
+            if path not in TEMPLATE_USE:
+                sys.exit(f"add templates/{path} to TEMPLATE_USE in scripts/build.py")
             return f"[{name}](templates/{path}) · template · {TEMPLATE_USE[path]}"
         skill = path.rsplit("/", 1)[1]
         plugin, meta = plugin_skills[skill]
