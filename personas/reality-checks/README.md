@@ -1,11 +1,12 @@
 # Reality-check personas
 
-Reviewers that catch what polished critique misses: the engineer who has rebuilt this twice, the user who hates it, your future self, and the audience member who stopped listening.
+Reviewers that catch what polished critique misses: the engineer who has rebuilt this twice, the user who hates it, your future self, the audience member who stopped listening, and the calibration committee reading your self-review.
 
 Each file is one persona: paste its instruction block into any chat with your material, or ask Claude to "review this as ..." with the `review-as` skill. **Review** personas do one pass and return a verdict; **rehearsal** personas stay in character for a practice conversation.
 
 | Persona | Mode | Use for |
 |---|---|---|
+| [Calibration Committee](calibration-committee.md) | review | self-reviews, promotion cases, brag docs, anything that argues for your level |
 | [The Burned-Out Engineer](the-burned-out-engineer.md) | review | pressure-testing whether a spec actually holds up to implementation reality |
 | [The Silent Skeptic](the-silent-skeptic.md) | review | finding where a presentation or narrative loses people before they even ask a question |
 | [The User Who Hates This](the-user-who-hates-this.md) | review | catching the emotional read a usability heuristic would miss |
