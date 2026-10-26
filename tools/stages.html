@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Stage by Stage</title>
-<meta name="description" content="Every prompt, skill, persona, template and tool in AgentsAndSkills, grouped by the stage of design work or career where it helps.">
+<meta name="description" content="Every prompt, skill, persona, template and tool in AgentsAndSkills, grouped by the stage of design work, career or self-evaluation where it helps.">
 <style>
   :root {
     --bg: #f7f5f0; --dot: #ddd8cd; --card: #ffffff; --ink: #1c1b19; --ink-2: #6b665d; --ink-3: #8f897e; --line: #e8e4dc;
@@ -191,6 +191,51 @@
           p("Talk Proposal", "writing-and-visibility/talk-proposal"),
           p("Bio Variants", "writing-and-visibility/bio-variants"),
           p("Claim Checker", "writing-and-visibility/claim-checker") ] }
+      ]
+    },
+    {
+      title: "Self-evaluation",
+      sub: "Check your own work before someone else does. Every persona stops when the work holds up.",
+      stages: [
+        { title: "Check the design", hi: true, items: [
+          t("Design Review Card", "design-review-card.html"),
+          t("AI Design Rubric", "ai-design-evaluation-rubric.html"),
+          r("Strict Senior Product Designer", "design-critique/strict-senior-product-designer"),
+          r("AI/ML Product Specialist", "design-critique/ai-ml-product-specialist"),
+          r("The User Who Hates This", "reality-checks/the-user-who-hates-this") ] },
+        { title: "Check it can be built", hi: true, items: [
+          t("AI Readiness Review", "ai-readiness-review.html"),
+          r("The Burned-Out Engineer", "reality-checks/the-burned-out-engineer"),
+          r("Cross-functional Eng Lead", "stakeholder-leadership/cross-functional-eng-lead"),
+          p("Edge Case Sweep", "design-work/edge-case-sweep") ] },
+        { title: "Check the business case", items: [
+          r("Enterprise Stakeholder (Non-Design)", "design-critique/enterprise-stakeholder-non-design"),
+          r("Finance / Ops Stakeholder", "stakeholder-leadership/finance-ops-stakeholder"),
+          r("Skeptical VP / Exec Sponsor", "stakeholder-leadership/skeptical-vp-exec-sponsor"),
+          r("Skip-Level Manager", "stakeholder-leadership/skip-level-manager"),
+          r("Board-Level Narrative Partner", "stakeholder-leadership/board-level-narrative-partner"),
+          p("Claim Checker", "writing-and-visibility/claim-checker") ] },
+        { title: "Check the story", items: [
+          r("The Silent Skeptic", "reality-checks/the-silent-skeptic"),
+          r("Your Own Portfolio Reviewer, Six Months Later", "reality-checks/your-own-portfolio-reviewer-six-months-later"),
+          r("Skeptical Hiring Manager", "design-critique/skeptical-hiring-manager"),
+          p("Portfolio Site Review", "portfolio-and-case-studies/portfolio-site-review") ] },
+        { title: "Rehearse out loud", items: [
+          r("Skeptical Recruiter (Screen-stage)", "interviewing/skeptical-recruiter-screen-stage"),
+          r("Competing Candidate", "interviewing/competing-candidate"),
+          r("Compensation Negotiator", "interviewing/compensation-negotiator"),
+          p("Answer Tightener", "interviewing/answer-tightener"),
+          p("Post-Interview Debrief", "interviewing/post-interview-debrief") ] },
+        { title: "Check you can teach it", items: [
+          r("Research-First Partner", "design-critique/research-first-partner"),
+          r("Junior Designer You're Mentoring", "design-critique/junior-designer-youre-mentoring"),
+          r("The New Manager You're Coaching", "stakeholder-leadership/the-new-manager-youre-coaching"),
+          p("Explain It Plainly", "mentoring-and-teaching/explain-plainly") ] },
+        { title: "Score yourself over time", items: [
+          p("Brag Doc Entry", "career-growth/brag-doc-entry"),
+          p("Career Check-In", "career-growth/career-check-in"),
+          p("Self-Review", "career-growth/self-review"),
+          p("Skill Gap Audit", "career-growth/skill-gap-audit") ] }
       ]
     }
   ];
