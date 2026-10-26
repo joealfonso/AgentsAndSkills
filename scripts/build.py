@@ -42,7 +42,7 @@ PERSONA_SETS = {
     "interviewing": ("Interviewing personas",
                      "Rehearsal partners for job search stages beyond the portfolio review: the phone screen, a competing candidate, and the compensation conversation."),
     "reality-checks": ("Reality-check personas",
-                       "Reviewers that catch what polished critique misses: the engineer who has rebuilt this twice, the user who hates it, your future self, and the audience member who stopped listening."),
+                       "Reviewers that catch what polished critique misses: the engineer who has rebuilt this twice, the user who hates it, your future self, the audience member who stopped listening, and the calibration committee reading your self-review."),
 }
 
 PROMPTS = ROOT / "prompts"

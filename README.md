@@ -7,7 +7,7 @@ My bank of AI skills, personas, agents and working rules. Everything here is pla
 | Folder | What it is | How to use it |
 |---|---|---|
 | [`plugins/`](plugins) | Skills and subagents, packaged as Claude Code plugins | Install a plugin, link a skill, or zip one for claude.ai |
-| [`personas/`](personas) | 19 critique and rehearsal personas, one file each | Paste one into any chat, or use the `review-as` skill |
+| [`personas/`](personas) | 20 critique and rehearsal personas, one file each | Paste one into any chat, or use the `review-as` skill |
 | [`rules/`](rules) | Reusable CLAUDE.md snippets learned the hard way | Copy the block into a project's CLAUDE.md |
 | [`claude-code/`](claude-code) | Notes and patterns for running Claude Code, and how my setup compares | Read before changing hooks, memory or workflow |
 | [`templates/`](templates) | CLAUDE.md starter, notes on writing specs, a service blueprint, and a rainbow spreadsheet for usability studies | Copy into a new project or doc |
@@ -68,6 +68,7 @@ Every persona has stop conditions (when to say nothing) and a fixed verdict line
 | [The User Who Hates This](personas/reality-checks/the-user-who-hates-this.md) | review | The emotional read heuristics miss |
 | [Your Own Portfolio Reviewer, Six Months Later](personas/reality-checks/your-own-portfolio-reviewer-six-months-later.md) | review | Decisions made for speed, not quality |
 | [The Silent Skeptic](personas/reality-checks/the-silent-skeptic.md) | review | Where a presentation loses people |
+| [Calibration Committee](personas/reality-checks/calibration-committee.md) | review | Self-reviews and promotion cases, claim by claim against the level |
 
 ### Prompt library
 
