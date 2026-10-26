@@ -6,6 +6,7 @@ What the review skills and personas actually return, on two specs. Both specs ar
 |---|---|---|
 | [Suggested replies spec](input-suggested-replies-spec.md), an AI feature with gaps | [design-review-card](design-review-card-output.md) | 12 follow-ups, 7 lines not reviewed, and a pointer to AIRR because 3 of 5 AI questions are open |
 | Same spec | [The Burned-Out Engineer](burned-out-engineer-flags.md) | 3 ranked flags, each tied to a spec line and a rebuild reason |
+| Same spec | [AI/ML Product Specialist](ai-ml-product-specialist-flags.md) | 3 ranked flags on what the agent sees when the model is wrong |
 | [CSV export spec](input-csv-export-spec.md), small and complete | [The Burned-Out Engineer](burned-out-engineer-clean.md) | CLEAN FROM THIS SEAT, with nothing invented |
 
 What to look at:
