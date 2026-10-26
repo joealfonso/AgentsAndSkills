@@ -4,6 +4,7 @@ Everything Claude Code can install from this repo. Each folder is a plugin liste
 
 | Plugin | What's in it |
 |---|---|
+| [design-guide](design-guide/) | **Start here.** The `design-guide` skill: describe what you need, get a diagnosis and the right resource run for you |
 | [writing](writing/) | `write-like-joseph`, my voice for anything written or rewritten |
 | [review-personas](review-personas/) | The `review-as` skill and 11 reviewer subagents built from [personas](../personas/) |
 | [design-review](design-review/) | Design Review Card, AI Design Evaluation Rubric, AI Readiness Review |

@@ -2,6 +2,23 @@
 
 My bank of AI skills, personas, agents and working rules. Everything here is plain Markdown, so it works in Claude Code, Claude Desktop/Cowork, claude.ai, or pasted into any other assistant.
 
+## Start here: just ask
+
+You don't need to browse this repo. Install the `design-guide` plugin, then describe what you need the way you'd ask a colleague:
+
+```
+/plugin marketplace add joealfonso/AgentsAndSkills
+/plugin install design-guide@joseph-alfonso
+```
+
+> "We've been asked to add AI summaries to the dashboard. Where do I start?"
+>
+> "Is this spec ready for engineering?" *(spec attached)*
+>
+> "I have 12 interview transcripts and a readout on Friday."
+
+The guide works out where you are in the work, names the one thing that's missing, and runs the right prompt, review, persona or template from the bank. It often catches that the work is earlier than the ask, like a critique request that's really a framing problem. On claude.ai or Claude Desktop, upload `scripts/skills.sh zip design-guide` as a skill instead. Everything below is what it draws on.
+
 ## What's in here
 
 | Folder | What it is | How to use it |
@@ -23,6 +40,7 @@ To find things by where you are in the work instead of by file type, see [STAGES
 
 | Skill | Plugin | What it does |
 |---|---|---|
+| [design-guide](plugins/design-guide/skills/design-guide/SKILL.md) | design-guide | Start here: describe what you need, get a diagnosis, and the right resource is run for you |
 | [write-like-joseph](plugins/writing/skills/write-like-joseph/SKILL.md) | writing | Writes and edits in my voice: staged drafting, banned phrases, learns from my edits |
 | [review-as](plugins/review-personas/skills/review-as/SKILL.md) | review-personas | Runs any persona below as a one-shot review or a live rehearsal |
 | [design-review-card](plugins/design-review/skills/design-review-card/SKILL.md) | design-review | 10-15 minute pre-build pass, 26 checks plus an optional AI check, outputs a follow-up list |
@@ -113,7 +131,7 @@ Three of these are also backed by the `guardrails` plugin, since a rule in CLAUD
 /plugin install review-personas@joseph-alfonso
 ```
 
-Plugins: `writing`, `review-personas`, `design-review`, `prompt-library`, `job-search`, `daily-ops`, `guardrails`. Install only what a machine needs. `/plugin marketplace update joseph-alfonso` pulls new changes. When you change a plugin, bump the `version` in its `plugin.json`, or machines that already installed it may keep the cached copy.
+Plugins: `design-guide` (start here), `writing`, `review-personas`, `design-review`, `prompt-library`, `job-search`, `daily-ops`, `guardrails`. Install only what a machine needs. `/plugin marketplace update joseph-alfonso` pulls new changes. When you change a plugin, bump the `version` in its `plugin.json`, or machines that already installed it may keep the cached copy.
 
 ### Claude Code: link straight from this checkout
 
@@ -142,7 +160,7 @@ Open a persona or prompt file, copy the instruction or prompt block, and paste i
 
 ## Adding to the bank
 
-- **New persona:** add `personas/<set>/<name>.md` with the same frontmatter as the others (`name`, `title`, `set`, `mode`, `use_for`), then run `python3 scripts/build.py`. That makes a subagent if it's review mode and updates the skill's index. The `review-as` skill reads `personas/` through a symlink, so there's no copy to update. Add a row to the table above.
+- **New persona:** add `personas/<set>/<name>.md` with the same frontmatter as the others (`name`, `title`, `set`, `mode`, `use_for`), then run `python3 scripts/build.py`. That makes a subagent if it's review mode and updates the skill indexes and the design guide's catalog. The `review-as` skill reads `personas/` through a symlink, so there's no copy to update. Add a row to the table above.
 - **New skill:** add `plugins/<plugin>/skills/<name>/SKILL.md` with `name` and `description` frontmatter. A new plugin also needs `.claude-plugin/plugin.json` and an entry in [`.claude-plugin/marketplace.json`](.claude-plugin/marketplace.json).
 - **New rule:** add `rules/<name>.md` with the paste-ready block and a one-line why.
 
