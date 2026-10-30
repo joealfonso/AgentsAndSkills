@@ -120,6 +120,10 @@ def test_controls():
         if c["agent"] == "*":
             continue
         body = agents[c["agent"]]["body"]
+        if c.get("baseline"):
+            alt = h.ablated(c, body)
+            expect(f"{c['id']}: the baseline run has the old wording, not the rule",
+                   (c["baseline"] in alt, c["rule"] in alt), (True, False))
         cut = h.remove_rule(body, c["rule"])
         expect(f"{c['id']}: the cut prompt lacks the rule", c["rule"] in cut, False)
         expect(f"{c['id']}: the cut adds nothing", all(ln in body for ln in cut.splitlines()), True)

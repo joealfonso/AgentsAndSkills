@@ -6,7 +6,10 @@ harness/controls.json is the whole harness. A control is one rule plus what back
   backed_by  "prose" (only the prompt), or the hook/script that enforces it
   block      a case the control must catch
   allow      a case it must let through, so it can't pass by blocking everything
-  proven     the last eval: model, date, pass rate with the rule and with it cut
+  baseline   optional: what the rule is compared against in --eval instead of nothing, usually the old
+             wording the real failure happened under. Cutting a rule that defines its own vocabulary
+             (a verdict word) proves only that the agent can't guess the word
+  proven     the last eval: model id, date, pass rate with the rule and with the baseline (or none)
   expires    the condition that makes it dead weight, checked by --expired. A hook expires on real logged
              runs, never on --eval: short eval cases pass where long real runs fail
 
@@ -196,6 +199,8 @@ def check(controls, all_agents):
             continue
         if a["body"].count(c.get("rule", "\0")) != 1:
             errors.append(f"{cid}: rule not in {a['file'].relative_to(ROOT)} exactly once")
+        if c.get("baseline") is not None and (not c["baseline"] or c["baseline"] == c["rule"]):
+            errors.append(f"{cid}: baseline must be non-empty and differ from the rule")
         if c.get("backed_by") == "prose":
             for side in ("block", "allow"):
                 case = c.get(side) or {}
@@ -287,7 +292,16 @@ def claude(system, prompt, model, tools=None, cwd=None):
         raise RuntimeError(f"claude gave no JSON: {(p.stderr or p.stdout)[-300:]}")
     if res.get("is_error"):
         raise RuntimeError(f"claude failed: {res.get('result')}")
+    MODEL_IDS.update(res.get("modelUsage") or {})
     return res.get("result") or ""
+
+
+def ablated(c, body):
+    """The prompt --eval compares against: the rule swapped for its baseline, or cut."""
+    return body.replace(c["rule"], c["baseline"]) if c.get("baseline") else remove_rule(body, c["rule"])
+
+
+MODEL_IDS = {}  # resolved model ids seen in this process, so a proof records "claude-sonnet-x", not "sonnet"
 
 
 def grade(check_, prompt, text, judge_model):
@@ -318,7 +332,9 @@ def eval_control(c, a, n, model, judge_model, cases=("block", "allow")):
     """Pass counts per case, with the rule and with it cut. Hook controls are evaluated on their prose:
     the hook isn't running here, so this measures whether the model still needs it."""
     model = a["meta"].get("model") or model
-    full, cut = a["body"], remove_rule(a["body"], c["rule"])
+    full = a["body"]
+    cut = ablated(c, full)
+    MODEL_IDS.clear()
     case_specs = c.get("eval") or {k: c[k] for k in cases}
     out = {}
     for side, case in case_specs.items():
@@ -332,7 +348,10 @@ def eval_control(c, a, n, model, judge_model, cases=("block", "allow")):
         verdict = "REDUNDANT"
     else:
         verdict = "PROVEN"
-    return {"verdict": verdict, "model": model, "date": datetime.date.today().isoformat(), "cases": out}
+    ids = sorted(MODEL_IDS)
+    return {"verdict": verdict, "model": model, "model_id": ids[0] if len(ids) == 1 else ids,
+            "against": "baseline" if c.get("baseline") else "rule cut",
+            "date": datetime.date.today().isoformat(), "cases": out}
 
 
 # ---- usage log and expiry ----
@@ -426,7 +445,7 @@ def expired(c, log, model):
         if len(tail) == e["clean_runs"] and all(r.get("verdict_last") for r in tail):
             return f"last {e['clean_runs']} logged runs had the verdict last without a block"
     p = c.get("proven")
-    if e.get("model_changed") and p and p.get("model") != model:
+    if e.get("model_changed") and p and p.get("model") != model:  # resolved-id changes surface in --smoke
         return f"proven on {p['model']}, now running {model}: re-run --eval {c['id']}"
     if p and p.get("verdict") in ("REDUNDANT", "IGNORED") and c["backed_by"] == "prose":
         return f"last eval said {p['verdict']}"
@@ -498,7 +517,9 @@ def main():
                 res = eval_control(c, a, 1, args.model, args.judge_model)
                 ok = all(v["with"] == 1 for v in res["cases"].values())
                 failed += not ok
-                print(f"{'ok  ' if ok else 'FAIL'} {c['id']}")
+                stale = res["model_id"] != c["proven"].get("model_id")
+                print(f"{'ok  ' if ok else 'FAIL'} {c['id']}"
+                      + (f"  (proven on {c['proven'].get('model_id')}, now {res['model_id']}: re-run --eval)" if stale else ""))
                 continue
             res = eval_control(c, a, args.n, args.model, args.judge_model)
             c["proven"] = res

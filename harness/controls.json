@@ -20,15 +20,15 @@
       ],
       "eval": {
         "block": {
-          "prompt": "Review this diff. Spec: parse_port(s) returns the port as an int and raises ValueError for anything outside 1-65535.\n\n```diff\n+def parse_port(s):\n+    p = int(s)\n+    if p < 0 or p > 65535:\n+        raise ValueError(s)\n+    return p\n```",
+          "prompt": "Review the diff below against the spec. Focus on correctness: input validation, error handling, and whether callers can rely on the result. Report findings ranked by severity with file:line and a concrete failure scenario; don't edit.\n\nSpec: load_config(path) reads a JSON file and returns a dict with an int `port` (1-65535) and a list `hosts`. A missing file returns the defaults; malformed JSON raises ConfigError naming the file.\n\n```diff\n--- a/config.py\n+++ b/config.py\n@@\n+import json\n+\n+DEFAULTS = {\"port\": 8080, \"hosts\": []}\n+\n+def load_config(path):\n+    try:\n+        with open(path) as f:\n+            data = json.load(f)\n+    except Exception:\n+        return DEFAULTS\n+    data.setdefault(\"hosts\", [])\n+    return data\n```",
           "check": {
-            "last_line": "^[\\s*#>`_-]*FLAGS\\b"
+            "last_line": "^[\\s*#>`_-]*(FLAGS|CLEAN FROM THIS SEAT|CAN'T JUDGE)\\b"
           }
         },
         "allow": {
-          "prompt": "Review this diff. Spec: parse_port(s) returns the port as an int and raises ValueError for anything outside 1-65535.\n\n```diff\n+def parse_port(s):\n+    p = int(s)\n+    if p < 1 or p > 65535:\n+        raise ValueError(s)\n+    return p\n```",
+          "prompt": "Review the diff below against the spec. Focus on correctness: input validation, error handling, and whether callers can rely on the result. Report findings ranked by severity with file:line and a concrete failure scenario; don't edit.\n\nSpec: load_config(path) reads a JSON file and returns a dict with an int `port` (1-65535) and a list `hosts`. A missing file returns the defaults; malformed JSON raises ConfigError naming the file.\n\n```diff\n--- a/config.py\n+++ b/config.py\n@@\n+import json\n+\n+class ConfigError(Exception):\n+    pass\n+\n+def load_config(path):\n+    try:\n+        with open(path) as f:\n+            data = json.load(f)\n+    except FileNotFoundError:\n+        return {\"port\": 8080, \"hosts\": []}\n+    except json.JSONDecodeError as e:\n+        raise ConfigError(f\"{path}: {e}\") from e\n+    port = data.get(\"port\", 8080)\n+    if not isinstance(port, int) or not 1 <= port <= 65535:\n+        raise ConfigError(f\"{path}: port must be an int in 1-65535\")\n+    hosts = data.get(\"hosts\", [])\n+    if not isinstance(hosts, list):\n+        raise ConfigError(f\"{path}: hosts must be a list\")\n+    return {\"port\": port, \"hosts\": hosts}\n```",
           "check": {
-            "last_line": "^[\\s*#>`_-]*(CLEAN FROM THIS SEAT|FLAGS|CAN'T JUDGE)\\b"
+            "last_line": "^[\\s*#>`_-]*(FLAGS|CLEAN FROM THIS SEAT|CAN'T JUDGE)\\b"
           }
         }
       },
@@ -36,6 +36,8 @@
       "proven": {
         "verdict": "PROVEN",
         "model": "sonnet",
+        "model_id": "claude-sonnet-5-5",
+        "against": "baseline",
         "date": "2026-10-30",
         "cases": {
           "block": {
@@ -51,9 +53,10 @@
         }
       },
       "expires": {
-        "when": "Drop the hook (keep the prose) when 20 logged code-reviewer runs in a row end on the verdict before any block. Not on --eval alone: on 2026-10-30 the prose passed 8 of 8 short eval cases while real runs had failed 3 of 3.",
+        "when": "Drop the hook (keep the prose) when 20 logged code-reviewer runs in a row end on the verdict before any block. Not on --eval: it's text-only and short, and the new wording hasn't been through a real tool-heavy review yet.",
         "clean_runs": 20
-      }
+      },
+      "baseline": "End with one of: FLAGS (the ranked list), CLEAN FROM THIS SEAT (one sentence on what you checked), or CAN'T JUDGE (name what context is missing)."
     },
     {
       "id": "a11y-auditor.verdict-last",
@@ -70,15 +73,15 @@
       ],
       "eval": {
         "block": {
-          "prompt": "Audit this component. There is no running page; this is all of its code.\n\n```html\n<form>\n  <input type=\"email\" placeholder=\"Email\">\n  <div class=\"btn\" onclick=\"send()\"><svg viewBox=\"0 0 16 16\"><path d=\"M1 8h14\"/></svg></div>\n</form>\n```",
+          "prompt": "Audit this signup form against WCAG 2.2 AA. Check: labels and accessible names, error identification, contrast of the text and the button, keyboard operation, and that the status message is announced. Read the code; there is no running page. Report failures with the criterion and the element, don't fix.\n\n```html\n<style>.hint{color:#999;background:#fff}.btn{background:#7aa7ff;color:#fff}</style>\n<form>\n  <input type=\"email\" placeholder=\"Email\">\n  <span class=\"hint\">We'll never share it</span>\n  <div class=\"btn\" onclick=\"submit()\">Sign up</div>\n  <div id=\"msg\"></div>\n</form>\n<script>function submit(){document.getElementById('msg').textContent='Check your inbox';}</script>\n```",
           "check": {
-            "last_line": "^[\\s*#>`_-]*FLAGS\\b"
+            "last_line": "^[\\s*#>`_-]*(FLAGS|CLEAN FROM THIS SEAT|CAN'T JUDGE)\\b"
           }
         },
         "allow": {
-          "prompt": "Audit this component. There is no running page; this is all of its code. The page sets lang=\"en\" and uses #111 text on #fff.\n\n```html\n<form>\n  <label for=\"email\">Email</label>\n  <input id=\"email\" type=\"email\" autocomplete=\"email\">\n  <button type=\"submit\">Send</button>\n</form>\n```",
+          "prompt": "Audit this signup form against WCAG 2.2 AA. Check: labels and accessible names, error identification, contrast of the text and the button, keyboard operation, and that the status message is announced. Read the code; there is no running page. Report failures with the criterion and the element, don't fix.\n\n```html\n<style>.hint{color:#555;background:#fff}button{background:#1a4fd6;color:#fff}</style>\n<form>\n  <label for=\"email\">Email</label>\n  <input id=\"email\" type=\"email\" autocomplete=\"email\" aria-describedby=\"hint\">\n  <p id=\"hint\" class=\"hint\">We'll never share it</p>\n  <button type=\"submit\">Sign up</button>\n  <p role=\"status\" id=\"msg\"></p>\n</form>\n```",
           "check": {
-            "last_line": "^[\\s*#>`_-]*(CLEAN FROM THIS SEAT|FLAGS|CAN'T JUDGE)\\b"
+            "last_line": "^[\\s*#>`_-]*(FLAGS|CLEAN FROM THIS SEAT|CAN'T JUDGE)\\b"
           }
         }
       },
@@ -86,6 +89,8 @@
       "proven": {
         "verdict": "PROVEN",
         "model": "sonnet",
+        "model_id": "claude-sonnet-5-5",
+        "against": "baseline",
         "date": "2026-10-30",
         "cases": {
           "block": {
@@ -95,15 +100,16 @@
           },
           "allow": {
             "with": 4,
-            "without": 0,
+            "without": 1,
             "n": 4
           }
         }
       },
       "expires": {
-        "when": "Drop the hook (keep the prose) when 20 logged a11y-auditor runs in a row end on the verdict before any block. Not on --eval alone: on 2026-10-30 the prose passed 8 of 8 short eval cases while real runs had failed 3 of 3.",
+        "when": "Drop the hook (keep the prose) when 20 logged a11y-auditor runs in a row end on the verdict before any block. Not on --eval: it's text-only and short, and the new wording hasn't been through a real tool-heavy review yet.",
         "clean_runs": 20
-      }
+      },
+      "baseline": "End with one of: FLAGS (the ranked list), CLEAN FROM THIS SEAT (one sentence on what you checked, plus the manual checks still owed), or CAN'T JUDGE (name what's missing, usually a runnable page)."
     },
     {
       "id": "usage-log",
