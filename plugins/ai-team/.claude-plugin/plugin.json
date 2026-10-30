@@ -1,0 +1,9 @@
+{
+  "name": "ai-team",
+  "version": "1.0.0",
+  "description": "AI feature agents: eval-writer, which writes evals under evals/.",
+  "author": {
+    "name": "Joseph Alfonso",
+    "url": "https://josephalfonso.com"
+  }
+}

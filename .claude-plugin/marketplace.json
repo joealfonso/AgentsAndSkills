@@ -6,7 +6,7 @@
   },
   "metadata": {
     "description": "Joseph Alfonso's bank of AI skills, personas and agents.",
-    "version": "1.4.0"
+    "version": "1.5.0"
   },
   "plugins": [
     {
@@ -48,6 +48,31 @@
       "name": "guardrails",
       "source": "./plugins/guardrails",
       "description": "Hooks that back three rules: never kill processes by pattern or in bulk (pkill, killall, xargs kill, kill -1), never delete files or discard uncommitted git work (archive into _archive/ or stash instead), and confirm before any git push to main or master. Checks command text, including inside bash -c and eval; not a sandbox."
+    },
+    {
+      "name": "bank-guide",
+      "source": "./plugins/bank-guide",
+      "description": "Install this one globally. Start a coding project or ask which agent fits a job, and it picks the right plugin kit from the bank and enables it in the repo."
+    },
+    {
+      "name": "dev-team",
+      "source": "./plugins/dev-team",
+      "description": "Working roster for any coding project: engineer, designer, spec-writer, debugger, code-reviewer, test-writer, marketer. The main session orchestrates; the engineer never reviews its own work."
+    },
+    {
+      "name": "game-team",
+      "source": "./plugins/game-team",
+      "description": "Game project agents: art-director, artist, playtester. Expects a DESIGN.md at the repo root and a docs/ASSETS.md log."
+    },
+    {
+      "name": "web-team",
+      "source": "./plugins/web-team",
+      "description": "Web project agents: a11y-auditor and tech-writer."
+    },
+    {
+      "name": "ai-team",
+      "source": "./plugins/ai-team",
+      "description": "AI feature agents: eval-writer, which writes evals under evals/."
     }
   ]
 }

@@ -1,0 +1,9 @@
+{
+  "name": "game-team",
+  "version": "1.0.0",
+  "description": "Game project agents: art-director, artist, playtester. Expects a DESIGN.md at the repo root and a docs/ASSETS.md log.",
+  "author": {
+    "name": "Joseph Alfonso",
+    "url": "https://josephalfonso.com"
+  }
+}
