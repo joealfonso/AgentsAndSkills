@@ -59,7 +59,7 @@ The job-search and daily-ops skills are my personal setup, published as examples
 
 ### Personas
 
-Every persona has stop conditions (when to say nothing) and a fixed verdict line, so it reviews what's actually there instead of inventing problems. [examples/](examples) shows the same persona flagging an incomplete spec and passing a complete one. **Review** personas do one pass and return a verdict. **Rehearsal** personas stay in character for a practice conversation. Review personas also ship as Claude Code subagents.
+Review personas are one role sentence each. Their stop conditions and output rules were deleted because nothing showed they helped; see [harness/](harness). **Review** personas do one pass and return a verdict. **Rehearsal** personas stay in character for a practice conversation. Review personas also ship as Claude Code subagents.
 
 | Persona | Mode | Use for |
 |---|---|---|

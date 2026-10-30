@@ -1,6 +1,6 @@
 {
   "name": "dev-team",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A small working roster of subagents for any coding project: engineer, designer, spec-writer, debugger, code-reviewer, test-writer, marketer. The main session orchestrates; the engineer never reviews its own work.",
   "author": {
     "name": "Joseph Alfonso",

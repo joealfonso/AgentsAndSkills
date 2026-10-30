@@ -15,4 +15,6 @@ What to look at:
 - **The clean result is the point of the stop conditions.** A reviewer prompt without them will find three problems in any spec, because it's trying to be useful. This one can say "I could start this Monday."
 - **"Not reviewed" isn't a failure.** The card marks access lines "–" when there are no screens, instead of guessing.
 
+**These persona outputs came from the persona files before the harness pruned them (commit da688dd).** The claim above, that stop conditions are what lets a reviewer return a clean result, was never tested: it's the first prose eval to add to [harness/controls.json](../harness/controls.json) if clean results stop showing up in real runs. The two specs here are ready-made block and allow cases.
+
 Your own runs will differ in wording. The structure (marks, counts, verdict line, flag limit) should match. If it doesn't, the skill file needs fixing.

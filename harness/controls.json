@@ -1,0 +1,124 @@
+{
+  "controls": [
+    {
+      "id": "code-reviewer.verdict-last",
+      "agent": "code-reviewer",
+      "rule": "Make the last line the verdict: FLAGS (how many), CLEAN FROM THIS SEAT (one sentence on what you checked), or CAN'T JUDGE (name what context is missing).",
+      "failure": "2026-10-28, animal-range-finder session dde62a73, code-reviewer runs a07a45a3 and ac6fe2f0. Both reports put FLAGS near the top and ended on notes ('On flag 1: ...', 'I found no problems with ...'), against the rule 'End with one of: FLAGS, CLEAN FROM THIS SEAT, CAN'T JUDGE'. 0 of 2 followed the prose.",
+      "backed_by": "plugins/dev-team/hooks/agent_hook.py",
+      "block": [
+        "FLAGS (ranked)\n\n1. It deletes real native range (clip.ts:71).\n2. The Russia split doesn't match (clip.ts:53).\n\nChecked and fine:\n- Point-in-polygon.\n\nOn flag 1: the rule says to remove a feature whose data can't be trusted. This clip throws away trustworthy data.",
+        "FLAGS (most severe first)\n\n1. A failed load shows two notes that contradict each other (stage.ts:618).\n\nI found no problems with the shader maths, the poles or the antimeridian.",
+        "Looks good to me overall, a few small things worth a look."
+      ],
+      "allow": [
+        "1. Off-by-one in parse_port (net.py:4): port 0 is accepted.\n\nFLAGS: 1",
+        "Traced the main path and the error path.\n\n**CLEAN FROM THIS SEAT**: traced parse_port's main and failure paths and its callers.",
+        "CAN'T JUDGE: the spec for the retry policy isn't in the repo.",
+        "- FLAGS: 2",
+        "Verdict follows.\nCAN’T JUDGE: no access to the migration it depends on."
+      ],
+      "eval": {
+        "block": {
+          "prompt": "Review this diff. Spec: parse_port(s) returns the port as an int and raises ValueError for anything outside 1-65535.\n\n```diff\n+def parse_port(s):\n+    p = int(s)\n+    if p < 0 or p > 65535:\n+        raise ValueError(s)\n+    return p\n```",
+          "check": {
+            "last_line": "^[\\s*#>`_-]*FLAGS\\b"
+          }
+        },
+        "allow": {
+          "prompt": "Review this diff. Spec: parse_port(s) returns the port as an int and raises ValueError for anything outside 1-65535.\n\n```diff\n+def parse_port(s):\n+    p = int(s)\n+    if p < 1 or p > 65535:\n+        raise ValueError(s)\n+    return p\n```",
+          "check": {
+            "last_line": "^[\\s*#>`_-]*(CLEAN FROM THIS SEAT|FLAGS|CAN'T JUDGE)\\b"
+          }
+        }
+      },
+      "added": "2026-10-30",
+      "proven": {
+        "verdict": "PROVEN",
+        "model": "sonnet",
+        "date": "2026-10-30",
+        "cases": {
+          "block": {
+            "with": 4,
+            "without": 0,
+            "n": 4
+          },
+          "allow": {
+            "with": 4,
+            "without": 0,
+            "n": 4
+          }
+        }
+      },
+      "expires": {
+        "when": "Drop the hook (keep the prose) when 20 logged code-reviewer runs in a row end on the verdict before any block. Not on --eval alone: on 2026-10-30 the prose passed 8 of 8 short eval cases while real runs had failed 3 of 3.",
+        "clean_runs": 20
+      }
+    },
+    {
+      "id": "a11y-auditor.verdict-last",
+      "agent": "a11y-auditor",
+      "rule": "Make the last line the verdict: FLAGS (how many), CLEAN FROM THIS SEAT (one sentence on what you checked, plus the manual checks still owed), or CAN'T JUDGE (name what's missing, usually a runnable page).",
+      "failure": "2026-10-28, animal-range-finder session dde62a73, a11y-auditor run a299a2ec. It wrote 'Verdict: FLAGS' in the first paragraph and ended on a list of files, against the rule 'End with one of: FLAGS, CLEAN FROM THIS SEAT, CAN'T JUDGE'. 0 of 1 followed the prose.",
+      "backed_by": "plugins/dev-team/hooks/agent_hook.py",
+      "block": [
+        "I audited the change. Verdict: FLAGS.\n\n1. 1.4.3 Contrast: .note text is 3.27:1.\n\nManual checks owed:\n- Reflow at 320 CSS px.\n\nFiles: src/main.ts, src/styles.css"
+      ],
+      "allow": [
+        "1. 1.4.3 Contrast: .note text is 3.27:1, low-vision readers can't read it.\n\nFLAGS: 1",
+        "CLEAN FROM THIS SEAT: keyboard, names, contrast and reflow checked in code; a screen reader pass is still owed."
+      ],
+      "eval": {
+        "block": {
+          "prompt": "Audit this component. There is no running page; this is all of its code.\n\n```html\n<form>\n  <input type=\"email\" placeholder=\"Email\">\n  <div class=\"btn\" onclick=\"send()\"><svg viewBox=\"0 0 16 16\"><path d=\"M1 8h14\"/></svg></div>\n</form>\n```",
+          "check": {
+            "last_line": "^[\\s*#>`_-]*FLAGS\\b"
+          }
+        },
+        "allow": {
+          "prompt": "Audit this component. There is no running page; this is all of its code. The page sets lang=\"en\" and uses #111 text on #fff.\n\n```html\n<form>\n  <label for=\"email\">Email</label>\n  <input id=\"email\" type=\"email\" autocomplete=\"email\">\n  <button type=\"submit\">Send</button>\n</form>\n```",
+          "check": {
+            "last_line": "^[\\s*#>`_-]*(CLEAN FROM THIS SEAT|FLAGS|CAN'T JUDGE)\\b"
+          }
+        }
+      },
+      "added": "2026-10-30",
+      "proven": {
+        "verdict": "PROVEN",
+        "model": "sonnet",
+        "date": "2026-10-30",
+        "cases": {
+          "block": {
+            "with": 4,
+            "without": 0,
+            "n": 4
+          },
+          "allow": {
+            "with": 4,
+            "without": 0,
+            "n": 4
+          }
+        }
+      },
+      "expires": {
+        "when": "Drop the hook (keep the prose) when 20 logged a11y-auditor runs in a row end on the verdict before any block. Not on --eval alone: on 2026-10-30 the prose passed 8 of 8 short eval cases while real runs had failed 3 of 3.",
+        "clean_runs": 20
+      }
+    },
+    {
+      "id": "usage-log",
+      "agent": "*",
+      "rule": "Every agent run is logged: agent, verdict, whether the hook blocked it.",
+      "failure": "2026-10-30: the only evidence for this harness came from digging one session's transcripts (animal-range-finder, 2026-10-28) for the 4 agents ever used. 21 of 25 agents had no runs on record at all, so nothing could show which of their rules work.",
+      "backed_by": "plugins/dev-team/hooks/agent_hook.py",
+      "block": "scripts/test_agent_harness.py: a run with no verdict is still logged, with verdict null",
+      "allow": "scripts/test_agent_harness.py: bad input and an unwritable log path never block the agent or print anything",
+      "added": "2026-10-30",
+      "proven": null,
+      "expires": {
+        "when": "If by 2027-04-30 the log hasn't led to adding, changing or expiring a control, remove the logging half of agent_hook.py.",
+        "date": "2027-04-30"
+      }
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "description": "Logs each run of this plugin's agents for scripts/agent_harness.py --usage, and blocks a code-reviewer or a11y-auditor report whose last line isn't the verdict.",
+  "hooks": {
+    "SubagentStop": [
+      {
+        "matcher": "^web-team:",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/agent_hook.py\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

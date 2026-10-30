@@ -63,7 +63,7 @@ If they only wanted to know what to use ("what should I use for...", "is there s
 ## 3. Run it
 
 - **Prompt** (`prompts/<category>/<name>.md`): read it, fill every `[BRACKET]` from the conversation, and ask once, in one message, for anything essential that's missing. Then follow it as written, including its output format and stop conditions. `prompts/about-me.md` is the repo author's background (Joseph Alfonso). Apply it only when the person you're helping is Joseph.
-- **Persona** (`personas/<set>/<name>.md`): follow its instruction block exactly, including stop conditions and the verdict line. Review personas do one pass. Rehearsal personas stay in character until their own rules end the exercise.
+- **Persona** (`personas/<set>/<name>.md`): follow its instruction block. Review personas do one pass and end with a verdict line: FLAGS, CLEAN FROM THIS SEAT or CAN'T JUDGE. Rehearsal personas stay in character until their own rules end the exercise.
 - **Framework** (`frameworks/<name>/SKILL.md`): follow that skill file. If they'd rather fill it in themselves, give the interactive version's link from `catalog.md`.
 - **Template** (`templates/...`): hand it back pre-filled with what's already known, with the gaps marked.
 - **Rule** (`rules/<name>.md`): give them the paste-ready block for their project's CLAUDE.md, and say the `guardrails` plugin enforces the archive, kill-by-PID and git rules as hooks.
