@@ -1,0 +1,9 @@
+{
+  "name": "bank-guide",
+  "version": "1.0.0",
+  "description": "Install this one globally. Start a coding project or ask which agent fits a job, and it picks the right plugin kit from the bank and enables it in the repo.",
+  "author": {
+    "name": "Joseph Alfonso",
+    "url": "https://josephalfonso.com"
+  }
+}

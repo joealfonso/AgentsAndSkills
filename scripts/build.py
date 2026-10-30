@@ -255,7 +255,7 @@ TEMPLATE_USE = {
 
 
 def first_sentence(text):
-    return re.split(r"(?<=[.!?])\s", text.strip(), 1)[0].rstrip(".")
+    return re.split(r"(?<=[.!?])\s", text.strip(), maxsplit=1)[0].rstrip(".")
 
 
 def catalog_wanted():
@@ -312,7 +312,7 @@ def catalog_wanted():
         meta = frontmatter(p.read_text())
         rest.append(f"- [{meta['title']}](personas/{rel.as_posix()}) · {meta['mode']} persona · {meta['use_for'].rstrip('.')}")
     for skill, (plugin, meta) in sorted(plugin_skills.items()):
-        if plugin in ("design-guide", "design-review", "prompt-library", "review-personas") \
+        if plugin in ("design-guide", "design-review", "prompt-library", "review-personas", "bank-guide") \
                 or ("s", f"{plugin}/skills/{skill}") in placed:
             continue
         rest.append(f"- {skill} · installed skill `{skill}` from the `{plugin}` plugin, personal setup · "
@@ -329,7 +329,76 @@ def catalog_wanted():
     return {GUIDE_SKILL / "catalog.md": "\n".join(out)}, []
 
 
+# ---- coding bank catalog ----
+
+BANK_SKILL = ROOT / "plugins" / "bank-guide" / "skills" / "bank-guide"
+# Project type -> plugins to enable in that project's .claude/settings.json. Edit here, then run build.py.
+BASE_KIT = ["dev-team", "review-personas", "guardrails", "writing"]
+PROJECT_KITS = [
+    ("Any coding project", BASE_KIT, "Seven working agents, review personas on demand, hooks that block risky commands, and my writing voice."),
+    ("Game", BASE_KIT + ["game-team"], "Adds art-director, artist and playtester. Needs DESIGN.md at the repo root and docs/ASSETS.md."),
+    ("Web app or site", BASE_KIT + ["web-team", "design-review"], "Adds a11y-auditor and tech-writer, plus the design review card before build."),
+    ("AI feature", BASE_KIT + ["ai-team", "design-review"], "Adds eval-writer, plus the AI design rubric and AI readiness review."),
+    ("Design or research work", ["design-guide", "design-review", "prompt-library", "review-personas", "writing"], "No coding agents. Prompts, frameworks and personas picked by stage."),
+    ("Job search", ["job-search", "prompt-library", "review-personas", "writing"], "Personal setup. Edit the Config section in each skill first."),
+    ("Daily routines", ["daily-ops"], "Personal setup. Morning briefing and knowledge base cleanup."),
+]
+
+
+def loose_front(path):
+    """Frontmatter as a dict, tolerant of values that aren't quoted."""
+    m = re.match(r"---\n(.*?)\n---\n", path.read_text(), re.S)
+    out = {}
+    for line in m.group(1).splitlines() if m else []:
+        k, sep, v = line.partition(":")
+        if sep:
+            v = v.strip()
+            out[k.strip()] = json.loads(v) if v.startswith('"') else v
+    return out
+
+
+def bank_catalog_wanted():
+    """catalog.md for the bank-guide skill: project kits, then every plugin with its agents and skills."""
+    market = json.loads((ROOT / ".claude-plugin" / "marketplace.json").read_text())
+    listed = {p["name"] for p in market["plugins"]}
+    on_disk = {d.name for d in (ROOT / "plugins").iterdir() if d.joinpath(".claude-plugin", "plugin.json").exists()}
+    if listed != on_disk:
+        sys.exit(f"marketplace.json and plugins/ disagree: {sorted(listed ^ on_disk)}")
+    for ptype, kit, _ in PROJECT_KITS:
+        missing = [k for k in kit if k not in listed]
+        if missing:
+            sys.exit(f"kit '{ptype}' names plugins that don't exist: {missing}")
+
+    out = ["# Bank catalog", "",
+           "What to enable per project type, then everything each plugin holds. "
+           "Enable plugins in a project's `.claude/settings.json` as `\"<plugin>@joseph-alfonso\": true`.", "",
+           "## Kits by project type", "", "| Project type | Enable | What you get |", "|---|---|---|"]
+    out += [f"| {t} | {', '.join(f'`{k}`' for k in kit)} | {why} |" for t, kit, why in PROJECT_KITS]
+    out += ["", "## Plugins", ""]
+    for plugin in market["plugins"]:
+        d = ROOT / "plugins" / plugin["name"]
+        out += [f"### {plugin['name']}", "", plugin["description"], ""]
+        agents = sorted((d / "agents").glob("*.md")) if (d / "agents").exists() else []
+        if len(agents) > 8:
+            out.append(f"- {len(agents)} reviewer subagents, one per review-mode persona. Run them through the `review-as` skill.")
+        for a in agents if len(agents) <= 8 else []:
+            meta = loose_front(a)
+            if meta.get("name") != a.stem:
+                sys.exit(f"{a.relative_to(ROOT)}: name does not match file name")
+            out.append(f"- agent `{a.stem}`: {first_sentence(meta['description'])}")
+        for sk in sorted((d / "skills").glob("*/SKILL.md")) if (d / "skills").exists() else []:
+            out.append(f"- skill `{sk.parent.name}`: {first_sentence(loose_front(sk)['description'])}")
+        for c in sorted((d / "commands").glob("*.md")) if (d / "commands").exists() else []:
+            out.append(f"- command `/{c.stem}`: {loose_front(c).get('description', '')}")
+        if (d / "hooks" / "hooks.json").exists():
+            out.append("- hooks: see the plugin README")
+        out.append("")
+    out.append("*This file is generated by `scripts/build.py`. Edit the kits in build.py and the plugins themselves, not this file.*\n")
+    return {BANK_SKILL / "catalog.md": "\n".join(out)}, []
+
+
 LINKS = {
+    BANK_SKILL / "templates": "../../../../templates",
     PERSONA_SKILL / "personas": "../../../../personas",
     PROMPT_SKILL / "prompts": "../../../../prompts",
     GUIDE_SKILL / "personas": "../../../../personas",
@@ -361,7 +430,7 @@ def main():
         print("\n".join(problems))
         sys.exit(1)
     wanted, managed = {}, []
-    for fn in (personas_wanted, prompts_wanted, stages_wanted, catalog_wanted):
+    for fn in (personas_wanted, prompts_wanted, stages_wanted, catalog_wanted, bank_catalog_wanted):
         w, m = fn()
         wanted.update(w)
         managed += m

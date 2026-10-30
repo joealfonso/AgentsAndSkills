@@ -11,6 +11,11 @@ Everything Claude Code can install from this repo. Each folder is a plugin liste
 | [prompt-library](prompt-library/) | The `prompt-library` skill and a copy of all 81 [prompts](../prompts/) |
 | [job-search](job-search/) | Job digest, Gmail tracker updates, interview prep, resume tailoring |
 | [daily-ops](daily-ops/) | Morning briefing and weekly knowledge base cleanup |
+| [bank-guide](bank-guide/) | **Install globally.** `/start` and the `bank-guide` skill: pick the plugin kit for a project and enable it in the repo, or find which agent fits a job |
+| [dev-team](dev-team/) | Seven working subagents for any coding project: engineer, designer, spec-writer, debugger, code-reviewer, test-writer, marketer |
+| [game-team](game-team/) | art-director, artist, playtester |
+| [web-team](web-team/) | a11y-auditor, tech-writer |
+| [ai-team](ai-team/) | eval-writer |
 | [guardrails](guardrails/) | Hooks that block pattern-based process kills, turn deletes into moves to `_archive/`, and confirm pushes to main |
 
 ```

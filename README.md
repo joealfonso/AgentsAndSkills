@@ -132,7 +132,17 @@ Three of these are also backed by the `guardrails` plugin, since a rule in CLAUD
 /plugin install review-personas@joseph-alfonso
 ```
 
-Plugins: `design-guide` (start here), `writing`, `review-personas`, `design-review`, `prompt-library`, `job-search`, `daily-ops`, `guardrails`. Install only what a machine needs. `/plugin marketplace update joseph-alfonso` pulls new changes. When you change a plugin, bump the `version` in its `plugin.json`, or machines that already installed it may keep the cached copy.
+Plugins: `design-guide` (start here for design work), `bank-guide` (start here for coding), `writing`, `review-personas`, `design-review`, `prompt-library`, `dev-team`, `game-team`, `web-team`, `ai-team`, `job-search`, `daily-ops`, `guardrails`. Install only what a machine needs. `/plugin marketplace update joseph-alfonso` pulls new changes. When you change a plugin, bump the `version` in its `plugin.json`, or machines that already installed it may keep the cached copy.
+
+### Claude Code: starting a coding project
+
+Install `bank-guide` once at user level, and `writing` if you want my voice everywhere. Everything else is enabled per project so each repo carries only the agents it needs.
+
+```
+/plugin install bank-guide@joseph-alfonso
+```
+
+In a new repo, run `/start` or just say what you're building. It picks a kit from [the catalog](plugins/bank-guide/skills/bank-guide/catalog.md) and writes the `enabledPlugins` into that repo's `.claude/settings.json`. The [agent-bank](https://github.com/joealfonso/agent-bank) template repo comes with the base kit already enabled. To change what a kit contains, edit `PROJECT_KITS` in `scripts/build.py`.
 
 ### Claude Code: link straight from this checkout
 
