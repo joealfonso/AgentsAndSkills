@@ -1,0 +1,130 @@
+{
+  "controls": [
+    {
+      "id": "code-reviewer.verdict-last",
+      "agent": "code-reviewer",
+      "rule": "Make the last line the verdict: FLAGS (how many), CLEAN FROM THIS SEAT (one sentence on what you checked), or CAN'T JUDGE (name what context is missing).",
+      "failure": "2026-10-28, animal-range-finder session dde62a73, code-reviewer runs a07a45a3 and ac6fe2f0. Both reports put FLAGS near the top and ended on notes ('On flag 1: ...', 'I found no problems with ...'), against the rule 'End with one of: FLAGS, CLEAN FROM THIS SEAT, CAN'T JUDGE'. 0 of 2 followed the prose.",
+      "backed_by": "plugins/dev-team/hooks/agent_hook.py",
+      "block": [
+        "FLAGS (ranked)\n\n1. It deletes real native range (clip.ts:71).\n2. The Russia split doesn't match (clip.ts:53).\n\nChecked and fine:\n- Point-in-polygon.\n\nOn flag 1: the rule says to remove a feature whose data can't be trusted. This clip throws away trustworthy data.",
+        "FLAGS (most severe first)\n\n1. A failed load shows two notes that contradict each other (stage.ts:618).\n\nI found no problems with the shader maths, the poles or the antimeridian.",
+        "Looks good to me overall, a few small things worth a look."
+      ],
+      "allow": [
+        "1. Off-by-one in parse_port (net.py:4): port 0 is accepted.\n\nFLAGS: 1",
+        "Traced the main path and the error path.\n\n**CLEAN FROM THIS SEAT**: traced parse_port's main and failure paths and its callers.",
+        "CAN'T JUDGE: the spec for the retry policy isn't in the repo.",
+        "- FLAGS: 2",
+        "Verdict follows.\nCAN’T JUDGE: no access to the migration it depends on."
+      ],
+      "eval": {
+        "block": {
+          "prompt": "Review the diff below against the spec. Focus on correctness: input validation, error handling, and whether callers can rely on the result. Report findings ranked by severity with file:line and a concrete failure scenario; don't edit.\n\nSpec: load_config(path) reads a JSON file and returns a dict with an int `port` (1-65535) and a list `hosts`. A missing file returns the defaults; malformed JSON raises ConfigError naming the file.\n\n```diff\n--- a/config.py\n+++ b/config.py\n@@\n+import json\n+\n+DEFAULTS = {\"port\": 8080, \"hosts\": []}\n+\n+def load_config(path):\n+    try:\n+        with open(path) as f:\n+            data = json.load(f)\n+    except Exception:\n+        return DEFAULTS\n+    data.setdefault(\"hosts\", [])\n+    return data\n```",
+          "check": {
+            "last_line": "^[\\s*#>`_-]*(FLAGS|CLEAN FROM THIS SEAT|CAN'T JUDGE)\\b"
+          }
+        },
+        "allow": {
+          "prompt": "Review the diff below against the spec. Focus on correctness: input validation, error handling, and whether callers can rely on the result. Report findings ranked by severity with file:line and a concrete failure scenario; don't edit.\n\nSpec: load_config(path) reads a JSON file and returns a dict with an int `port` (1-65535) and a list `hosts`. A missing file returns the defaults; malformed JSON raises ConfigError naming the file.\n\n```diff\n--- a/config.py\n+++ b/config.py\n@@\n+import json\n+\n+class ConfigError(Exception):\n+    pass\n+\n+def load_config(path):\n+    try:\n+        with open(path) as f:\n+            data = json.load(f)\n+    except FileNotFoundError:\n+        return {\"port\": 8080, \"hosts\": []}\n+    except json.JSONDecodeError as e:\n+        raise ConfigError(f\"{path}: {e}\") from e\n+    port = data.get(\"port\", 8080)\n+    if not isinstance(port, int) or not 1 <= port <= 65535:\n+        raise ConfigError(f\"{path}: port must be an int in 1-65535\")\n+    hosts = data.get(\"hosts\", [])\n+    if not isinstance(hosts, list):\n+        raise ConfigError(f\"{path}: hosts must be a list\")\n+    return {\"port\": port, \"hosts\": hosts}\n```",
+          "check": {
+            "last_line": "^[\\s*#>`_-]*(FLAGS|CLEAN FROM THIS SEAT|CAN'T JUDGE)\\b"
+          }
+        }
+      },
+      "added": "2026-10-30",
+      "proven": {
+        "verdict": "PROVEN",
+        "model": "sonnet",
+        "model_id": "claude-sonnet-5-5",
+        "against": "baseline",
+        "date": "2026-10-30",
+        "cases": {
+          "block": {
+            "with": 4,
+            "without": 0,
+            "n": 4
+          },
+          "allow": {
+            "with": 4,
+            "without": 0,
+            "n": 4
+          }
+        }
+      },
+      "expires": {
+        "when": "Drop the hook (keep the prose) when 20 logged code-reviewer runs in a row end on the verdict before any block. Not on --eval: it's text-only and short, and the new wording hasn't been through a real tool-heavy review yet.",
+        "clean_runs": 20
+      },
+      "baseline": "End with one of: FLAGS (the ranked list), CLEAN FROM THIS SEAT (one sentence on what you checked), or CAN'T JUDGE (name what context is missing)."
+    },
+    {
+      "id": "a11y-auditor.verdict-last",
+      "agent": "a11y-auditor",
+      "rule": "Make the last line the verdict: FLAGS (how many), CLEAN FROM THIS SEAT (one sentence on what you checked, plus the manual checks still owed), or CAN'T JUDGE (name what's missing, usually a runnable page).",
+      "failure": "2026-10-28, animal-range-finder session dde62a73, a11y-auditor run a299a2ec. It wrote 'Verdict: FLAGS' in the first paragraph and ended on a list of files, against the rule 'End with one of: FLAGS, CLEAN FROM THIS SEAT, CAN'T JUDGE'. 0 of 1 followed the prose.",
+      "backed_by": "plugins/dev-team/hooks/agent_hook.py",
+      "block": [
+        "I audited the change. Verdict: FLAGS.\n\n1. 1.4.3 Contrast: .note text is 3.27:1.\n\nManual checks owed:\n- Reflow at 320 CSS px.\n\nFiles: src/main.ts, src/styles.css"
+      ],
+      "allow": [
+        "1. 1.4.3 Contrast: .note text is 3.27:1, low-vision readers can't read it.\n\nFLAGS: 1",
+        "CLEAN FROM THIS SEAT: keyboard, names, contrast and reflow checked in code; a screen reader pass is still owed."
+      ],
+      "eval": {
+        "block": {
+          "prompt": "Audit this signup form against WCAG 2.2 AA. Check: labels and accessible names, error identification, contrast of the text and the button, keyboard operation, and that the status message is announced. Read the code; there is no running page. Report failures with the criterion and the element, don't fix.\n\n```html\n<style>.hint{color:#999;background:#fff}.btn{background:#7aa7ff;color:#fff}</style>\n<form>\n  <input type=\"email\" placeholder=\"Email\">\n  <span class=\"hint\">We'll never share it</span>\n  <div class=\"btn\" onclick=\"submit()\">Sign up</div>\n  <div id=\"msg\"></div>\n</form>\n<script>function submit(){document.getElementById('msg').textContent='Check your inbox';}</script>\n```",
+          "check": {
+            "last_line": "^[\\s*#>`_-]*(FLAGS|CLEAN FROM THIS SEAT|CAN'T JUDGE)\\b"
+          }
+        },
+        "allow": {
+          "prompt": "Audit this signup form against WCAG 2.2 AA. Check: labels and accessible names, error identification, contrast of the text and the button, keyboard operation, and that the status message is announced. Read the code; there is no running page. Report failures with the criterion and the element, don't fix.\n\n```html\n<style>.hint{color:#555;background:#fff}button{background:#1a4fd6;color:#fff}</style>\n<form>\n  <label for=\"email\">Email</label>\n  <input id=\"email\" type=\"email\" autocomplete=\"email\" aria-describedby=\"hint\">\n  <p id=\"hint\" class=\"hint\">We'll never share it</p>\n  <button type=\"submit\">Sign up</button>\n  <p role=\"status\" id=\"msg\"></p>\n</form>\n```",
+          "check": {
+            "last_line": "^[\\s*#>`_-]*(FLAGS|CLEAN FROM THIS SEAT|CAN'T JUDGE)\\b"
+          }
+        }
+      },
+      "added": "2026-10-30",
+      "proven": {
+        "verdict": "PROVEN",
+        "model": "sonnet",
+        "model_id": "claude-sonnet-5-5",
+        "against": "baseline",
+        "date": "2026-10-30",
+        "cases": {
+          "block": {
+            "with": 4,
+            "without": 0,
+            "n": 4
+          },
+          "allow": {
+            "with": 4,
+            "without": 1,
+            "n": 4
+          }
+        }
+      },
+      "expires": {
+        "when": "Drop the hook (keep the prose) when 20 logged a11y-auditor runs in a row end on the verdict before any block. Not on --eval: it's text-only and short, and the new wording hasn't been through a real tool-heavy review yet.",
+        "clean_runs": 20
+      },
+      "baseline": "End with one of: FLAGS (the ranked list), CLEAN FROM THIS SEAT (one sentence on what you checked, plus the manual checks still owed), or CAN'T JUDGE (name what's missing, usually a runnable page)."
+    },
+    {
+      "id": "usage-log",
+      "agent": "*",
+      "rule": "Every agent run is logged: agent, verdict, whether the hook blocked it.",
+      "failure": "2026-10-30: the only evidence for this harness came from digging one session's transcripts (animal-range-finder, 2026-10-28) for the 4 agents ever used. 21 of 25 agents had no runs on record at all, so nothing could show which of their rules work.",
+      "backed_by": "plugins/dev-team/hooks/agent_hook.py",
+      "block": "scripts/test_agent_harness.py: a run with no verdict is still logged, with verdict null",
+      "allow": "scripts/test_agent_harness.py: bad input and an unwritable log path never block the agent or print anything",
+      "added": "2026-10-30",
+      "proven": null,
+      "expires": {
+        "when": "If by 2027-04-30 the log hasn't led to adding, changing or expiring a control, remove the logging half of agent_hook.py.",
+        "date": "2027-04-30"
+      }
+    }
+  ]
+}

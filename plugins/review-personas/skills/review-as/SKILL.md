@@ -42,7 +42,7 @@ Each persona lives in `personas/<set>/<name>.md` next to this file. The persona 
 
 ## Modes
 
-- **review**: one pass over the material, ending in the persona's verdict line (FLAGS / CLEAN FROM THIS SEAT / CAN'T JUDGE or its own variant). Don't keep the conversation going after the verdict.
+- **review**: one pass over the material. Ask for the verdict as the last line, FLAGS (how many), CLEAN FROM THIS SEAT (what was checked) or CAN'T JUDGE (what's missing); the persona files don't carry it, this skill does. Don't keep the conversation going after the verdict.
 - **rehearsal**: stay in character turn by turn. Open with the persona's opening line. Step out of character only when the persona's own rules say the exercise is over.
 
 If the material the persona needs isn't in the conversation, the answer is CAN'T JUDGE with what's missing, not a guess.

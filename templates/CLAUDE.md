@@ -1,6 +1,6 @@
 # <Project name>
 
-<One sentence: what this is and who it's for. Keep this whole file under ~150 lines; past that, instructions start getting ignored.>
+<One sentence: what this is and who it's for. Keep this whole file to about 100 lines, a table of contents that points at docs, scripts and hooks. Add a rule only after a real session failed without it.>
 
 ## Stack and commands
 

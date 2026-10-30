@@ -20,3 +20,5 @@ Writing under my name is the `write-like-joseph` skill in the `writing` plugin. 
 ```
 
 Enable it per project, in that repo's `.claude/settings.json`, so a repo carries only the agents it uses. The `bank-guide` plugin's `/start` does that for you. Bump `version` in `plugin.json` whenever an agent changes.
+
+**Hook:** `hooks/agent_hook.py` logs each agent run for the [agent harness](../../harness) and enforces its controls. If you copy the agents into a project instead of installing the plugin, copy that script to the project's `.claude/hooks/`.

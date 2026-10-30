@@ -86,8 +86,18 @@ PROMPT_ORDER = {
     "projects": "System prompts for Claude Projects",
 }
 
-AGENT_PREAMBLE = """You are running as a subagent. In the instructions below, "I", "me" and "my" mean the person whose material you were handed. Read every file path or URL you were given before judging. If the material isn't there, answer CAN'T JUDGE and name what's missing.
+AGENT_PREAMBLE = """You are running as a subagent. In the instructions below, "I", "me" and "my" mean the person whose material you were handed.
 
+"""
+
+
+# Logs each run for scripts/agent_harness.py --usage when the agent is copied into a project or
+# ~/.claude/agents. Plugin installs use the plugin's hooks/hooks.json instead.
+AGENT_HOOK = """hooks:
+  Stop:
+    - hooks:
+        - type: command
+          command: 'for f in "$CLAUDE_PROJECT_DIR/.claude/hooks/agent_hook.py" "$HOME/.claude/hooks/agent_hook.py"; do [ -f "$f" ] && exec python3 "$f"; done; exit 0'
 """
 
 
@@ -110,9 +120,9 @@ def replace_index(text, table):
 
 def persona_agent(meta, instruction):
     use = meta["use_for"].rstrip(".")
-    desc = f"{meta['title']} review persona. Use for {use}. Returns ranked flags or a clean verdict."
+    desc = f"{meta['title']} review persona. Use for {use}."
     return (f"---\nname: {meta['name']}\ndescription: {json.dumps(desc)}\n"
-            f"tools: Read, Glob, Grep, WebFetch\nmodel: sonnet\n---\n\n"
+            f"tools: Read, Glob, Grep, WebFetch\nmodel: sonnet\n{AGENT_HOOK}---\n\n"
             + AGENT_PREAMBLE + instruction + "\n")
 
 
@@ -406,6 +416,8 @@ LINKS = {
     GUIDE_SKILL / "templates": "../../../../templates",
     GUIDE_SKILL / "rules": "../../../../rules",
     GUIDE_SKILL / "frameworks": "../../../design-review/skills",
+    **{ROOT / "plugins" / p / "hooks" / "agent_hook.py": "../../dev-team/hooks/agent_hook.py"
+       for p in ("web-team", "game-team", "ai-team", "review-personas")},
 }
 
 

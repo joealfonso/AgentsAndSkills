@@ -10,6 +10,8 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 SKILLS_HOME="${CLAUDE_HOME:-$HOME/.claude}/skills"
 AGENTS_HOME="${CLAUDE_HOME:-$HOME/.claude}/agents"
+HOOKS_HOME="${CLAUDE_HOME:-$HOME/.claude}/hooks"
+AGENT_HOOK="$ROOT/plugins/dev-team/hooks/agent_hook.py"
 
 skill_dirs() { find "$ROOT/plugins" -path '*/skills/*/SKILL.md' -exec dirname {} \; | sort; }
 agent_files() { find "$ROOT/plugins" -path '*/agents/*.md' | sort; }
@@ -27,6 +29,9 @@ link_one() {
   else mkdir -p "$AGENTS_HOME"; dest="$AGENTS_HOME/$(basename "$path")"; fi
   if [[ -e "$dest" && ! -L "$dest" ]]; then echo "skip $dest (a real file is already there)"; return; fi
   ln -sfn "$path" "$dest"; echo "linked $dest"
+  if [[ "$kind" == agent ]]; then  # the agents' frontmatter hook looks for it here
+    mkdir -p "$HOOKS_HOME"; ln -sfn "$AGENT_HOOK" "$HOOKS_HOME/agent_hook.py"
+  fi
 }
 
 unlink_one() {
