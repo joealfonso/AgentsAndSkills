@@ -147,6 +147,12 @@ Paste-ready prompts for the things I do over and over in my career: job searchin
 | [Critique an AI-built prototype](building-with-ai/prototype-critique.md) | an agent built something and you need to judge it before iterating |
 | [Subagent or delegation brief](building-with-ai/subagent-brief.md) | handing a task to another agent or session that starts with no context |
 
+### Refining prompts
+
+| Prompt | Use when |
+|---|---|
+| [Deepen a prompt, don't enlarge it](refining-prompts/deepen-not-bigger.md) | a prompt or task would get you a competent but shallow answer, and you want what a top professional in the field would do instead |
+
 ### System prompts for Claude Projects
 
 | Prompt | Use when |

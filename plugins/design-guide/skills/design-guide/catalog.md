@@ -214,6 +214,7 @@ Not placed in a stage, still worth matching.
 - [Replying to a rejection](prompts/job-search/rejection-reply.md) · prompt · you got a no and want to keep the door open or learn something
 - [Career conversation with a mentee](prompts/mentoring-and-teaching/career-conversation.md) · prompt · a mentee or report wants to talk about where they're headed
 - [Visual inspiration assistant](prompts/projects/visual-inspiration-assistant.md) · prompt · setting up a Claude Project that captures, tags and searches design inspiration
+- [Deepen a prompt, don't enlarge it](prompts/refining-prompts/deepen-not-bigger.md) · prompt · a prompt or task would get you a competent but shallow answer, and you want what a top professional in the field would do instead
 - [Difficult conversation prep](prompts/stakeholders-and-leadership/difficult-conversation.md) · prompt · conflict, delivering hard feedback, or a conversation you've been avoiding
 - [Disagreeing with a stakeholder productively](prompts/stakeholders-and-leadership/disagree-and-redirect.md) · prompt · a stakeholder wants something you think is wrong, and you need to say so without losing them
 - [Meeting prep](prompts/stakeholders-and-leadership/meeting-prep.md) · prompt · an important meeting where you need an outcome, not just attendance
