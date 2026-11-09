@@ -1,6 +1,6 @@
 ---
 name: review-as
-description: Review work or rehearse a conversation as one of Joseph's critique personas (strict senior designer, skeptical hiring manager, VP, eng lead, finance, recruiter, comp negotiator, burned-out engineer, user who hates this, and more). Use when he says "review this as ...", "be the ...", "pressure-test this", "rehearse my interview / negotiation / exec review", or asks which reviewer fits his material.
+description: Review work or rehearse a conversation as one of Joseph's critique personas (strict senior designer, skeptical hiring manager, VP, eng lead, finance, recruiter, comp negotiator, burned-out engineer, user who hates this, typographer, and more). Use when he says "review this as ...", "be the ...", "pressure-test this", "check the type / typography", "rehearse my interview / negotiation / exec review", or asks which reviewer fits his material.
 ---
 
 # Review as a persona
@@ -24,6 +24,7 @@ Each persona lives in `personas/<set>/<name>.md` next to this file. The persona 
 | design-critique | research-first-partner | rehearsal | early-stage problem framing, before any UI gets discussed |
 | design-critique | skeptical-hiring-manager | review | resume review, portfolio walkthroughs, interview answer prep |
 | design-critique | strict-senior-product-designer | review | case studies, portfolio decks, design rationale, anything going external |
+| design-critique | typographer | review | the type in any layout, print or screen, especially AI-generated UI, decks and documents where nobody actually set the type |
 | stakeholder-leadership | board-level-narrative-partner | review | compressing a quarter of work into a short, decision-relevant story |
 | stakeholder-leadership | cross-functional-eng-lead | review | pressure-testing a spec before it goes to engineering |
 | stakeholder-leadership | finance-ops-stakeholder | review | framing design work in terms leadership tracks at scale |

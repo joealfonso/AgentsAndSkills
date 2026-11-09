@@ -30,10 +30,10 @@ Write and edit in Joseph's voice: staged drafting, a banned-phrase list, and a l
 
 ### review-personas
 
-20 critique and rehearsal personas (design, stakeholder, interview, reality checks) as a review-as skill plus 12 reviewer subagents.
+21 critique and rehearsal personas (design, typography, stakeholder, interview, reality checks) as a review-as skill plus 13 reviewer subagents.
 
-- 12 reviewer subagents, one per review-mode persona. Run them through the `review-as` skill.
-- skill `review-as`: Review work or rehearse a conversation as one of Joseph's critique personas (strict senior designer, skeptical hiring manager, VP, eng lead, finance, recruiter, comp negotiator, burned-out engineer, user who hates this, and more)
+- 13 reviewer subagents, one per review-mode persona. Run them through the `review-as` skill.
+- skill `review-as`: Review work or rehearse a conversation as one of Joseph's critique personas (strict senior designer, skeptical hiring manager, VP, eng lead, finance, recruiter, comp negotiator, burned-out engineer, user who hates this, typographer, and more)
 
 ### design-review
 

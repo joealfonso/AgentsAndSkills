@@ -24,7 +24,7 @@ The guide works out where you are in the work, names the one thing that's missin
 | Folder | What it is | How to use it |
 |---|---|---|
 | [`plugins/`](plugins) | Skills and subagents, packaged as Claude Code plugins | Install a plugin, link a skill, or zip one for claude.ai |
-| [`personas/`](personas) | 20 critique and rehearsal personas, one file each | Paste one into any chat, or use the `review-as` skill |
+| [`personas/`](personas) | 21 critique and rehearsal personas, one file each | Paste one into any chat, or use the `review-as` skill |
 | [`rules/`](rules) | Reusable CLAUDE.md snippets learned the hard way | Copy the block into a project's CLAUDE.md |
 | [`claude-code/`](claude-code) | Notes and patterns for running Claude Code, and how my setup compares | Read before changing hooks, memory or workflow |
 | [`templates/`](templates) | CLAUDE.md starter, notes on writing specs, a service blueprint, and a rainbow spreadsheet for usability studies | Copy into a new project or doc |
@@ -70,6 +70,7 @@ Every persona has stop conditions (when to say nothing) and a fixed verdict line
 | [Enterprise Stakeholder (Non-Design)](personas/design-critique/enterprise-stakeholder-non-design.md) | review | Translating design decisions into business language |
 | [Research-First Partner](personas/design-critique/research-first-partner.md) | rehearsal | Problem framing before any UI |
 | [AI/ML Product Specialist](personas/design-critique/ai-ml-product-specialist.md) | review | AI features beyond the happy path |
+| [Typographer](personas/design-critique/typographer.md) | review | Type in print and on screen, held to WCAG, Bringhurst and platform guides |
 | **Stakeholder and leadership** | | |
 | [Skeptical VP / Exec Sponsor](personas/stakeholder-leadership/skeptical-vp-exec-sponsor.md) | rehearsal | Roadmap defense, exec decks |
 | [Cross-functional Eng Lead](personas/stakeholder-leadership/cross-functional-eng-lead.md) | review | Pressure-testing a spec before engineering |

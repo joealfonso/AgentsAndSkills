@@ -22,7 +22,7 @@
     {
       "name": "review-personas",
       "source": "./plugins/review-personas",
-      "description": "20 critique and rehearsal personas (design, stakeholder, interview, reality checks) as a review-as skill plus 12 reviewer subagents."
+      "description": "21 critique and rehearsal personas (design, typography, stakeholder, interview, reality checks) as a review-as skill plus 13 reviewer subagents."
     },
     {
       "name": "design-review",
