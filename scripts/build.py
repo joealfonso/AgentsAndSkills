@@ -334,10 +334,13 @@ def catalog_wanted():
 # ---- coding bank catalog ----
 
 BANK_SKILL = ROOT / "plugins" / "bank-guide" / "skills" / "bank-guide"
+# Installed once per machine. Hooks here guard every repo, set up or not, and the two guides can find anything from any repo.
+USER_LEVEL = ["bank-guide", "design-guide", "guardrails", "writing"]
 # Project type -> plugins to enable in that project's .claude/settings.json. Edit here, then run build.py.
+# Kits repeat guardrails and writing so the committed settings carry them into cloud sessions.
 BASE_KIT = ["dev-team", "review-personas", "guardrails", "writing"]
 PROJECT_KITS = [
-    ("Any coding project", BASE_KIT, "Seven working agents, review personas on demand, hooks that block risky commands, and my writing voice."),
+    ("Any coding project", BASE_KIT, "The dev-team agents, reviewer personas, hooks that block risky commands, and my writing voice."),
     ("Game", BASE_KIT + ["game-team"], "Adds art-director, artist and playtester. Needs DESIGN.md at the repo root and docs/ASSETS.md."),
     ("Web app or site", BASE_KIT + ["web-team", "design-review"], "Adds a11y-auditor and tech-writer, plus the design review card before build."),
     ("AI feature", BASE_KIT + ["ai-team", "design-review"], "Adds eval-writer, plus the AI design rubric and AI readiness review."),
@@ -366,16 +369,26 @@ def bank_catalog_wanted():
     on_disk = {d.name for d in (ROOT / "plugins").iterdir() if d.joinpath(".claude-plugin", "plugin.json").exists()}
     if listed != on_disk:
         sys.exit(f"marketplace.json and plugins/ disagree: {sorted(listed ^ on_disk)}")
-    for ptype, kit, _ in PROJECT_KITS:
+    for ptype, kit, _ in PROJECT_KITS + [("user level", USER_LEVEL, "")]:
         missing = [k for k in kit if k not in listed]
         if missing:
             sys.exit(f"kit '{ptype}' names plugins that don't exist: {missing}")
 
+    def agent_count(plugins):
+        return sum(len(list((ROOT / "plugins" / k / "agents").glob("*.md"))) for k in plugins)
+
     out = ["# Bank catalog", "",
            "What to enable per project type, then everything each plugin holds. "
            "Enable plugins in a project's `.claude/settings.json` as `\"<plugin>@joseph-alfonso\": true`.", "",
-           "## Kits by project type", "", "| Project type | Enable | What you get |", "|---|---|---|"]
-    out += [f"| {t} | {', '.join(f'`{k}`' for k in kit)} | {why} |" for t, kit, why in PROJECT_KITS]
+           "## Install once at user level", "",
+           ", ".join(f"`{k}`" for k in USER_LEVEL) + ". Hooks installed here guard every repo, including ones never set up. "
+           "This catalog finds plugins, agents and skills; `design-guide` finds every prompt, persona, template and rule. "
+           "Kits below repeat `guardrails` and `writing` so a repo's committed settings carry them into cloud sessions "
+           "and other machines.", "",
+           "## Kits by project type", "",
+           "Agents is how many agent descriptions the kit puts in context for the whole session.", "",
+           "| Project type | Enable | Agents | What you get |", "|---|---|---|---|"]
+    out += [f"| {t} | {', '.join(f'`{k}`' for k in kit)} | {agent_count(kit)} | {why} |" for t, kit, why in PROJECT_KITS]
     out += ["", "## Plugins", ""]
     for plugin in market["plugins"]:
         d = ROOT / "plugins" / plugin["name"]
@@ -425,9 +438,38 @@ def check_links():
     return problems
 
 
+def count_problems():
+    """Counts written by hand in the docs that no longer match what's on disk."""
+    persona_files = [p for p in PERSONAS.rglob("*.md") if p.name != "README.md"]
+    reviewers = len(list(AGENTS_DIR.glob("*.md")))
+    prompts = len([p for p in PROMPTS.rglob("*.md") if p.name != "README.md" and p.parent != PROMPTS])
+    checks = [
+        (r"(\d+) critique and rehearsal personas", len(persona_files), "personas"),
+        (r"(\d+) reviewer subagents", reviewers, "reviewer subagents"),
+        (r"(\d+) \[?(?:career |paste-ready )?prompts\b", prompts, "prompts"),
+        (r"all (\d+) \[prompts\]", prompts, "prompts"),
+    ]
+    files = [ROOT / "README.md", PERSONAS / "README.md", ROOT / "plugins" / "README.md",
+             ROOT / ".claude-plugin" / "marketplace.json", *sorted((ROOT / "plugins").glob("*/README.md")),
+             *sorted((ROOT / "plugins").glob("*/.claude-plugin/plugin.json"))]
+    problems = []
+    for f in files:
+        text = f.read_text()
+        for pattern, actual, what in checks:
+            for m in re.finditer(pattern, text):
+                if int(m.group(1)) != actual:
+                    problems.append(f"{f.relative_to(ROOT)}: says {m.group(1)} {what}, there are {actual}")
+    for s in PERSONA_ORDER:
+        m = re.search(rf"\| \[{s}\]\({s}/\) \| (\d+) \|", (PERSONAS / "README.md").read_text())
+        actual = len(list((PERSONAS / s).glob("*.md"))) - 1
+        if m and int(m.group(1)) != actual:
+            problems.append(f"personas/README.md: says {m.group(1)} {s} personas, there are {actual}")
+    return problems
+
+
 def main():
     check = "--check" in sys.argv
-    problems = check_links()
+    problems = check_links() + count_problems()
     if problems:
         print("\n".join(problems))
         sys.exit(1)
