@@ -10,7 +10,7 @@ Everything Claude Code can install from this repo. Each folder is a plugin liste
 | [writing](writing/) | `write-like-joseph`, my voice for anything written or rewritten |
 | [review-personas](review-personas/) | The `review-as` skill and 12 reviewer subagents built from [personas](../personas/) |
 | [design-review](design-review/) | Design Review Card, AI Design Evaluation Rubric, AI Readiness Review |
-| [prompt-library](prompt-library/) | The `prompt-library` skill and a copy of all 81 [prompts](../prompts/) |
+| [prompt-library](prompt-library/) | The `prompt-library` skill and a copy of all 82 [prompts](../prompts/) |
 | [job-search](job-search/) | Job digest, Gmail tracker updates, interview prep, resume tailoring |
 | [daily-ops](daily-ops/) | Morning briefing and weekly knowledge base cleanup |
 | [dev-team](dev-team/) | Seven working subagents for any coding project: engineer, designer, spec-writer, debugger, code-reviewer, test-writer, marketer |

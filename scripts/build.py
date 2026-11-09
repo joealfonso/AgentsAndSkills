@@ -446,7 +446,7 @@ def count_problems():
     checks = [
         (r"(\d+) critique and rehearsal personas", len(persona_files), "personas"),
         (r"(\d+) reviewer subagents", reviewers, "reviewer subagents"),
-        (r"(\d+) (?:career |paste-ready )?prompts\b", prompts, "prompts"),
+        (r"(\d+) \[?(?:career |paste-ready )?prompts\b", prompts, "prompts"),
         (r"all (\d+) \[prompts\]", prompts, "prompts"),
     ]
     files = [ROOT / "README.md", PERSONAS / "README.md", ROOT / "plugins" / "README.md",
