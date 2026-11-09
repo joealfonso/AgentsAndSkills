@@ -33,7 +33,7 @@ The guide works out where you are in the work, names the one thing that's missin
 | [`rules/`](rules) | Reusable CLAUDE.md snippets learned the hard way | Copy the block into a project's CLAUDE.md |
 | [`claude-code/`](claude-code) | Notes and patterns for running Claude Code, and how my setup compares | Read before changing hooks, memory or workflow |
 | [`templates/`](templates) | CLAUDE.md starter, notes on writing specs, a service blueprint, and a rainbow spreadsheet for usability studies | Copy into a new project or doc |
-| [`prompts/`](prompts) | 81 career prompts across 13 areas, plus a context block about me | Fill in the brackets and paste, or use the `prompt-library` skill |
+| [`prompts/`](prompts) | 82 career prompts across 14 areas, plus a context block about me | Fill in the brackets and paste, or use the `prompt-library` skill |
 | [`examples/`](examples) | Sample outputs from a review skill and a persona, on two made-up specs | See what you get before installing anything |
 | [`tools/`](tools) | Interactive HTML versions of the design review frameworks | Use them live at [josephalfonso.com/AgentsAndSkills/tools](https://josephalfonso.com/AgentsAndSkills/tools/), or browse the whole bank by stage: [STAGES.md](STAGES.md) |
 
@@ -95,7 +95,7 @@ Every persona has stop conditions (when to say nothing) and a fixed verdict line
 
 ### Prompt library
 
-81 paste-ready prompts for recurring career work, indexed in [prompts/README.md](prompts/README.md):
+82 paste-ready prompts for recurring career work, indexed in [prompts/README.md](prompts/README.md):
 
 | Area | Prompts | Examples |
 |---|---|---|

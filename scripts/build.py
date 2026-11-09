@@ -63,6 +63,7 @@ PROMPT_ABOUT = {
     "writing-and-visibility": "Being known for your thinking: LinkedIn posts, talk proposals, article outlines, fact-checking, bios and newsletters.",
     "career-growth": "Steering your own career: weekly brag docs, self-reviews, promotion cases, the first 90 days, quarterly check-ins and skill gap audits.",
     "building-with-ai": "Getting good work out of coding agents: specs, CLAUDE.md files, delegation briefs, bug reports and critiquing what they build.",
+    "refining-prompts": "Prompts you run on another prompt before using it: deepening the ask toward what an expert would actually do, instead of making it bigger.",
     "projects": "Longer system prompts that set up a Claude Project or a custom assistant for an ongoing job.",
 }
 
@@ -83,6 +84,7 @@ PROMPT_ORDER = {
     "writing-and-visibility": "Writing and visibility",
     "career-growth": "Career growth",
     "building-with-ai": "Building with AI",
+    "refining-prompts": "Refining prompts",
     "projects": "System prompts for Claude Projects",
 }
 

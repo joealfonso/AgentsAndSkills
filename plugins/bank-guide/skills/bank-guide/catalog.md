@@ -51,9 +51,9 @@ Design review frameworks: a fast Design Review Card, the AI Design Evaluation Ru
 
 ### prompt-library
 
-81 career prompts (job search, interviews, offers, portfolio, user research, design work, AI product design, leadership, mentoring, writing, career growth, building with AI) with a skill that fills them in and runs them.
+82 career prompts (job search, interviews, offers, portfolio, user research, design work, AI product design, leadership, mentoring, writing, career growth, building with AI, refining prompts) with a skill that fills them in and runs them.
 
-- skill `prompt-library`: Joseph's career prompt library, 81 prompts for job search, interviews, offers, portfolio and case studies, user research, design work, AI product design, stakeholders and leadership, mentoring, writing, career growth, and building with AI
+- skill `prompt-library`: Joseph's career prompt library, 82 prompts for job search, interviews, offers, portfolio and case studies, user research, design work, AI product design, stakeholders and leadership, mentoring, writing, career growth, building with AI, and refining other prompts
 
 ### job-search
 
