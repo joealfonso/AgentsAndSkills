@@ -55,6 +55,7 @@ From a fuzzy request to a shipped, defended decision.
 - [Accessibility Review](prompts/design-work/accessibility-review.md) · prompt · before handoff or as a QA pass on a built screen
 - [UX Copy Pass](prompts/design-work/ux-copy-pass.md) · prompt · screens are designed but the words are placeholder, internal or vague
 - [Critique Prep](prompts/design-work/critique-prep.md) · prompt · before you bring work to crit, so you get useful feedback instead of opinions
+- [Typographer](personas/design-critique/typographer.md) · review persona · the type in any layout, print or screen, especially AI-generated UI, decks and documents where nobody actually set the type
 - [The User Who Hates This](personas/reality-checks/the-user-who-hates-this.md) · review persona · catching the emotional read a usability heuristic would miss
 
 ### 07 Test with real users
@@ -158,6 +159,7 @@ Check your own work before someone else does. Every persona stops when the work 
 - [AI Design Rubric](frameworks/ai-design-rubric/SKILL.md) · review framework · Score AI-generated or AI-assisted design output before it ships with Joseph's AI Design Evaluation Rubric. Interactive version: https://josephalfonso.com/AgentsAndSkills/tools/ai-design-evaluation-rubric.html
 - [Strict Senior Product Designer](personas/design-critique/strict-senior-product-designer.md) · review persona · case studies, portfolio decks, design rationale, anything going external
 - [AI/ML Product Specialist](personas/design-critique/ai-ml-product-specialist.md) · review persona · pressure-testing AI feature design beyond the happy path
+- [Typographer](personas/design-critique/typographer.md) · review persona · the type in any layout, print or screen, especially AI-generated UI, decks and documents where nobody actually set the type
 - [The User Who Hates This](personas/reality-checks/the-user-who-hates-this.md) · review persona · catching the emotional read a usability heuristic would miss
 
 ### 02 Check it can be built

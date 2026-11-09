@@ -8,7 +8,7 @@ Everything Claude Code can install from this repo. Each folder is a plugin liste
 | [bank-guide](bank-guide/) | **Start here for code. Install at user level.** `/start` and the `bank-guide` skill: pick the plugin kit for a project and enable it in the repo, or find which agent fits a job |
 | [guardrails](guardrails/) | **Install at user level.** Hooks that block pattern-based process kills, turn deletes into moves to `_archive/`, and confirm pushes to main |
 | [writing](writing/) | `write-like-joseph`, my voice for anything written or rewritten |
-| [review-personas](review-personas/) | The `review-as` skill and 12 reviewer subagents built from [personas](../personas/) |
+| [review-personas](review-personas/) | The `review-as` skill and 13 reviewer subagents built from [personas](../personas/) |
 | [design-review](design-review/) | Design Review Card, AI Design Evaluation Rubric, AI Readiness Review |
 | [prompt-library](prompt-library/) | The `prompt-library` skill and a copy of all 82 [prompts](../prompts/) |
 | [job-search](job-search/) | Job digest, Gmail tracker updates, interview prep, resume tailoring |

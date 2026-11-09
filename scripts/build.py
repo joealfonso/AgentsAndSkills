@@ -39,7 +39,7 @@ AGENTS_DIR = PERSONA_PLUGIN / "agents"
 PERSONA_ORDER = ["design-critique", "stakeholder-leadership", "interviewing", "reality-checks"]
 PERSONA_SETS = {
     "design-critique": ("Design critique personas",
-                        "Reviewers for design and portfolio work: the senior designer, hiring manager, junior mentee, business stakeholder, research partner and AI specialist who find gaps before someone else does."),
+                        "Reviewers for design and portfolio work: the senior designer, hiring manager, junior mentee, business stakeholder, research partner, AI specialist and typographer who find gaps before someone else does."),
     "stakeholder-leadership": ("Stakeholder and leadership personas",
                                "Practice and review for upward and cross-functional communication: execs, engineering leads, finance, skip-levels, a new manager you're coaching, and a board-level narrative editor."),
     "interviewing": ("Interviewing personas",

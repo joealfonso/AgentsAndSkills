@@ -12,12 +12,12 @@ Agents is how many agent descriptions the kit puts in context for the whole sess
 
 | Project type | Enable | Agents | What you get |
 |---|---|---|---|
-| Any coding project | `dev-team`, `review-personas`, `guardrails`, `writing` | 19 | The dev-team agents, reviewer personas, hooks that block risky commands, and my writing voice. |
-| Game | `dev-team`, `review-personas`, `guardrails`, `writing`, `game-team` | 22 | Adds art-director, artist and playtester. Needs DESIGN.md at the repo root and docs/ASSETS.md. |
-| Web app or site | `dev-team`, `review-personas`, `guardrails`, `writing`, `web-team`, `design-review` | 21 | Adds a11y-auditor and tech-writer, plus the design review card before build. |
-| AI feature | `dev-team`, `review-personas`, `guardrails`, `writing`, `ai-team`, `design-review` | 20 | Adds eval-writer, plus the AI design rubric and AI readiness review. |
-| Design or research work | `design-guide`, `design-review`, `prompt-library`, `review-personas`, `writing` | 12 | No coding agents. Prompts, frameworks and personas picked by stage. |
-| Job search | `job-search`, `prompt-library`, `review-personas`, `writing` | 12 | Personal setup. Edit the Config section in each skill first. |
+| Any coding project | `dev-team`, `review-personas`, `guardrails`, `writing` | 20 | The dev-team agents, reviewer personas, hooks that block risky commands, and my writing voice. |
+| Game | `dev-team`, `review-personas`, `guardrails`, `writing`, `game-team` | 23 | Adds art-director, artist and playtester. Needs DESIGN.md at the repo root and docs/ASSETS.md. |
+| Web app or site | `dev-team`, `review-personas`, `guardrails`, `writing`, `web-team`, `design-review` | 22 | Adds a11y-auditor and tech-writer, plus the design review card before build. |
+| AI feature | `dev-team`, `review-personas`, `guardrails`, `writing`, `ai-team`, `design-review` | 21 | Adds eval-writer, plus the AI design rubric and AI readiness review. |
+| Design or research work | `design-guide`, `design-review`, `prompt-library`, `review-personas`, `writing` | 13 | No coding agents. Prompts, frameworks and personas picked by stage. |
+| Job search | `job-search`, `prompt-library`, `review-personas`, `writing` | 13 | Personal setup. Edit the Config section in each skill first. |
 | Daily routines | `daily-ops` | 0 | Personal setup. Morning briefing and knowledge base cleanup. |
 
 ## Plugins
@@ -36,10 +36,10 @@ Write and edit in Joseph's voice: staged drafting, a banned-phrase list, and a l
 
 ### review-personas
 
-20 critique and rehearsal personas (design, stakeholder, interview, reality checks) as a review-as skill plus 12 reviewer subagents.
+21 critique and rehearsal personas (design, typography, stakeholder, interview, reality checks) as a review-as skill plus 13 reviewer subagents.
 
-- 12 reviewer subagents, one per review-mode persona. Run them through the `review-as` skill.
-- skill `review-as`: Review work or rehearse a conversation as one of Joseph's critique personas (strict senior designer, skeptical hiring manager, VP, eng lead, finance, recruiter, comp negotiator, burned-out engineer, user who hates this, and more)
+- 13 reviewer subagents, one per review-mode persona. Run them through the `review-as` skill.
+- skill `review-as`: Review work or rehearse a conversation as one of Joseph's critique personas (strict senior designer, skeptical hiring manager, VP, eng lead, finance, recruiter, comp negotiator, burned-out engineer, user who hates this, typographer, and more)
 
 ### design-review
 

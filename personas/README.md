@@ -1,12 +1,12 @@
 # Personas
 
-20 critique and rehearsal personas, one file each, grouped into four sets. This folder is the only copy: the `review-personas` plugin reads it through a symlink, and `scripts/build.py` turns the review-mode ones into Claude Code subagents.
+21 critique and rehearsal personas, one file each, grouped into four sets. This folder is the only copy: the `review-personas` plugin reads it through a symlink, and `scripts/build.py` turns the review-mode ones into Claude Code subagents.
 
 What makes them different from "pretend to be a hiring manager": every persona has **stop conditions** (when to say nothing) and a fixed **verdict line**, so it reviews what's actually on the page instead of inventing problems to look useful.
 
 | Set | Personas | For |
 |---|---|---|
-| [design-critique](design-critique/) | 6 | Design and portfolio work |
+| [design-critique](design-critique/) | 7 | Design, typography and portfolio work |
 | [stakeholder-leadership](stakeholder-leadership/) | 6 | Exec, cross-functional and upward communication |
 | [interviewing](interviewing/) | 3 | Screens, differentiation and comp negotiation |
 | [reality-checks](reality-checks/) | 5 | What polished critique misses |
