@@ -3,8 +3,11 @@
 The front door to the bank. Describe what you need in your own words, and the `design-guide` skill works out where you are in the work, tells you what's missing, and runs the right resource. You don't need to know what's in the repo.
 
 ```
+/plugin marketplace add joealfonso/AgentsAndSkills
 /plugin install design-guide@joseph-alfonso
 ```
+
+Install it at user level, next to `bank-guide`, so it can find things from any repo, not just design projects.
 
 Then ask the way you'd ask a colleague:
 

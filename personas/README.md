@@ -9,7 +9,7 @@ What makes them different from "pretend to be a hiring manager": every persona h
 | [design-critique](design-critique/) | 6 | Design and portfolio work |
 | [stakeholder-leadership](stakeholder-leadership/) | 6 | Exec, cross-functional and upward communication |
 | [interviewing](interviewing/) | 3 | Screens, differentiation and comp negotiation |
-| [reality-checks](reality-checks/) | 4 | What polished critique misses |
+| [reality-checks](reality-checks/) | 5 | What polished critique misses |
 
 **Use one:** paste its "Instruction to paste" block into any chat along with your material, or ask Claude to "review this as the skeptical hiring manager".
 
