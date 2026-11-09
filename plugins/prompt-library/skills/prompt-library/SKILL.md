@@ -1,6 +1,6 @@
 ---
 name: prompt-library
-description: Joseph's career prompt library, 81 prompts for job search, interviews, offers, portfolio and case studies, user research, design work, AI product design, stakeholders and leadership, mentoring, writing, career growth, and building with AI. Use when he says "use the ... prompt", "which prompt fits this", asks for help with any of those recurring career tasks, or wants to browse the library.
+description: Joseph's career prompt library, 82 prompts for job search, interviews, offers, portfolio and case studies, user research, design work, AI product design, stakeholders and leadership, mentoring, writing, career growth, building with AI, and refining other prompts. Use when he says "use the ... prompt", "which prompt fits this", "deepen this prompt", asks for help with any of those recurring career tasks, or wants to browse the library.
 ---
 
 # Prompt library
@@ -160,6 +160,12 @@ If no prompt fits, say so and do the task directly. Don't force a near miss.
 | [Project brief to SPEC.md](prompts/building-with-ai/project-brief-to-spec.md) | starting a side project or prototype with a coding agent |
 | [Critique an AI-built prototype](prompts/building-with-ai/prototype-critique.md) | an agent built something and you need to judge it before iterating |
 | [Subagent or delegation brief](prompts/building-with-ai/subagent-brief.md) | handing a task to another agent or session that starts with no context |
+
+### Refining prompts
+
+| Prompt | Use when |
+|---|---|
+| [Deepen a prompt, don't enlarge it](prompts/refining-prompts/deepen-not-bigger.md) | a prompt or task would get you a competent but shallow answer, and you want what a top professional in the field would do instead |
 
 ### System prompts for Claude Projects
 
