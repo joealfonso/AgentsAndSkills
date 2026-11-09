@@ -21,9 +21,9 @@ Notes, patterns and pointers for how I set up and run Claude Code.
 
 | Pattern | What I have | Worth adding |
 |---|---|---|
-| Rules enforced by hooks | `guardrails` blocks pattern and bulk kills, turns deletes into moves to `_archive/`, blocks git commands that discard work, and confirms pushes to main. It reads command text, so deletes through Python, `>` or MCP tools still get through | Adopt the "corrected twice becomes a hook" rule. Next candidate: block closing keywords in commit messages if I ever want my own close-out step |
+| Rules enforced by hooks | `guardrails`, installed at user level so it covers repos never set up, blocks pattern and bulk kills, turns deletes into moves to `_archive/`, blocks git commands that discard work, and confirms pushes to main. It reads command text, so deletes through Python, `>` or MCP tools still get through | Adopt the "corrected twice becomes a hook" rule. Next candidate: block closing keywords in commit messages if I ever want my own close-out step |
 | Tracker as system of record | Nothing. Work lives in chat and commits | A GitHub Issues setup with one status label per issue and human-only `backlog → ready` and `review → done` |
-| Main session orchestrates, model tiers | [model-by-task](../rules/model-by-task.md) rule (Haiku / Sonnet / Opus by job) | Keep the main session to planning and review on bigger projects |
+| Main session orchestrates, model tiers | Routing in each repo's CLAUDE.md ("How to work here", added by `/start` to new and existing repos), plus [model-by-task](../rules/model-by-task.md) | Keep the main session to planning and review on bigger projects |
 | Cheap judgment model | Nothing | Only worth it for large piles (past roughly 45-60 items). Measure break-even before building |
 | Skills for repeated workflows | `review-as` (its "run the panel" mode is close to "ask the board"), `prompt-library`, `design-review` | A "work the ready queue" skill once there's a tracker |
 | Typed memory | Claude Code's memory already uses user / feedback / project / reference files with one fact each | `stale_after` dates, `verified: by human`, TRAP entries, and putting memory under version control |

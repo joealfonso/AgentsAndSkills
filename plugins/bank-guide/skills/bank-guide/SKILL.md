@@ -18,10 +18,13 @@ Search `catalog.md` for words from the question. Answer with the name, the plugi
 
 1. **Read the project.** Look at the working directory, any README or CLAUDE.md, and what he said. Pick the kit in `catalog.md` that fits. If two kits fit and would give different setups (a game that is also a web app), ask one question. Otherwise state your pick and go.
 2. **Say what the kit adds in three lines or fewer**: the plugins, the agents that come with them, and what he should delete if the project doesn't need it.
-3. **Enable it for this repo only.** Merge into `.claude/settings.json` in the project root. Create the file if it is missing. Never overwrite keys that are already there, and show him the result.
+3. **Enable it for this repo only.** Merge into `.claude/settings.json` in the project root. Create the file if it is missing. Never overwrite keys that are already there; add the `.env` deny entries to any existing `permissions.deny` list rather than replacing it. Show him the result.
 
 ```json
 {
+  "permissions": {
+    "deny": ["Read(./.env)", "Read(./.env.*)"]
+  },
   "extraKnownMarketplaces": {
     "joseph-alfonso": { "source": { "source": "github", "repo": "joealfonso/AgentsAndSkills" } }
   },
@@ -32,8 +35,20 @@ Search `catalog.md` for words from the question. Answer with the name, the plugi
 ```
 
 Add one `"<plugin>@joseph-alfonso": true` line per plugin in the kit. Tell him to restart the session so the plugins load.
-4. **CLAUDE.md.** If the project has none, offer `templates/CLAUDE.md` and fill in the stack and commands from the repo. If it has one, leave it alone.
+
+Then make sure `.gitignore` has these lines, adding only the missing ones: `.env`, `.env.*`, `.claude/settings.local.json`, `_archive/` (where guardrails moves deleted files), and `node_modules/` if the project uses npm.
+4. **CLAUDE.md.** The "How to work here" section is what tells the main session who builds and who reviews, so every coding repo needs it.
+   - No CLAUDE.md: offer `templates/CLAUDE.md` and fill in the stack and commands from the repo.
+   - A CLAUDE.md without a "How to work here" section: offer to add only that section from the template. Show it first and change nothing else in the file.
+   - A CLAUDE.md that already has one: leave it alone.
+5. **Commit it.** Put `.claude/settings.json`, `.gitignore` and CLAUDE.md on a branch and commit them. Cloud and remote sessions clone the repo, so a file that only exists on this machine gives them no plugins, hooks or routing. If `.claude/` is in `.gitignore`, say so and ask before changing it.
+
+## What lives where
+
+- **User level, once per machine:** this plugin, `guardrails` and `writing`. Hooks at user level guard every repo, including the ones never set up. If `guardrails` isn't installed at user level, say so once and give the install line.
+- **The repo's `.claude/settings.json`:** the kit. Kits repeat `guardrails` and `writing` so cloud sessions and other machines get them from the committed file.
+- **The repo's CLAUDE.md:** routing and project facts only. Rules about Joseph live in `~/.claude/CLAUDE.md` (`templates/user-CLAUDE.md`). Rules a hook enforces don't go in either.
 
 ## Keep the roster small
 
-Every enabled agent's description sits in context all session. The base kit is seven agents. Past about twelve, say so and ask what to drop. Project-type plugins go in the project's settings, never in his user settings. Only this plugin and `writing` belong at user level.
+Every enabled agent's description sits in context all session. `catalog.md` lists how many agents each kit loads; say that number when you enable a kit. Before adding plugins beyond the kit, say how many agents they add and ask. Project-type plugins go in the project's settings, never in his user settings.

@@ -2,17 +2,23 @@
 
 What to enable per project type, then everything each plugin holds. Enable plugins in a project's `.claude/settings.json` as `"<plugin>@joseph-alfonso": true`.
 
+## Install once at user level
+
+`bank-guide`, `guardrails`, `writing`. Hooks installed here guard every repo, including ones never set up. Kits below repeat `guardrails` and `writing` so a repo's committed settings carry them into cloud sessions and other machines.
+
 ## Kits by project type
 
-| Project type | Enable | What you get |
-|---|---|---|
-| Any coding project | `dev-team`, `review-personas`, `guardrails`, `writing` | Seven working agents, review personas on demand, hooks that block risky commands, and my writing voice. |
-| Game | `dev-team`, `review-personas`, `guardrails`, `writing`, `game-team` | Adds art-director, artist and playtester. Needs DESIGN.md at the repo root and docs/ASSETS.md. |
-| Web app or site | `dev-team`, `review-personas`, `guardrails`, `writing`, `web-team`, `design-review` | Adds a11y-auditor and tech-writer, plus the design review card before build. |
-| AI feature | `dev-team`, `review-personas`, `guardrails`, `writing`, `ai-team`, `design-review` | Adds eval-writer, plus the AI design rubric and AI readiness review. |
-| Design or research work | `design-guide`, `design-review`, `prompt-library`, `review-personas`, `writing` | No coding agents. Prompts, frameworks and personas picked by stage. |
-| Job search | `job-search`, `prompt-library`, `review-personas`, `writing` | Personal setup. Edit the Config section in each skill first. |
-| Daily routines | `daily-ops` | Personal setup. Morning briefing and knowledge base cleanup. |
+Agents is how many agent descriptions the kit puts in context for the whole session.
+
+| Project type | Enable | Agents | What you get |
+|---|---|---|---|
+| Any coding project | `dev-team`, `review-personas`, `guardrails`, `writing` | 19 | The dev-team agents, reviewer personas, hooks that block risky commands, and my writing voice. |
+| Game | `dev-team`, `review-personas`, `guardrails`, `writing`, `game-team` | 22 | Adds art-director, artist and playtester. Needs DESIGN.md at the repo root and docs/ASSETS.md. |
+| Web app or site | `dev-team`, `review-personas`, `guardrails`, `writing`, `web-team`, `design-review` | 21 | Adds a11y-auditor and tech-writer, plus the design review card before build. |
+| AI feature | `dev-team`, `review-personas`, `guardrails`, `writing`, `ai-team`, `design-review` | 20 | Adds eval-writer, plus the AI design rubric and AI readiness review. |
+| Design or research work | `design-guide`, `design-review`, `prompt-library`, `review-personas`, `writing` | 12 | No coding agents. Prompts, frameworks and personas picked by stage. |
+| Job search | `job-search`, `prompt-library`, `review-personas`, `writing` | 12 | Personal setup. Edit the Config section in each skill first. |
+| Daily routines | `daily-ops` | 0 | Personal setup. Morning briefing and knowledge base cleanup. |
 
 ## Plugins
 

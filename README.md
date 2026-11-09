@@ -4,7 +4,12 @@ My bank of AI skills, personas, agents and working rules. Everything here is pla
 
 ## Start here: just ask
 
-You don't need to browse this repo. Install the `design-guide` plugin, then describe what you need the way you'd ask a colleague:
+You don't need to browse this repo. There are two front doors, and you can install both:
+
+- **Design, research or career work:** `design-guide`. Describe what you need and it picks the resource.
+- **A code repo:** `bank-guide`, then `/start` in the repo. See [starting a coding project](#claude-code-starting-a-coding-project).
+
+For design work, install `design-guide` and describe what you need the way you'd ask a colleague:
 
 ```
 /plugin marketplace add joealfonso/AgentsAndSkills
@@ -17,7 +22,7 @@ You don't need to browse this repo. Install the `design-guide` plugin, then desc
 >
 > "I have 12 interview transcripts and a readout on Friday."
 
-The guide works out where you are in the work, names the one thing that's missing, and runs the right prompt, review, persona or template from the bank. It often catches that the work is earlier than the ask, like a critique request that's really a framing problem. On claude.ai or Claude Desktop, upload `scripts/skills.sh zip design-guide` as a skill instead. Everything below is what it draws on.
+The guide works out where you are in the work, names the one thing that's missing, and runs the right prompt, review, persona or template from the bank. It often catches that the work is earlier than the ask, like a critique request that's really a framing problem. On claude.ai or Claude Desktop, clone this repo, run `scripts/skills.sh zip design-guide`, and upload the zip it puts in `dist/` as a skill. Everything below is what it draws on.
 
 ## What's in here
 
@@ -121,7 +126,7 @@ Paste [prompts/about-me.md](prompts/about-me.md) above any prompt so the assista
 | [remove-unreliable-features](rules/remove-unreliable-features.md) | Data-driven products |
 | [archive-dont-delete](rules/archive-dont-delete.md) | Losing a file would hurt |
 
-Three of these are also backed by the `guardrails` plugin, since a rule in CLAUDE.md can be forgotten and a hook can't. It blocks pattern and bulk process kills (`pkill`, `killall`, `pgrep | kill`, `xargs kill`, `kill -1`), blocks deletes and replies with the `mv` into `_archive/` to run instead, blocks git commands that throw away uncommitted work (`git clean`, `reset --hard`, `checkout -- .`, `restore`, `stash drop`), and asks you to confirm any `git push` that would update `main` or `master` (including a bare `git push` while on `main`). It also checks inside `bash -c` and `eval`. It reads command text, so it catches mistakes, not a determined workaround; the [plugin README](plugins/guardrails/README.md#guardrails) lists what gets through.
+Three of these are enforced by the `guardrails` plugin instead, since a rule in CLAUDE.md can be forgotten and a hook can't. If guardrails is on, don't paste those three into CLAUDE.md. It blocks pattern and bulk process kills (`pkill`, `killall`, `pgrep | kill`, `xargs kill`, `kill -1`), blocks deletes and replies with the `mv` into `_archive/` to run instead, blocks git commands that throw away uncommitted work (`git clean`, `reset --hard`, `checkout -- .`, `restore`, `stash drop`), and asks you to confirm any `git push` that would update `main` or `master` (including a bare `git push` while on `main`). It also checks inside `bash -c` and `eval`. It reads command text, so it catches mistakes, not a determined workaround; the [plugin README](plugins/guardrails/README.md#guardrails) lists what gets through.
 
 ## Using it
 
@@ -136,13 +141,27 @@ Plugins: `design-guide` (start here for design work), `bank-guide` (start here f
 
 ### Claude Code: starting a coding project
 
-Install `bank-guide` once at user level, and `writing` if you want my voice everywhere. Everything else is enabled per project so each repo carries only the agents it needs.
+Each kind of rule lives where it can't be skipped:
+
+| Layer | Holds | Why there |
+|---|---|---|
+| Hooks (`guardrails`, user level) | Hard rules: kill by PID, archive instead of delete, confirm pushes to main | A hook runs every time, in every repo, set up or not |
+| `~/.claude/CLAUDE.md` ([template](templates/user-CLAUDE.md)) | Rules about me: voice, sourcing, no invented metrics | Loads in every session without being copied into each repo |
+| The repo's CLAUDE.md ([template](templates/CLAUDE.md)) | Routing (who specs, builds, reviews) and project facts | Loads every session in that repo. Short, so it gets followed |
+| The repo's `.claude/settings.json` | The plugin kit | Committed, so cloud sessions get the same agents and hooks |
+
+Install these once per machine, at user level:
 
 ```
+/plugin marketplace add joealfonso/AgentsAndSkills
 /plugin install bank-guide@joseph-alfonso
+/plugin install guardrails@joseph-alfonso
+/plugin install writing@joseph-alfonso
 ```
 
-In a new repo, run `/start` or just say what you're building. It picks a kit from [the catalog](plugins/bank-guide/skills/bank-guide/catalog.md) and writes the `enabledPlugins` into that repo's `.claude/settings.json`. The [agent-bank](https://github.com/joealfonso/agent-bank) template repo comes with the base kit already enabled. To change what a kit contains, edit `PROJECT_KITS` in `scripts/build.py`.
+Then copy [templates/user-CLAUDE.md](templates/user-CLAUDE.md) to `~/.claude/CLAUDE.md`.
+
+In a repo, run `/start` or just say what you're building. It picks a kit from [the catalog](plugins/bank-guide/skills/bank-guide/catalog.md), writes the `enabledPlugins` into that repo's `.claude/settings.json` (with `.env` files blocked from reads), adds the "How to work here" routing to CLAUDE.md (new or existing), fills in the `.gitignore` basics, and commits it all on a branch. It works the same on a brand-new repo and an old one, so there's no separate template repo to keep in sync. To change what a kit contains, edit `PROJECT_KITS` in `scripts/build.py`.
 
 ### Claude Code: link straight from this checkout
 
