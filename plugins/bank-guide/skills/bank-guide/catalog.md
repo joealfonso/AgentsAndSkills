@@ -4,7 +4,7 @@ What to enable per project type, then everything each plugin holds. Enable plugi
 
 ## Install once at user level
 
-`bank-guide`, `guardrails`, `writing`. Hooks installed here guard every repo, including ones never set up. Kits below repeat `guardrails` and `writing` so a repo's committed settings carry them into cloud sessions and other machines.
+`bank-guide`, `design-guide`, `guardrails`, `writing`. Hooks installed here guard every repo, including ones never set up. This catalog finds plugins, agents and skills; `design-guide` finds every prompt, persona, template and rule. Kits below repeat `guardrails` and `writing` so a repo's committed settings carry them into cloud sessions and other machines.
 
 ## Kits by project type
 

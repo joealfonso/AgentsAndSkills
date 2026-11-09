@@ -332,8 +332,8 @@ def catalog_wanted():
 # ---- coding bank catalog ----
 
 BANK_SKILL = ROOT / "plugins" / "bank-guide" / "skills" / "bank-guide"
-# Installed once per machine. Hooks here guard every repo, set up or not.
-USER_LEVEL = ["bank-guide", "guardrails", "writing"]
+# Installed once per machine. Hooks here guard every repo, set up or not, and the two guides can find anything from any repo.
+USER_LEVEL = ["bank-guide", "design-guide", "guardrails", "writing"]
 # Project type -> plugins to enable in that project's .claude/settings.json. Edit here, then run build.py.
 # Kits repeat guardrails and writing so the committed settings carry them into cloud sessions.
 BASE_KIT = ["dev-team", "review-personas", "guardrails", "writing"]
@@ -380,6 +380,7 @@ def bank_catalog_wanted():
            "Enable plugins in a project's `.claude/settings.json` as `\"<plugin>@joseph-alfonso\": true`.", "",
            "## Install once at user level", "",
            ", ".join(f"`{k}`" for k in USER_LEVEL) + ". Hooks installed here guard every repo, including ones never set up. "
+           "This catalog finds plugins, agents and skills; `design-guide` finds every prompt, persona, template and rule. "
            "Kits below repeat `guardrails` and `writing` so a repo's committed settings carry them into cloud sessions "
            "and other machines.", "",
            "## Kits by project type", "",

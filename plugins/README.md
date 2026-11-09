@@ -4,7 +4,7 @@ Everything Claude Code can install from this repo. Each folder is a plugin liste
 
 | Plugin | What's in it |
 |---|---|
-| [design-guide](design-guide/) | **Start here for design work.** The `design-guide` skill: describe what you need, get a diagnosis and the right resource run for you |
+| [design-guide](design-guide/) | **Start here for design work. Install at user level.** The `design-guide` skill: describe what you need, get a diagnosis and the right resource run for you, or find a prompt, persona, template or rule you half-remember |
 | [bank-guide](bank-guide/) | **Start here for code. Install at user level.** `/start` and the `bank-guide` skill: pick the plugin kit for a project and enable it in the repo, or find which agent fits a job |
 | [guardrails](guardrails/) | **Install at user level.** Hooks that block pattern-based process kills, turn deletes into moves to `_archive/`, and confirm pushes to main |
 | [writing](writing/) | `write-like-joseph`, my voice for anything written or rewritten |

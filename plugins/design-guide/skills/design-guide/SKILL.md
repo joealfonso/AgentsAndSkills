@@ -1,6 +1,6 @@
 ---
 name: design-guide
-description: Front door to a bank of resources for designing with AI. Use whenever someone describes a design, research, AI product or design career need in their own words without naming a tool, for example "I need to...", "how do I...", "where do I start with...", "what should I use for...", "is this ready?", or "help me with my AI feature / spec / research / prototype / portfolio / interview". Works out where they are in the work and what's actually missing, tells them, then runs the right prompt, review framework, persona or template.
+description: Front door to a bank of resources for designing with AI. Use whenever someone describes a design, research, AI product or design career need in their own words without naming a tool, for example "I need to...", "how do I...", "where do I start with...", "what should I use for...", "is this ready?", or "help me with my AI feature / spec / research / prototype / portfolio / interview". Also use when someone half-remembers something in the bank: "there's a prompt somewhere for...", "what was that persona...", "is there a rule about...", "do I have a template for...", "I know it's in there somewhere". Works out where they are in the work and what's actually missing, tells them, then runs the right prompt, review framework, persona or template.
 ---
 
 # Design guide
@@ -14,6 +14,8 @@ Next to this file:
 - `frameworks/`: the three design-review skills (Design Review Card, AI Design Rubric, AI Readiness Review).
 
 If they name a resource ("run the edge case sweep", "review this as the eng lead"), skip the diagnosis and run it.
+
+If they half-remember one ("there's a prompt somewhere for asking for a referral", "the persona that's like a tired engineer"), search `catalog.md` for words from the description, not just the title. Answer with the best match: its name, one line on what it does, and its path in the repo. Name a second only if it's a close call. Then offer to run it. Questions about agents, plugins or which agent does a job belong to the `bank-guide` skill; hand those over.
 
 ## 1. Diagnose
 

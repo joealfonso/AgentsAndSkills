@@ -155,11 +155,14 @@ Install these once per machine, at user level:
 ```
 /plugin marketplace add joealfonso/AgentsAndSkills
 /plugin install bank-guide@joseph-alfonso
+/plugin install design-guide@joseph-alfonso
 /plugin install guardrails@joseph-alfonso
 /plugin install writing@joseph-alfonso
 ```
 
 Then copy [templates/user-CLAUDE.md](templates/user-CLAUDE.md) to `~/.claude/CLAUDE.md`.
+
+With both guides at user level you never need to know where something lives. Ask in your own words, in any repo: "which agent checks accessibility?" goes to `bank-guide`, and "there's a prompt somewhere for asking for a referral" goes to `design-guide`.
 
 In a repo, run `/start` or just say what you're building. It picks a kit from [the catalog](plugins/bank-guide/skills/bank-guide/catalog.md), writes the `enabledPlugins` into that repo's `.claude/settings.json` (with `.env` files blocked from reads), adds the "How to work here" routing to CLAUDE.md (new or existing), fills in the `.gitignore` basics, and commits it all on a branch. It works the same on a brand-new repo and an old one, so there's no separate template repo to keep in sync. To change what a kit contains, edit `PROJECT_KITS` in `scripts/build.py`.
 

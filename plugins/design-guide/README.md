@@ -7,6 +7,8 @@ The front door to the bank. Describe what you need in your own words, and the `d
 /plugin install design-guide@joseph-alfonso
 ```
 
+Install it at user level, next to `bank-guide`, so it can find things from any repo, not just design projects.
+
 Then ask the way you'd ask a colleague:
 
 - "We've been asked to add AI summaries to the dashboard. Where do I start?"

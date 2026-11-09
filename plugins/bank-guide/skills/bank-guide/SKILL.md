@@ -14,6 +14,8 @@ The bank is the `joseph-alfonso` plugin marketplace (joealfonso/AgentsAndSkills)
 
 Search `catalog.md` for words from the question. Answer with the name, the plugin it lives in, and one line on what it does. Don't set anything up.
 
+`catalog.md` only covers plugins, agents and skills. If he's after a prompt, persona, template or rule ("there's a prompt somewhere for...", "what was that persona..."), hand the question to the `design-guide` skill, which indexes every one of them. If design-guide isn't installed, say so and give the install line.
+
 ## If he is starting a project
 
 1. **Read the project.** Look at the working directory, any README or CLAUDE.md, and what he said. Pick the kit in `catalog.md` that fits. If two kits fit and would give different setups (a game that is also a web app), ask one question. Otherwise state your pick and go.
@@ -45,7 +47,7 @@ Then make sure `.gitignore` has these lines, adding only the missing ones: `.env
 
 ## What lives where
 
-- **User level, once per machine:** this plugin, `guardrails` and `writing`. Hooks at user level guard every repo, including the ones never set up. If `guardrails` isn't installed at user level, say so once and give the install line.
+- **User level, once per machine:** this plugin, `design-guide`, `guardrails` and `writing`. Between them, this plugin and `design-guide` can find anything in the bank from any repo. Hooks at user level guard every repo, including the ones never set up. If `guardrails` isn't installed at user level, say so once and give the install line.
 - **The repo's `.claude/settings.json`:** the kit. Kits repeat `guardrails` and `writing` so cloud sessions and other machines get them from the committed file.
 - **The repo's CLAUDE.md:** routing and project facts only. Rules about Joseph live in `~/.claude/CLAUDE.md` (`templates/user-CLAUDE.md`). Rules a hook enforces don't go in either.
 
