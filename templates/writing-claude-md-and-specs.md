@@ -22,6 +22,7 @@ Models follow roughly 150-200 instructions reliably. Spend them on what the agen
 - Secrets (API keys, credentials, connection strings)
 - Detailed code style (use a linter)
 - Task-specific instructions (use separate files)
+- Anything that changes during the day: status, today's date, the current task. CLAUDE.md is sent near the front of every request, ahead of the conversation, so a change there throws away the cached work behind it. Say it in the chat instead ([why](https://github.com/joealfonso/AgentsAndSkills/blob/main/claude-code/prompt-caching.md))
 - Anything the agent could figure out from the code
 
 **Move to separate files**

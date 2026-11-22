@@ -32,7 +32,7 @@ Closing an issue is one tool call that runs the whole close-out: link the commit
 
 ### 3. The main session orchestrates; subagents do the work by model tier
 
-The main thread plans and dispatches but doesn't edit code.
+The main thread plans and dispatches but doesn't edit code. It stays on one model for the whole session: the prompt cache is per model, so a tier change happens by handing work to a subagent, not by switching the main thread ([prompt-caching.md](prompt-caching.md)).
 
 | Tier | Work |
 |---|---|
