@@ -31,7 +31,7 @@ The guide works out where you are in the work, names the one thing that's missin
 | [`plugins/`](plugins) | Skills and subagents, packaged as Claude Code plugins | Install a plugin, link a skill, or zip one for claude.ai |
 | [`personas/`](personas) | 21 critique and rehearsal personas, one file each | Paste one into any chat, or use the `review-as` skill |
 | [`rules/`](rules) | Reusable CLAUDE.md snippets learned the hard way | Copy the block into a project's CLAUDE.md |
-| [`claude-code/`](claude-code) | Notes and patterns for running Claude Code, and how my setup compares | Read before changing hooks, memory or workflow |
+| [`claude-code/`](claude-code) | Notes and patterns for running Claude Code, what keeps its prompt cache intact, and how my setup compares | Read before changing hooks, memory or workflow, or building an agent on the API |
 | [`templates/`](templates) | CLAUDE.md starter, notes on writing specs, a service blueprint, and a rainbow spreadsheet for usability studies | Copy into a new project or doc |
 | [`prompts/`](prompts) | 82 career prompts across 14 areas, plus a context block about me | Fill in the brackets and paste, or use the `prompt-library` skill |
 | [`examples/`](examples) | Sample outputs from a review skill and a persona, on two made-up specs | See what you get before installing anything |
@@ -126,6 +126,7 @@ Paste [prompts/about-me.md](prompts/about-me.md) above any prompt so the assista
 | [kill-by-pid](rules/kill-by-pid.md) | Projects with dev servers |
 | [remove-unreliable-features](rules/remove-unreliable-features.md) | Data-driven products |
 | [archive-dont-delete](rules/archive-dont-delete.md) | Losing a file would hurt |
+| [stable-prompt-prefix](rules/stable-prompt-prefix.md) | Projects that call the Claude API |
 
 Three of these are enforced by the `guardrails` plugin instead, since a rule in CLAUDE.md can be forgotten and a hook can't. If guardrails is on, don't paste those three into CLAUDE.md. It blocks pattern and bulk process kills (`pkill`, `killall`, `pgrep | kill`, `xargs kill`, `kill -1`), blocks deletes and replies with the `mv` into `_archive/` to run instead, blocks git commands that throw away uncommitted work (`git clean`, `reset --hard`, `checkout -- .`, `restore`, `stash drop`), and asks you to confirm any `git push` that would update `main` or `master` (including a bare `git push` while on `main`). It also checks inside `bash -c` and `eval`. It reads command text, so it catches mistakes, not a determined workaround; the [plugin README](plugins/guardrails/README.md#guardrails) lists what gets through.
 

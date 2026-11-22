@@ -5,6 +5,7 @@ Notes, patterns and pointers for how I set up and run Claude Code.
 | File | What it is |
 |---|---|
 | [setup-patterns.md](setup-patterns.md) | Patterns for a mature Claude Code setup: hooks over prose rules, a tracker as the system of record, model tiers, a cheap judgment model, typed memory, domain MCP servers, and verification |
+| [prompt-caching.md](prompt-caching.md) | Notes from the Claude Code team's post on prompt caching: why the cache is a prefix match, what that changes in a session (no model switches, updates in messages), and what to check when building on the Claude API |
 
 ## Claude Code pieces elsewhere in this repo
 
@@ -24,6 +25,7 @@ Notes, patterns and pointers for how I set up and run Claude Code.
 | Rules enforced by hooks | `guardrails`, installed at user level so it covers repos never set up, blocks pattern and bulk kills, turns deletes into moves to `_archive/`, blocks git commands that discard work, and confirms pushes to main. It reads command text, so deletes through Python, `>` or MCP tools still get through | Adopt the "corrected twice becomes a hook" rule. Next candidate: block closing keywords in commit messages if I ever want my own close-out step |
 | Tracker as system of record | Nothing. Work lives in chat and commits | A GitHub Issues setup with one status label per issue and human-only `backlog → ready` and `review → done` |
 | Main session orchestrates, model tiers | Routing in each repo's CLAUDE.md ("How to work here", added by `/start` to new and existing repos), plus [model-by-task](../rules/model-by-task.md) | Keep the main session to planning and review on bigger projects |
+| Cache-safe sessions and prompts | [model-by-task](../rules/model-by-task.md) sends cheaper work to a subagent instead of switching the session's model. [stable-prompt-prefix](../rules/stable-prompt-prefix.md) is the block for projects that call the API. Notes in [prompt-caching.md](prompt-caching.md) | A test in any API project that a second identical request reads from the cache |
 | Cheap judgment model | Nothing | Only worth it for large piles (past roughly 45-60 items). Measure break-even before building |
 | Skills for repeated workflows | `review-as` (its "run the panel" mode is close to "ask the board"), `prompt-library`, `design-review` | A "work the ready queue" skill once there's a tracker |
 | Typed memory | Claude Code's memory already uses user / feedback / project / reference files with one fact each | `stale_after` dates, `verified: by human`, TRAP entries, and putting memory under version control |

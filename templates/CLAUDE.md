@@ -54,5 +54,6 @@ The main session plans, delegates and reviews. Subagents can't spawn other subag
 <Decisions, constraints, links. Keep it short.>
 
 <!-- Other rules worth pasting, if they fit this project: responsive-overlap-check (front ends),
-model-by-task (heavy subagent use), remove-unreliable-features (derived data).
+model-by-task (heavy subagent use), remove-unreliable-features (derived data),
+stable-prompt-prefix (the project calls the Claude API).
 https://github.com/joealfonso/AgentsAndSkills/tree/main/rules -->
